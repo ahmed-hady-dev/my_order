@@ -1,0 +1,131 @@
+{
+  "map_intro": {
+    "search_bar": "بتدور على ايه؟",
+    "choose_location": "إختر المنطقة"
+  },
+  "register": {
+    "welcome": "أهلا بك في طلباتي",
+    "continue_with_Email": "أكمل باستخدام الايميل"
+  },
+  "welcome": {
+    "login": "تسجيل الدخول",
+    "create_an_account": "إنشاء حساب",
+    "continue_with_Email": "أكمل باستخدام الايميل"
+  },
+  "login": {},
+  "forget_password": {},
+  "reset_password": {},
+  "confirm_email": {},
+  "create_account": {},
+  "home": {
+    "search_bar": "بتدور علي إيه ؟",
+    "popular_food": "الطعام المنتشر",
+    "view_more": "المزيد",
+    "brands": "العلامات التجارية الشهيرة بالقرب منك",
+    "special_offers": "عروض خاصه"
+  },
+  "food": {},
+  "restaurant": {
+    "info": "معلومات",
+    "reviews": "التقييمات",
+    "offer_of_the_restaurant": "عروض المطعم"
+  },
+  "order": {
+    "cart_button_title": "إضافة إلى العربة"
+  },
+  "checkout": {
+    "appBar_title": "الدفع",
+    "full_name": "الإسم بالكامل",
+    "phone_number": "رقم الهاتف",
+    "button_title": "التالي",
+    "address": "العنوان"
+  },
+  "payment_done": {},
+  "notification": {},
+  "vouchers": {},
+  "help": {},
+  "payment": {},
+  "confirm_payment": {},
+  "finishing_payment": {},
+  "cuisines": {},
+  "search": {
+    "search_bar": "بتدور علي إيه ؟",
+    "popular_search": "البحث المتداول"
+  },
+  "settings": {
+    "appBar_title": "الإعدادات",
+    "notifications": "الإشعارات",
+    "lang": "اللغة",
+    "country": "البلد"
+  },
+  "filter": {
+    "popular_filters": "تصنيفات شائعة",
+    "deals_and_offers": "العروض و الخصومات",
+    "sort_by": "التصنيف حسب",
+    "appBar_title": "التصنيفات",
+    "apply": "تطبيق",
+    "clear_all": "حذف الكل"
+  },
+  "restaurant_info": {
+    "appBar_title": "معلومات",
+    "restaurant_area": "محيط المطعم",
+    "minimum_order": "اقل قيمه للطلب",
+    "delivery_fee": "تكلفة التوصيل",
+    "preorder": "الحجز المسبق",
+    "payment_options": "طرق الدفع",
+    "opining_hours": "ساعات العمل"
+  },
+  "reviews": {
+    "appBar_title": "التقييمات",
+    "order_packing": "تغليف الطلب",
+    "value_for_money": "القيمه مقابل المال",
+    "delivery_time": "وقت التوصيل",
+    "quality_of_food": "جودة الأكل",
+    "rating_and_reviews": "التقييم و المراجعة",
+    "read_more_reviews": "مزيد من التقييمات"
+  },
+  "offers": {},
+  "orders": {
+    "appBar_title": "الطلبات"
+  },
+  "user_details": {
+    "appBar_title": "تفاصيل المستخدم",
+    "full_name": "الإسم",
+    "email": "البريد الإلكتروني",
+    "phone_number": "رقم الهاتف",
+    "password": "كلمة السر",
+    "edit": "تعديل",
+    "address": "العنوان",
+    "change_password": "تغيير كلمة المرور"
+  },
+  "filter_result": {
+    "search_bar": "بتدور علي إيه ؟"
+  },
+  "drawer": {
+    "contact_us": "تواصل معنا",
+    "log_out": "تسجيل الخروج",
+    "about_us": "عنّا",
+    "get_help": "المساعدة",
+    "vouchers": "قسائم",
+    "payment": "الدفع",
+    "notifications": "الإشعارات",
+    "offers": "العروض",
+    "your_orders": "طلباتك",
+    "location": "الموقع",
+    "home": "الرئيسية",
+    "profile": "الملف الشخصي",
+    "login": "تسجيل الدخول"
+  },
+  "cart": {
+    "appBar_title": "العربة",
+    "order_details": "تفاصيل الطلب",
+    "delivery_price": "سعر التوصيل :",
+    "special_services": "خدمات خاصة :",
+    "total": "المبلغ الكلي",
+    "checkout_button_title": "الدفع",
+    "add_item_button_title": "إضافة المزيد"
+  },
+  "test": {
+    "haha": "هاها"
+  }
+}

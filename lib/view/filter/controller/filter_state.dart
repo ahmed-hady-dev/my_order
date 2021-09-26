@@ -1,0 +1,8 @@
+part of 'filter_cubit.dart';
+
+@immutable
+abstract class FilterState {}
+
+class FilterInitial extends FilterState {}
+
+class ChangeSelectedFilterButton extends FilterState {}

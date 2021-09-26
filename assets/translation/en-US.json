@@ -1,0 +1,131 @@
+{
+  "map_intro": {
+    "search_bar": "what are you looking for?",
+    "choose_location": "choose location"
+  },
+  "register": {
+    "welcome": "Welcome to My Order",
+    "continue_with_Email": "Continue with Email"
+  },
+  "welcome": {
+    "login": "Login",
+    "create_an_account": "create an account",
+    "continue_with_Email": "Continue with Email"
+  },
+  "login": {},
+  "forget_password": {},
+  "reset_password": {},
+  "confirm_email": {},
+  "create_account": {},
+  "home": {
+    "search_bar": "what are you looking for?",
+    "popular_food": "Popular Food",
+    "view_more": "View more",
+    "brands": "Popular brands near you",
+    "special_offers": "Special Offers"
+  },
+  "food": {},
+  "restaurant": {
+    "info": "Info",
+    "reviews": "Reviews",
+    "offer_of_the_restaurant": " Offer of the restaurant"
+  },
+  "order": {
+    "cart_button_title": "Add to cart"
+  },
+  "checkout": {
+    "appBar_title": "Check out",
+    "full_name": "Full name",
+    "phone_number": "Phone number",
+    "button_title": "Next",
+    "address": "Address"
+  },
+  "payment_done": {},
+  "notification": {},
+  "vouchers": {},
+  "help": {},
+  "payment": {},
+  "confirm_payment": {},
+  "finishing_payment": {},
+  "cuisines": {},
+  "search": {
+    "search_bar": "what are you looking for?",
+    "popular_search": "Popular Search"
+  },
+  "settings": {
+    "appBar_title": "Settings",
+    "notifications": "Notifications",
+    "lang": "Language",
+    "country": "Country"
+  },
+  "filter": {
+    "popular_filters": "Popular filters",
+    "deals_and_offers": "Deals and offers",
+    "sort_by": "Sort by",
+    "appBar_title": "Filters",
+    "apply": "Apply",
+    "clear_all": "Clear all"
+  },
+  "restaurant_info": {
+    "appBar_title": "Information",
+    "restaurant_area": "Restaurant area",
+    "minimum_order": "Minimum order",
+    "delivery_fee": "Delivery fee",
+    "preorder": "Pre-order",
+    "payment_options": "Payment options",
+    "opining_hours": "Opening hours"
+  },
+  "reviews": {
+    "appBar_title": "Reviews",
+    "order_packing": "Order packaging",
+    "value_for_money": "Value for money",
+    "delivery_time": "Delivery time",
+    "quality_of_food": "Quality of food",
+    "rating_and_reviews": "Rating& Reviews",
+    "read_more_reviews": "Read more reviews"
+  },
+  "offers": {},
+  "orders": {
+    "appBar_title": "Orders"
+  },
+  "user_details": {
+    "appBar_title": "User Details",
+    "full_name": "Full Name",
+    "email": "Email",
+    "phone_number": "Phone Number",
+    "password": "Password",
+    "edit": "Edit",
+    "address": "Address",
+    "change_password": "Change Password"
+  },
+  "filter_result": {
+    "search_bar": "what are you looking for?"
+  },
+  "drawer": {
+    "contact_us": "Contact Us",
+    "log_out": "Log out",
+    "about_us": "About Us",
+    "get_help": "Get Help",
+    "vouchers": "Vouchers",
+    "payment": "Payment",
+    "notifications": "Notification",
+    "offers": "Offers",
+    "your_orders": "Your Orders",
+    "location": "Location",
+    "home": "Home",
+    "profile": "Profile",
+    "login": "Login"
+  },
+  "cart": {
+    "appBar_title": "Cart",
+    "order_details": "Order details",
+    "delivery_price": "Delivery price :",
+    "special_services": "special services:",
+    "total": "Total",
+    "checkout_button_title": "Check out",
+    "add_item_button_title": "Add Item"
+  },
+  "test": {
+    "haha": "haha"
+  }
+}

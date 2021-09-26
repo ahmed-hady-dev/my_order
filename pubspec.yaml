@@ -1,0 +1,59 @@
+name: my_order
+description: My Order Project
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.3
+  flutter_bloc: ^7.3.0
+  dio: ^4.0.0
+  easy_localization: ^3.0.0
+  connectivity_plus: ^1.1.0
+  flutter_conditional_rendering: ^2.0.0
+  font_awesome_flutter: ^9.1.0
+  fluttertoast: ^8.0.8
+  carousel_slider: ^4.0.0
+  shimmer: ^2.0.0
+  pin_code_fields: ^7.3.0
+  google_maps_flutter: ^2.0.10
+  dots_indicator: ^2.0.0
+  get_storage: ^2.0.3
+  flutter_zoom_drawer: ^2.1.1
+  nil: ^1.1.1
+  flutter_rating_bar: ^4.0.0
+  auto_size_text_pk: ^3.0.0
+  toggle_switch: ^1.2.0
+  group_button: ^3.1.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^1.0.4
+  flutter_launcher_icons: ^0.9.2
+  flutter_app_name: ^0.1.1
+
+flutter_app_name:
+  name: "My Order"
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/my_order_app_icon.png"
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/translation/
