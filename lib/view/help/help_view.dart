@@ -4,6 +4,8 @@ import 'package:auto_size_text_pk/auto_size_text_pk.dart';
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 
+import 'component/help_expansion_tile.dart';
+
 class HelpView extends StatelessWidget {
   const HelpView({Key? key}) : super(key: key);
   @override
@@ -25,23 +27,7 @@ class HelpView extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               itemCount: 6,
               itemBuilder: (BuildContext context, int index) {
-                return const ExpansionTile(
-                  tilePadding: EdgeInsets.all(0),
-                  childrenPadding: EdgeInsets.all(0),
-                  title: Text(
-                    'I need help with a current order?',
-                    style:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),
-                  ),
-                  children: <Widget>[
-                    ListTile(
-                      title: Text(
-                        'You can contact our customer support service and they can help you.',
-                        style: TextStyle(fontWeight: FontWeight.w700),
-                      ),
-                    )
-                  ],
-                );
+                return const HelpExpansionTile();
               },
             )
           ],

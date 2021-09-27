@@ -28,46 +28,43 @@ class LoginView extends StatelessWidget {
               final cubit = LoginCubit.get(context);
               return Form(
                 key: cubit.formKey,
-                child: Padding(
+                child: ListView(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        child: AutoSizeText("login.continue_with_email".tr(),
-                            softWrap: true,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(fontSize: 24.0)),
-                      ),
-                      EmailTextField(
-                          hintText: "login.email".tr(),
-                          controller: cubit.emailController,
-                          onFieldSubmitted: (value) {
-                            if (cubit.formKey.currentState!.validate()) {}
-                          }),
-                      const SizedBox(height: 12.0),
-                      PasswordTextField(
-                          hintText: "login.password".tr(),
-                          controller: cubit.passwordController,
-                          onFieldSubmitted: (value) {
-                            if (cubit.formKey.currentState!.validate()) {}
-                          },
-                          obscureText: cubit.isPassword,
-                          onPressed: () => cubit.changePasswordVisibility(),
-                          icon: cubit.suffix),
-                      const TextButtonRow(),
-                      const SizedBox(height: 32.0),
-                      MainButton(
-                        text: "login.login".tr(),
-                        onPressed: () async {
-                          if (cubit.formKey.currentState!.validate()) {
-                            MagicRouter.navigateAndPopAll(const HomeView());
-                          }
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      child: AutoSizeText("login.continue_with_email".tr(),
+                          softWrap: true,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(fontSize: 24.0)),
+                    ),
+                    EmailTextField(
+                        hintText: "login.email".tr(),
+                        controller: cubit.emailController,
+                        onFieldSubmitted: (value) {
+                          if (cubit.formKey.currentState!.validate()) {}
+                        }),
+                    const SizedBox(height: 12.0),
+                    PasswordTextField(
+                        hintText: "login.password".tr(),
+                        controller: cubit.passwordController,
+                        onFieldSubmitted: (value) {
+                          if (cubit.formKey.currentState!.validate()) {}
                         },
-                      )
-                    ],
-                  ),
+                        obscureText: cubit.isPassword,
+                        onPressed: () => cubit.changePasswordVisibility(),
+                        icon: cubit.suffix),
+                    const TextButtonRow(),
+                    const SizedBox(height: 32.0),
+                    MainButton(
+                      text: "login.login".tr(),
+                      onPressed: () async {
+                        if (cubit.formKey.currentState!.validate()) {
+                          MagicRouter.navigateAndPopAll(const HomeView());
+                        }
+                      },
+                    )
+                  ],
                 ),
               );
             },

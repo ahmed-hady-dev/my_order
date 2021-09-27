@@ -23,7 +23,11 @@
     "email": "Email",
     "password": "Password"
   },
-  "forget_password": {},
+  "forget_password": {
+    "appBar_title": "Recover Account",
+    "reset_your_password": "Reset your password",
+    "email": "Enter your email here"
+  },
   "reset_password": {},
   "confirm_email": {},
   "create_account": {},
