@@ -95,7 +95,10 @@
     "rating_and_reviews": "Rating& Reviews",
     "read_more_reviews": "Read more reviews"
   },
-  "offers": {},
+  "offers": {
+    "appBar_title": "Offers",
+    "more_details": "More details"
+  },
   "orders": {
     "appBar_title": "Orders"
   },

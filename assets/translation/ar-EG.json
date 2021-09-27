@@ -95,7 +95,10 @@
     "rating_and_reviews": "التقييم و المراجعة",
     "read_more_reviews": "مزيد من التقييمات"
   },
-  "offers": {},
+  "offers": {
+    "appBar_title": "العروض",
+    "more_details": "تفاصيل"
+  },
   "orders": {
     "appBar_title": "الطلبات"
   },
