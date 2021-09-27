@@ -7,6 +7,7 @@ class HelpView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(),
         body: Container(),
       ),
     );

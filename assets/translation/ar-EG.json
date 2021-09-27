@@ -42,8 +42,17 @@
   },
   "payment_done": {},
   "notification": {},
-  "vouchers": {},
-  "help": {},
+  "vouchers": {
+    "appBar_title": "القسائم",
+    "active": "نشط",
+    "used": "مستعمل",
+    "expired": "منتهي",
+    "no_vouchers_available": "لا توجد قسائم متاحة",
+    "voucher_text": "يمكنك الحصول على قسائم عن طريق استبدال نقاط المكافآت الخاصة بك"
+  },
+  "help": {
+    "appBar_title": "المساعدة"
+  },
   "payment": {},
   "confirm_payment": {},
   "finishing_payment": {},

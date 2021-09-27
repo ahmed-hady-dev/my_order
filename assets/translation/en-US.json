@@ -42,8 +42,17 @@
   },
   "payment_done": {},
   "notification": {},
-  "vouchers": {},
-  "help": {},
+  "vouchers": {
+    "appBar_title": "Vouchers",
+    "active": "Active",
+    "used": "Used",
+    "expired": "Expired",
+    "no_vouchers_available": "No vouchers available",
+    "voucher_text": "You can get vouchers by redeeming your rewards points"
+  },
+  "help": {
+    "appBar_title": "Help"
+  },
   "payment": {},
   "confirm_payment": {},
   "finishing_payment": {},

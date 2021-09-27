@@ -90,7 +90,7 @@ class DrawerBody extends StatelessWidget {
           icon: FontAwesomeIcons.ticketAlt,
           text: "drawer.vouchers".tr(),
           onTap: () {
-            DrawerCubit.get(context).itemSelection(7);
+            DrawerCubit.get(context).itemSelection(6);
             MagicRouter.pop();
             MagicRouter.navigateAndPopUntilFirstPage(const VouchersView());
           },
@@ -100,7 +100,7 @@ class DrawerBody extends StatelessWidget {
           icon: FontAwesomeIcons.bullhorn,
           text: "drawer.get_help".tr(),
           onTap: () {
-            DrawerCubit.get(context).itemSelection(8);
+            DrawerCubit.get(context).itemSelection(7);
             MagicRouter.pop();
             MagicRouter.navigateAndPopUntilFirstPage(const HelpView());
           },
@@ -110,7 +110,7 @@ class DrawerBody extends StatelessWidget {
           icon: Icons.info_outline,
           text: "drawer.about_us".tr(),
           onTap: () {
-            DrawerCubit.get(context).itemSelection(9);
+            DrawerCubit.get(context).itemSelection(8);
             MagicRouter.pop();
             MagicRouter.navigateAndPopUntilFirstPage(const AboutView());
           },
