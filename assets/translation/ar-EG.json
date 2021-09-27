@@ -28,7 +28,13 @@
     "reset_your_password": "اعد ضبط كلمه السر",
     "email": "أدخل البريد الإلكتروني هنا"
   },
-  "reset_password": {},
+  "reset_password": {
+    "appBar_title": "إعادة تعيين كلمة المرور",
+    "confirm_new_password": "نأكيد كلمة المرور الجديدة",
+    "confirm": "تأكيد",
+    "new_password": "كلمة المرور الجديدة",
+    "make_sure": "تأكد من أن كلمتي المرور متشابهتين"
+  },
   "confirm_email": {},
   "create_account": {},
   "home": {
@@ -55,7 +61,9 @@
     "address": "العنوان"
   },
   "payment_done": {},
-  "notification": {},
+  "notification": {
+    "appBar_title": "الإشعارات"
+  },
   "vouchers": {
     "appBar_title": "القسائم",
     "active": "نشط",

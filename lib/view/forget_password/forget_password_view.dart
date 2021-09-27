@@ -41,8 +41,7 @@ class ForgetPasswordView extends StatelessWidget {
                       text: "forget_password.reset_your_password".tr(),
                       onPressed: () async {
                         if (cubit.formKey.currentState!.validate()) {
-                          MagicRouter.navigateAndPopAll(
-                              const ResetPasswordView());
+                          MagicRouter.navigateTo(const ResetPasswordView());
                         }
                       },
                     )

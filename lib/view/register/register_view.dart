@@ -82,11 +82,10 @@ class RegisterView extends StatelessWidget {
                             materialTapTargetSize:
                                 MaterialTapTargetSize.shrinkWrap,
                             onChanged: (value) => cubit.changeCheckBox(value)),
-                        Flexible(
-                          child: AutoSizeText("register.checkbox_text".tr(),
+                        Expanded(
+                          child: Text("register.checkbox_text".tr(),
                               maxLines: 2,
                               softWrap: true,
-                              wrapWords: true,
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(fontSize: 16.0)),
                         ),
@@ -102,11 +101,10 @@ class RegisterView extends StatelessWidget {
                       },
                     ),
                     const SizedBox(height: 24.0),
-                    Flexible(
-                      child: AutoSizeText("register.terms".tr(),
+                    Expanded(
+                      child: Text("register.terms".tr(),
                           maxLines: 5,
                           softWrap: true,
-                          wrapWords: true,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(fontSize: 14.0)),
                     )

@@ -28,7 +28,13 @@
     "reset_your_password": "Reset your password",
     "email": "Enter your email here"
   },
-  "reset_password": {},
+  "reset_password": {
+    "appBar_title": "Reset Password",
+    "confirm_new_password": "Confirm new password",
+    "confirm": "Confirm",
+    "new_password": "New password",
+    "make_sure": "Make sure the two passwords are the same"
+  },
   "confirm_email": {},
   "create_account": {},
   "home": {
@@ -55,7 +61,9 @@
     "address": "Address"
   },
   "payment_done": {},
-  "notification": {},
+  "notification": {
+    "appBar_title": "Notifications"
+  },
   "vouchers": {
     "appBar_title": "Vouchers",
     "active": "Active",
