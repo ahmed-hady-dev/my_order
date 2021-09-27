@@ -18,7 +18,7 @@ class OrdersView extends StatelessWidget {
     return SafeArea(
       child: BlocBuilder<OrdersCubit, OrdersState>(
         builder: (context, state) {
-          final ordersCubit = OrdersCubit.get(context);
+          final cubit = OrdersCubit.get(context);
           return Scaffold(
               appBar: AppBar(title: Text("orders.appBar_title".tr())),
               body: SingleChildScrollView(
@@ -38,13 +38,13 @@ class OrdersView extends StatelessWidget {
                         activeFgColor: Colors.white,
                         inactiveFgColor: Colors.white,
                         inactiveBgColor: AppColors.redColor.withOpacity(0.5),
-                        initialLabelIndex: ordersCubit.labelSelect ? 1 : 0,
+                        initialLabelIndex: cubit.labelSelect ? 1 : 0,
                         totalSwitches: 2,
                         labels: const ['Old Orders', 'Recent Orders'],
                         radiusStyle: true,
-                        onToggle: ordersCubit.itemSelection,
+                        onToggle: cubit.itemSelection,
                       ),
-                      ordersCubit.isSelected == 0
+                      cubit.isSelected == 0
                           ? const OldOrders()
                           : const RecentOrders(),
                     ],

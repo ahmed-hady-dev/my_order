@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../widgets/stars_bar.dart';
 
 class RatingRow extends StatelessWidget {
@@ -23,10 +24,7 @@ class RatingRow extends StatelessWidget {
             child: Text(
               ratingText,
               textAlign: TextAlign.end,
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.black45,
-              ),
+              style: const TextStyle(fontSize: 16, color: Colors.black45),
             ),
           ),
         ],

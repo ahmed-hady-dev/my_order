@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../component/list_separator.dart';
-import '../component/old_orders_list_card.dart';
+import '../component/orders_list_card.dart';
 import '../model/orders_model.dart';
 
 class RecentOrders extends StatelessWidget {
@@ -9,7 +10,7 @@ class RecentOrders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20, bottom: 20),
+      padding: const EdgeInsets.symmetric(vertical: 20.0),
       child: ListView.separated(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,

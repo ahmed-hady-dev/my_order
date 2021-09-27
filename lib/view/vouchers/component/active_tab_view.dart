@@ -2,7 +2,6 @@
 
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ActiveTabView extends StatelessWidget {
   const ActiveTabView({Key? key}) : super(key: key);

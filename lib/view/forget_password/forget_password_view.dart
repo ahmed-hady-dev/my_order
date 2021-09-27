@@ -5,6 +5,13 @@ class ForgetPasswordView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('appbarTitle'),
+        ),
+        // body: ,
+      ),
+    );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'payment_icons.dart';
 
 class PaymentRow extends StatelessWidget {
@@ -19,17 +20,10 @@ class PaymentRow extends StatelessWidget {
           Expanded(
             child: Row(
               children: [
-                const FaIcon(
-                  FontAwesomeIcons.creditCard,
-                  size: 20,
-                ),
-                const SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  text,
-                  style: const TextStyle(fontSize: 16, color: Colors.black),
-                ),
+                const FaIcon(FontAwesomeIcons.creditCard, size: 20),
+                const SizedBox(width: 8),
+                Text(text,
+                    style: const TextStyle(fontSize: 16, color: Colors.black)),
               ],
             ),
           ),

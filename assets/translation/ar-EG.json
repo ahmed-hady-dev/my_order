@@ -4,15 +4,25 @@
     "choose_location": "إختر المنطقة"
   },
   "register": {
-    "welcome": "أهلا بك في طلباتي",
-    "continue_with_Email": "أكمل باستخدام الايميل"
+    "continue_with_Email": "أكمل باستخدام الايميل",
+    "appBar_title": "إنشاء حساب",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة السر",
+    "create_account": "إنشاء حساب جديد",
+    "name": "الإسم",
+    "phone": "رقم الهاتف",
+    "checkbox_text": "نعم اريد استلام عروض وخصومات",
+    "terms": "من خلال إنشاء حساب فإنك توافق على الخصوصية وشروط الاستخدام"
   },
-  "welcome": {
+  "login": {
+    "appBar_title": "تسجيل الدخول",
+    "continue_with_email": "أكمل باستخدام الإيميل",
+    "forgot_password": "نسيت كلمة المرور؟",
+    "create_account": "إنشاء حساب جديد",
     "login": "تسجيل الدخول",
-    "create_an_account": "إنشاء حساب",
-    "continue_with_Email": "أكمل باستخدام الايميل"
+    "email": "البريد الإلكتروني",
+    "password": "كلمة السر"
   },
-  "login": {},
   "forget_password": {},
   "reset_password": {},
   "confirm_email": {},

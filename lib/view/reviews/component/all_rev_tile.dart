@@ -8,20 +8,13 @@ class AllRevTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-        separatorBuilder: (context, index) {
-          return const SizedBox(height: 12.0);
-        },
+        separatorBuilder: (context, index) => const SizedBox(height: 12.0),
         addAutomaticKeepAlives: false,
         addRepaintBoundaries: false,
         shrinkWrap: true,
         physics: const ScrollPhysics(),
         itemCount: 15,
-        itemBuilder: (context, index) {
-          return const AllRevCard(
-            stars: 5,
-            userName: "*Gannat B****",
-            reviewText: "Amazing",
-          );
-        });
+        itemBuilder: (context, index) => const AllRevCard(
+            stars: 5, userName: "*Gannat B****", reviewText: "Amazing"));
   }
 }

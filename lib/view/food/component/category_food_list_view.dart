@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../models/category_food_button.dart';
+
 import '../../home/controller/home_cubit.dart';
+import '../model/category_food_button.dart';
 
 class CategoryFoodListView extends StatelessWidget {
   final HomeCubit cubit;

@@ -9,24 +9,11 @@ class PaymentIcons extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: const [
-        FaIcon(
-          FontAwesomeIcons.ccPaypal,
-          color: Colors.red,
-        ),
-        SizedBox(
-          width: 14,
-        ),
-        FaIcon(
-          FontAwesomeIcons.ccVisa,
-          color: Colors.blue,
-        ),
-        SizedBox(
-          width: 14,
-        ),
-        FaIcon(
-          FontAwesomeIcons.creditCard,
-          color: Colors.black,
-        ),
+        FaIcon(FontAwesomeIcons.ccPaypal, color: Colors.red),
+        SizedBox(width: 14),
+        FaIcon(FontAwesomeIcons.ccVisa, color: Colors.blue),
+        SizedBox(width: 14),
+        FaIcon(FontAwesomeIcons.creditCard, color: Colors.black),
       ],
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../widgets/stars_bar.dart';
 
 class StarsReviewRow extends StatelessWidget {
@@ -23,10 +24,7 @@ class StarsReviewRow extends StatelessWidget {
             child: Text(
               text,
               textAlign: TextAlign.end,
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.black54,
-              ),
+              style: const TextStyle(fontSize: 16, color: Colors.black54),
             ),
           ),
         ],

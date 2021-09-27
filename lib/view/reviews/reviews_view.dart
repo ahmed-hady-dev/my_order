@@ -14,9 +14,7 @@ class ReviewsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("reviews.appBar_title".tr()),
-        ),
+        appBar: AppBar(title: Text("reviews.appBar_title".tr())),
         body: ListView(
           shrinkWrap: true,
           children: [
@@ -28,33 +26,27 @@ class ReviewsView extends StatelessWidget {
                   const StarsReviewRow(
                       stars: 5.0, text: "Based on 2100 review"),
                   RevRow(
-                    title: "reviews.order_packing".tr(),
-                    stars: 4,
-                    rateText: "4.0",
-                  ),
+                      title: "reviews.order_packing".tr(),
+                      stars: 4,
+                      rateText: "4.0"),
                   RevRow(
-                    title: "reviews.value_for_money".tr(),
-                    stars: 4,
-                    rateText: "4.0",
-                  ),
+                      title: "reviews.value_for_money".tr(),
+                      stars: 4,
+                      rateText: "4.0"),
                   RevRow(
-                    title: "reviews.delivery_time".tr(),
-                    stars: 4.5,
-                    rateText: "4.5",
-                  ),
+                      title: "reviews.delivery_time".tr(),
+                      stars: 4.5,
+                      rateText: "4.5"),
                   RevRow(
-                    title: "reviews.quality_of_food".tr(),
-                    stars: 4,
-                    rateText: "4.0",
-                  ),
+                      title: "reviews.quality_of_food".tr(),
+                      stars: 4,
+                      rateText: "4.0"),
                   Center(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: Text(
-                        "reviews.rating_and_reviews".tr(),
-                        style: const TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.bold),
-                      ),
+                      child: Text("reviews.rating_and_reviews".tr(),
+                          style: const TextStyle(
+                              fontSize: 25, fontWeight: FontWeight.bold)),
                     ),
                   ),
                   const AllRevTile(),

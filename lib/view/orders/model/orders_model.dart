@@ -3,14 +3,14 @@ class OrderModel {
   final String totalPrice;
   final String date;
   final String address;
-  final String desc;
+  final String descount;
 
   OrderModel({
     required this.name,
     required this.totalPrice,
     required this.date,
     required this.address,
-    required this.desc,
+    required this.descount,
   });
 }
 
@@ -20,35 +20,35 @@ List<OrderModel> recentModelList = [
     totalPrice: 'EGP 15.99',
     date: '17-9-2021',
     address: 'El Gallaa Street',
-    desc: 'pasta , Liver',
+    descount: 'pasta , Liver',
   ),
   OrderModel(
     name: 'Ranch Effect Sandwich',
     totalPrice: 'EGP 15.99',
     date: '17-9-2021',
     address: 'El Gallaa Street',
-    desc: 'pasta , Liver',
+    descount: 'pasta , Liver',
   ),
   OrderModel(
     name: 'Ranch Effect Sandwich',
     totalPrice: 'EGP 15.99',
     date: '17-9-2021',
     address: 'El Gallaa Street',
-    desc: 'pasta , Liver',
+    descount: 'pasta , Liver',
   ),
   OrderModel(
     name: 'Ranch Effect Sandwich',
     totalPrice: 'EGP 15.99',
     date: '17-9-2021',
     address: 'El Gallaa Street',
-    desc: 'pasta , Liver',
+    descount: 'pasta , Liver',
   ),
   OrderModel(
     name: 'Ranch Effect Sandwich',
     totalPrice: 'EGP 15.99',
     date: '17-9-2021',
     address: 'El Gallaa Street',
-    desc: 'pasta , Liver',
+    descount: 'pasta , Liver',
   ),
 ];
 List<OrderModel> orderModelList = [
@@ -57,6 +57,6 @@ List<OrderModel> orderModelList = [
     totalPrice: 'EGP 15.99',
     date: '17-9-2021',
     address: 'El Gallaa Street',
-    desc: 'pasta , Liver',
+    descount: 'pasta , Liver',
   ),
 ];

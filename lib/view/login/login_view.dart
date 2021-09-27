@@ -1,13 +1,17 @@
 // ignore_for_file: implementation_imports
 
+import 'package:auto_size_text_pk/auto_size_text_pk.dart';
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
-import 'package:my_order/constants/app_colors.dart';
-import 'package:my_order/view/login/widgets/app_button.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_order/core/router/router.dart';
+import 'package:my_order/view/home/home_view.dart';
+import 'package:my_order/view/login/controller/login_cubit.dart';
+import 'package:my_order/widgets/email_text_field.dart';
+import 'package:my_order/widgets/main_button.dart';
+import 'package:my_order/widgets/password_text_field.dart';
 
-
-import 'component/app_bar_title.dart';
-import 'component/leading_icon.dart';
+import 'components/text_button_row.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -16,37 +20,57 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          elevation: 0.0,
-          title: const AppBarTitle(),
-          leading: const LeadingIcon(),
-        ),
-        body: Container(
-          padding: const EdgeInsets.only(top: 60),
-          child: Align(
-            alignment: Alignment.center,
-            child: Column(
-              children: [
-                InkWell(
-                  onTap: () {},
-                  child: Text(
-                    "welcome.create_an_account".tr(),
-                    style: const TextStyle(
-                      fontSize: 21,
-                      color: AppColors.blackColor,
-                      fontWeight: FontWeight.bold,
-                    ),
+        appBar: AppBar(title: Text("login.appBar_title".tr())),
+        body: BlocProvider(
+          create: (context) => LoginCubit(),
+          child: BlocBuilder<LoginCubit, LoginState>(
+            builder: (context, state) {
+              final cubit = LoginCubit.get(context);
+              return Form(
+                key: cubit.formKey,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        child: AutoSizeText("login.continue_with_email".tr(),
+                            softWrap: true,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(fontSize: 24.0)),
+                      ),
+                      EmailTextField(
+                          hintText: "login.email".tr(),
+                          controller: cubit.emailController,
+                          onFieldSubmitted: (value) {
+                            if (cubit.formKey.currentState!.validate()) {}
+                          }),
+                      const SizedBox(height: 12.0),
+                      PasswordTextField(
+                          hintText: "login.password".tr(),
+                          controller: cubit.passwordController,
+                          onFieldSubmitted: (value) {
+                            if (cubit.formKey.currentState!.validate()) {}
+                          },
+                          obscureText: cubit.isPassword,
+                          onPressed: () => cubit.changePasswordVisibility(),
+                          icon: cubit.suffix),
+                      const TextButtonRow(),
+                      const SizedBox(height: 32.0),
+                      MainButton(
+                        text: "login.login".tr(),
+                        onPressed: () async {
+                          if (cubit.formKey.currentState!.validate()) {
+                            MagicRouter.navigateAndPopAll(const HomeView());
+                          }
+                        },
+                      )
+                    ],
                   ),
                 ),
-                const SizedBox(height: 36),
-                AppButton(
-                  color: AppColors.blackColor,
-                  onPress: () {},
-                  text: "welcome.continue_with_Email".tr(),
-                  textColor: Colors.white,
-                )
-              ],
-            ),
+              );
+            },
           ),
         ),
       ),

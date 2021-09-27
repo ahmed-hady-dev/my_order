@@ -4,15 +4,25 @@
     "choose_location": "choose location"
   },
   "register": {
-    "welcome": "Welcome to My Order",
-    "continue_with_Email": "Continue with Email"
+    "continue_with_Email": "Continue with Email",
+    "appBar_title": "Register",
+    "email": "Email",
+    "password": "Password",
+    "create_account": "Create account",
+    "name": "Name",
+    "phone": "Phone number",
+    "checkbox_text": "Yes , I want to receive offers and discounts.",
+    "terms": "By creating an account you agree to the Privacy and to the terms of Use"
   },
-  "welcome": {
+  "login": {
+    "appBar_title": "Login",
+    "continue_with_email": "Continue with email",
+    "forgot_password": "Forgot password?",
+    "create_account": "Create an account",
     "login": "Login",
-    "create_an_account": "create an account",
-    "continue_with_Email": "Continue with Email"
+    "email": "Email",
+    "password": "Password"
   },
-  "login": {},
   "forget_password": {},
   "reset_password": {},
   "confirm_email": {},

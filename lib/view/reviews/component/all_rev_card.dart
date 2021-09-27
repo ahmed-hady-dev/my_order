@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../widgets/stars_bar.dart';
 
 class AllRevCard extends StatelessWidget {
@@ -35,15 +36,10 @@ class AllRevCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
-                userName,
-                style: const TextStyle(fontSize: 18, color: Colors.black54),
-              ),
+              Text(userName,
+                  style: const TextStyle(fontSize: 18, color: Colors.black54)),
               const SizedBox(height: 8.0),
-              Text(
-                reviewText,
-                style: const TextStyle(color: Colors.black),
-              ),
+              Text(reviewText, style: const TextStyle(color: Colors.black)),
             ],
           ),
           StarsBar(stars: stars),

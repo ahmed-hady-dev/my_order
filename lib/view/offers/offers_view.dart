@@ -3,7 +3,7 @@
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:my_order/core/router/router.dart';
-import 'package:my_order/view/offers/widgets/offers_card.dart';
+import 'package:my_order/view/offers/widgets/offres_card.dart';
 import 'package:my_order/view/vouchers/vouchers_view.dart';
 
 import 'model/offers_model.dart';

@@ -14,9 +14,7 @@ class RestaurantInfoView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("restaurant_info.appBar_title".tr()),
-        ),
+        appBar: AppBar(title: Text("restaurant_info.appBar_title".tr())),
         body: ListView(
           children: [
             const RatingRow(
