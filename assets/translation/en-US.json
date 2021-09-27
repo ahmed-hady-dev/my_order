@@ -51,7 +51,9 @@
     "voucher_text": "You can get vouchers by redeeming your rewards points"
   },
   "help": {
-    "appBar_title": "Help"
+    "appBar_title": "Help",
+    "title": "How can we help?",
+    "hi": "Hi"
   },
   "payment": {},
   "confirm_payment": {},
