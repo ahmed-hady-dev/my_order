@@ -10,7 +10,7 @@ import 'package:my_order/view/drawer/widget/drawer_item.dart';
 import 'package:my_order/view/help/help_view.dart';
 import 'package:my_order/view/home/home_view.dart';
 import 'package:my_order/view/login/login_view.dart';
-import 'package:my_order/view/map_intro/map_intro.dart';
+import 'package:my_order/view/map/map_view.dart';
 import 'package:my_order/view/notifications/notifications_view.dart';
 import 'package:my_order/view/offers/offers_view.dart';
 import 'package:my_order/view/orders/orders_view.dart';
@@ -52,7 +52,7 @@ class DrawerBody extends StatelessWidget {
           onTap: () {
             DrawerCubit.get(context).itemSelection(2);
             MagicRouter.pop();
-            MagicRouter.navigateAndPopUntilFirstPage(const MapIntro());
+            MagicRouter.navigateAndPopUntilFirstPage(const MapView());
           },
         ),
         DrawerItem(

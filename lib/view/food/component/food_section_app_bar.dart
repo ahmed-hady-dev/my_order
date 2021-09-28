@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import '../../../constants/app_colors.dart';
 import '../../../core/router/router.dart';
 import '../../home/component/home_appbar_title.dart';
-import '../../map_intro/map_intro.dart';
+import '../../map/map_view.dart';
 import '../../search/search_view.dart';
 
 AppBar appBarFoodSection() {
@@ -34,7 +35,7 @@ AppBar appBarFoodSection() {
           size: 14,
         ),
         tooltip: 'choose location on place',
-        onPressed: () => MagicRouter.navigateTo(const MapIntro()),
+        onPressed: () => MagicRouter.navigateTo(const MapView()),
       ),
     ],
   );

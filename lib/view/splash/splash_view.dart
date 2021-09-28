@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+
 import '../../constants/app_colors.dart';
 import '../../core/router/router.dart';
-import '../map_intro/map_intro.dart';
+import '../map/map_view.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class _SplashViewState extends State<SplashView> {
       });
     });
     Timer(const Duration(milliseconds: 2500), () {
-      MagicRouter.navigateAndPopAll(const MapIntro());
+      MagicRouter.navigateAndPopAll(const MapView());
     });
   }
 

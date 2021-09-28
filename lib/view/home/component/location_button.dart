@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import '../../../constants/app_colors.dart';
 import '../../../core/router/router.dart';
-import '../../map_intro/map_intro.dart';
+import '../../map/map_view.dart';
 
 class LocationButton extends StatelessWidget {
   const LocationButton({
@@ -20,7 +21,7 @@ class LocationButton extends StatelessWidget {
         size: 16,
       ),
       tooltip: 'choose location on place',
-      onPressed: () => MagicRouter.navigateTo(const MapIntro()),
+      onPressed: () => MagicRouter.navigateTo(const MapView()),
     );
   }
 }
