@@ -1,11 +1,11 @@
 // ignore_for_file: implementation_imports
-import 'package:flutter/material.dart';
-
 import 'package:easy_localization/src/public_ext.dart';
+import 'package:flutter/material.dart';
 import 'package:my_order/view/cart/component/cart_order_counter_row.dart';
 import 'package:my_order/widgets/description_text.dart';
 import 'package:my_order/widgets/price_text.dart';
 import 'package:my_order/widgets/restaurant_name.dart';
+
 import '../../../constants/app_colors.dart';
 
 class FoodCartCard extends StatelessWidget {

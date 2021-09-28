@@ -1,7 +1,7 @@
 import 'package:auto_size_text_pk/auto_size_text_pk.dart';
 import 'package:flutter/material.dart';
-import 'package:my_order/constants/app_colors.dart';
-import 'package:my_order/widgets/custom_vertical_divider.dart';
+import '../../../constants/app_colors.dart';
+import '../../../widgets/custom_vertical_divider.dart';
 
 class VoucherCard extends StatelessWidget {
   const VoucherCard(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_order/constants/app_colors.dart';
+import '../../../constants/app_colors.dart';
 
 class ValidDateRow extends StatelessWidget {
   final String validDate;

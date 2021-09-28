@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:my_order/core/dioHelper/dio_helper.dart';
-import 'package:my_order/view/register/Controller/register_state.dart';
+import '../../../core/dioHelper/dio_helper.dart';
+import 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitial());

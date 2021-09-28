@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_order/view/orders/controller/orders_cubit.dart';
 
 import 'core/blocObserver/bloc_observer.dart';
 import 'core/cacheHelper/cache_helper.dart';
@@ -10,6 +9,7 @@ import 'core/router/router.dart';
 import 'core/theme/theme.dart';
 import 'view/drawer/controller/drawer_cubit.dart';
 import 'view/order/controller/order_cubit.dart';
+import 'view/orders/controller/orders_cubit.dart';
 import 'view/splash/splash_view.dart';
 
 void main() async {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_order/view/vouchers/model/voucher_model.dart';
-import 'package:my_order/view/vouchers/widgets/voucher_card.dart';
+import '../model/voucher_model.dart';
+import '../widgets/voucher_card.dart';
 
 class UsedTabView extends StatelessWidget {
   const UsedTabView({Key? key}) : super(key: key);
