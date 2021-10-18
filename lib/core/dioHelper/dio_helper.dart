@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:my_order/constants/constants.dart';
 
 class DioHelper {
   static Dio? dio;
-  //TODO: edit base url here
-  static const String baseUrl = 'https://student.valuxapps.com/api/';
+  static const String baseUrl = base;
   static init() {
     dio = Dio(
       BaseOptions(
@@ -22,8 +22,9 @@ class DioHelper {
     required String url,
     Map<String, dynamic>? query,
   }) async {
-    //TODO: add your headers here
-    dio!.options.headers = {};
+    dio!.options.headers = {
+      "Accept": "application/json",
+    };
     return await dio!.get(
       url,
       queryParameters: query,
@@ -36,8 +37,9 @@ class DioHelper {
     required Map<String, dynamic> data,
     Map<String, dynamic>? query,
   }) async {
-    //TODO: add your headers here
-    dio!.options.headers = {};
+    dio!.options.headers = {
+      "Accept": "application/json",
+    };
     return dio!.post(
       url,
       queryParameters: query,
@@ -50,8 +52,9 @@ class DioHelper {
     required Map<String, dynamic> data,
     Map<String, dynamic>? query,
   }) async {
-    //TODO: add your headers here
-    dio!.options.headers = {};
+    dio!.options.headers = {
+      "Accept": "application/json",
+    };
     return dio!.put(
       url,
       queryParameters: query,

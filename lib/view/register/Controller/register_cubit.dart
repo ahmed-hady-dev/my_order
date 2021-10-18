@@ -1,6 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:my_order/constants/constants.dart';
+import 'package:my_order/view/register/model/sign_up_model.dart';
 import '../../../core/dioHelper/dio_helper.dart';
 import 'register_state.dart';
 
@@ -8,14 +11,19 @@ class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitial());
   static RegisterCubit get(context) => BlocProvider.of(context);
 //===============================================================
+  SignUpModel? signUpModel;
   bool isPassword = true;
-  bool? isChecked = false;
+  bool isPasswordConfirm = true;
+  bool isChecked = false;
   IconData suffix = Icons.visibility_outlined;
+  IconData suffixConfirm = Icons.visibility_outlined;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  TextEditingController nameController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
 
 //===============================================================
   void changePasswordVisibility() {
@@ -26,33 +34,57 @@ class RegisterCubit extends Cubit<RegisterState> {
   }
 
 //===============================================================
-  void changeCheckBox(bool? value) {
+  void changeConfirmPasswordVisibility() {
+    isPasswordConfirm = !isPasswordConfirm;
+    suffixConfirm = isPasswordConfirm
+        ? Icons.visibility_outlined
+        : Icons.visibility_off_outlined;
+    emit(RegisterChangePasswordVisibilityState());
+  }
+
+//===============================================================
+  void changeCheckBox(bool value) {
     isChecked = value;
     emit(RegisterChangeCheckBoxState());
   }
 
 //===============================================================
-  userSignUp({
-    required String name,
+  Future userSignUp({
+    required String firstName,
+    required String lastName,
     required String phone,
     required String email,
     required String password,
+    required String passwordConfirm,
+    int? areaId,
   }) async {
     emit(RegisterLoadingState());
     final response = await DioHelper.postData(
-      url: 'REGISTER',
+      url: signUp,
       data: {
-        'name': name,
+        'first_name': firstName,
+        'last_name': lastName,
         'email': email,
-        'password': password,
         'phone': phone,
+        'password': password,
+        'password_confirmation': passwordConfirm,
+        'area_id': areaId ?? 1,
       },
     );
+    debugPrint(response.statusMessage);
+    debugPrint(response.statusCode.toString());
+    debugPrint(response.data.toString());
     try {
-      final data = response.data;
-      emit(RegisterSuccessState());
-    } catch (e) {
+      signUpModel = SignUpModel.fromJson(response.data as Map<String, dynamic>);
+      emit(RegisterSuccessState(signUpModel: signUpModel!));
+    } on DioError catch (e) {
+      debugPrint(e.error.toString());
+      debugPrint(1.toString());
+    } catch (e, s) {
       Fluttertoast.showToast(msg: e.toString());
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      debugPrint(2.toString());
       emit(RegisterLErrorState(error: e.toString()));
     }
   }

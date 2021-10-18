@@ -18,7 +18,7 @@ class FilterButton extends StatelessWidget {
       icon: const FaIcon(
         FontAwesomeIcons.filter,
         color: AppColors.redColor,
-        size: 16.0,
+        size: 18.0,
       ),
     );
   }

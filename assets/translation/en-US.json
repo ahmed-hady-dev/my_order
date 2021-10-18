@@ -9,10 +9,14 @@
     "email": "Email",
     "password": "Password",
     "create_account": "Create account",
-    "name": "Name",
     "phone": "Phone number",
     "checkbox_text": "Yes , I want to receive offers and discounts.",
-    "terms": "By creating an account you agree to the Privacy and to the terms of Use"
+    "terms": "By creating an account you agree to the Privacy and to the terms of Use",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "confirm_password": "Confirm password",
+    "password_match": "Please make sure both passwords match",
+    "success": "Register success."
   },
   "login": {
     "appBar_title": "Login",
@@ -21,7 +25,8 @@
     "create_account": "Create an account",
     "login": "Login",
     "email": "Email",
-    "password": "Password"
+    "password": "Password",
+    "success": "Login success."
   },
   "forget_password": {
     "appBar_title": "Recover Account",
@@ -161,7 +166,14 @@
     "checkout_button_title": "Check out",
     "add_item_button_title": "Add Item"
   },
-  "test": {
-    "haha": "haha"
+  "validation": {
+    "first_name": "first name must not be empty",
+    "last_name": "last name must not be empty",
+    "email_empty": "email must not be empty",
+    "email_valid": "please enter a valid email",
+    "phone_valid": "phone number must be 11 digits",
+    "phone_empty": "phone must not be empty",
+    "password_valid": "password must be at least 6 digits",
+    "password_empty": "password must not be empty"
   }
 }

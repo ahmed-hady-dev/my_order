@@ -1,11 +1,14 @@
+// ignore_for_file: implementation_imports
+
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 
-class NameTextField extends StatelessWidget {
+class LastNameTextField extends StatelessWidget {
   final String hintText;
   final TextEditingController? controller;
   final Function(String)? onFieldSubmitted;
 
-  const NameTextField(
+  const LastNameTextField(
       {Key? key,
       required this.hintText,
       required this.controller,
@@ -18,7 +21,7 @@ class NameTextField extends StatelessWidget {
       keyboardType: TextInputType.name,
       validator: (value) {
         if (value!.isEmpty) {
-          return 'name must not be empty';
+          return "validation.last_name".tr();
         } else {
           return null;
         }

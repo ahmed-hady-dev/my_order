@@ -3,35 +3,32 @@
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 
-class PhoneTextField extends StatelessWidget {
-  const PhoneTextField({
-    Key? key,
-    required this.hintText,
-    required this.controller,
-    required this.onFieldSubmitted,
-  }) : super(key: key);
-
+class FirstNameTextField extends StatelessWidget {
   final String hintText;
   final TextEditingController? controller;
   final Function(String)? onFieldSubmitted;
 
+  const FirstNameTextField(
+      {Key? key,
+      required this.hintText,
+      required this.controller,
+      required this.onFieldSubmitted})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      keyboardType: TextInputType.phone,
+      keyboardType: TextInputType.name,
       validator: (value) {
         if (value!.isEmpty) {
-          return "validation.phone_empty".tr();
-        } else if (value.length < 11) {
-          return "validation.phone_valid".tr();
+          return "validation.first_name".tr();
         } else {
           return null;
         }
       },
       onFieldSubmitted: onFieldSubmitted,
       decoration: InputDecoration(
-          hintText: hintText, prefixIcon: const Icon(Icons.phone_outlined)),
+          hintText: hintText, prefixIcon: const Icon(Icons.person_outlined)),
     );
   }
 }

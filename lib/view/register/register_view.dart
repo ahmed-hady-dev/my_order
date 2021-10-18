@@ -2,18 +2,24 @@
 
 import 'package:auto_size_text_pk/auto_size_text_pk.dart';
 import 'package:easy_localization/src/public_ext.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_order/constants/app_colors.dart';
+import 'package:my_order/constants/constants.dart';
+import 'package:my_order/core/getStorageHelper/get_storage_helper.dart';
 import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/home/home_view.dart';
 import 'package:my_order/view/register/Controller/register_cubit.dart';
 import 'package:my_order/view/register/Controller/register_state.dart';
+import 'package:my_order/widgets/confirm_password_text_field.dart';
 import 'package:my_order/widgets/email_text_field.dart';
 import 'package:my_order/widgets/main_button.dart';
-import 'package:my_order/widgets/name_text_field.dart';
+import 'package:my_order/widgets/first_name_text_field.dart';
 import 'package:my_order/widgets/password_text_field.dart';
 import 'package:my_order/widgets/phone_text_field.dart';
+import 'package:my_order/widgets/last_name_text_field.dart';
 
 class RegisterView extends StatelessWidget {
   const RegisterView({Key? key}) : super(key: key);
@@ -25,7 +31,24 @@ class RegisterView extends StatelessWidget {
         appBar: AppBar(title: Text("register.appBar_title".tr())),
         body: BlocProvider(
           create: (context) => RegisterCubit(),
-          child: BlocBuilder<RegisterCubit, RegisterState>(
+          child: BlocConsumer<RegisterCubit, RegisterState>(
+            listener: (context, state) {
+              if (state is RegisterSuccessState) {
+                if (state.signUpModel.tokenType == 'bearer') {
+                  token = state.signUpModel.accessToken!;
+                  GetStorageHelper.storage
+                      .write('token', state.signUpModel.accessToken.toString());
+                  Fluttertoast.showToast(msg: "register.success".tr());
+                  MagicRouter.navigateAndPopAll(const HomeView());
+                } else if (state.signUpModel.errors!.email != null) {
+                  Fluttertoast.showToast(
+                      msg: state.signUpModel.errors!.email!.join());
+                } else if (state.signUpModel.errors!.phone != null) {
+                  Fluttertoast.showToast(
+                      msg: state.signUpModel.errors!.phone!.join());
+                }
+              }
+            },
             builder: (context, state) {
               final cubit = RegisterCubit.get(context);
               return Form(
@@ -41,9 +64,17 @@ class RegisterView extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(fontSize: 24.0)),
                     ),
-                    NameTextField(
-                      hintText: "register.name".tr(),
-                      controller: cubit.nameController,
+                    FirstNameTextField(
+                      hintText: "register.first_name".tr(),
+                      controller: cubit.firstNameController,
+                      onFieldSubmitted: (value) {
+                        if (cubit.formKey.currentState!.validate()) {}
+                      },
+                    ),
+                    const SizedBox(height: 12.0),
+                    LastNameTextField(
+                      hintText: "register.last_name".tr(),
+                      controller: cubit.lastNameController,
                       onFieldSubmitted: (value) {
                         if (cubit.formKey.currentState!.validate()) {}
                       },
@@ -74,6 +105,17 @@ class RegisterView extends StatelessWidget {
                         onPressed: () => cubit.changePasswordVisibility(),
                         icon: cubit.suffix),
                     const SizedBox(height: 12.0),
+                    ConfirmPasswordTextField(
+                        hintText: "register.confirm_password".tr(),
+                        controller: cubit.confirmPasswordController,
+                        onFieldSubmitted: (value) {
+                          if (cubit.formKey.currentState!.validate()) {}
+                        },
+                        obscureText: cubit.isPasswordConfirm,
+                        onPressed: () =>
+                            cubit.changeConfirmPasswordVisibility(),
+                        icon: cubit.suffixConfirm),
+                    const SizedBox(height: 12.0),
                     Row(
                       children: <Widget>[
                         Checkbox(
@@ -81,7 +123,7 @@ class RegisterView extends StatelessWidget {
                             activeColor: AppColors.redColor,
                             materialTapTargetSize:
                                 MaterialTapTargetSize.shrinkWrap,
-                            onChanged: (value) => cubit.changeCheckBox(value)),
+                            onChanged: (value) => cubit.changeCheckBox(value!)),
                         Expanded(
                           child: Text("register.checkbox_text".tr(),
                               maxLines: 2,
@@ -92,22 +134,43 @@ class RegisterView extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 24.0),
-                    MainButton(
-                      text: "login.create_account".tr(),
-                      onPressed: () async {
-                        if (cubit.formKey.currentState!.validate()) {
-                          MagicRouter.navigateAndPopAll(const HomeView());
-                        }
-                      },
-                    ),
+                    state is RegisterLoadingState
+                        ? SizedBox(
+                            height: 54,
+                            width: MediaQuery.of(context).size.width,
+                            child: const Center(
+                                child: CupertinoActivityIndicator(
+                              radius: 16.0,
+                              animating: true,
+                            )),
+                          )
+                        : MainButton(
+                            text: "login.create_account".tr(),
+                            onPressed: () async {
+                              if (cubit.passwordController.value.text !=
+                                  cubit.confirmPasswordController.value.text) {
+                                Fluttertoast.showToast(
+                                    msg: "register.password_match".tr());
+                              }
+                              if (cubit.formKey.currentState!.validate()) {
+                                cubit.userSignUp(
+                                    firstName: cubit.firstNameController.text,
+                                    lastName: cubit.lastNameController.text,
+                                    phone: cubit.phoneController.text,
+                                    email: cubit.emailController.text,
+                                    password: cubit.passwordController.text,
+                                    passwordConfirm:
+                                        cubit.confirmPasswordController.text,
+                                    areaId: 1);
+                              }
+                            },
+                          ),
                     const SizedBox(height: 24.0),
-                    Expanded(
-                      child: Text("register.terms".tr(),
-                          maxLines: 5,
-                          softWrap: true,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(fontSize: 14.0)),
-                    )
+                    Text("register.terms".tr(),
+                        maxLines: 5,
+                        softWrap: true,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(fontSize: 14.0)),
                   ],
                 ),
               );

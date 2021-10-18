@@ -3,8 +3,8 @@
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 
-class PasswordTextField extends StatelessWidget {
-  const PasswordTextField({
+class ConfirmPasswordTextField extends StatelessWidget {
+  const ConfirmPasswordTextField({
     Key? key,
     required this.hintText,
     required this.controller,

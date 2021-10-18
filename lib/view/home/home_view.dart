@@ -16,7 +16,6 @@ import 'component/home_appbar_title.dart';
 import 'component/category_buttons_listview.dart';
 import 'component/food_item_card.dart';
 import 'component/home_carousel.dart';
-import 'component/location_button.dart';
 import 'component/restaurant_item_card.dart';
 import 'model/restaurant_item_model.dart';
 
@@ -44,20 +43,7 @@ class HomeView extends StatelessWidget {
                 title: HomeAppBarTitle(onPressed: () {
                   MagicRouter.navigateTo(const SearchView());
                 }),
-                actions: const [
-                  FilterButton(),
-                  Center(
-                    child: Text(
-                      //TODO: add the address here from api
-                      'El-Galla St',
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  LocationButton(),
-                ],
+                actions: const [FilterButton()],
               ),
               body: ListView(
                 shrinkWrap: true,
