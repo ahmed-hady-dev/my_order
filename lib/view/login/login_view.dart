@@ -4,10 +4,14 @@ import 'package:auto_size_text_pk/auto_size_text_pk.dart';
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:my_order/constants/constants.dart';
+import 'package:my_order/core/getStorageHelper/get_storage_helper.dart';
 import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/home/home_view.dart';
 import 'package:my_order/view/login/controller/login_cubit.dart';
 import 'package:my_order/widgets/email_text_field.dart';
+import 'package:my_order/widgets/indicator_widget.dart';
 import 'package:my_order/widgets/main_button.dart';
 import 'package:my_order/widgets/password_text_field.dart';
 
@@ -23,7 +27,21 @@ class LoginView extends StatelessWidget {
         appBar: AppBar(title: Text("login.appBar_title".tr())),
         body: BlocProvider(
           create: (context) => LoginCubit(),
-          child: BlocBuilder<LoginCubit, LoginState>(
+          child: BlocConsumer<LoginCubit, LoginState>(
+            listener: (context, state) {
+              if (state is LoginSuccessState) {
+                if (state.loginModel.tokenType == 'bearer') {
+                  token = state.loginModel.accessToken.toString();
+                  GetStorageHelper.storage
+                      .write('token', state.loginModel.accessToken.toString());
+                  Fluttertoast.showToast(msg: "login.success".tr());
+                  MagicRouter.navigateAndPopAll(const HomeView());
+                } else if (state.loginModel.status == 0 ||
+                    state.loginModel.status != null) {
+                  Fluttertoast.showToast(msg: "login.failed".tr());
+                }
+              }
+            },
             builder: (context, state) {
               final cubit = LoginCubit.get(context);
               return Form(
@@ -56,14 +74,19 @@ class LoginView extends StatelessWidget {
                         icon: cubit.suffix),
                     const TextButtonRow(),
                     const SizedBox(height: 32.0),
-                    MainButton(
-                      text: "login.login".tr(),
-                      onPressed: () async {
-                        if (cubit.formKey.currentState!.validate()) {
-                          MagicRouter.navigateAndPopAll(const HomeView());
-                        }
-                      },
-                    )
+                    state is LoginLoadingState
+                        ? const IndicatorWidget()
+                        : MainButton(
+                            text: "login.login".tr(),
+                            onPressed: () async {
+                              if (cubit.formKey.currentState!.validate()) {
+                                cubit.userLogin(
+                                  email: cubit.emailController.text,
+                                  password: cubit.passwordController.text,
+                                );
+                              }
+                            },
+                          )
                   ],
                 ),
               );

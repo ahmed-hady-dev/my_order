@@ -15,6 +15,7 @@ import 'package:my_order/view/register/Controller/register_cubit.dart';
 import 'package:my_order/view/register/Controller/register_state.dart';
 import 'package:my_order/widgets/confirm_password_text_field.dart';
 import 'package:my_order/widgets/email_text_field.dart';
+import 'package:my_order/widgets/indicator_widget.dart';
 import 'package:my_order/widgets/main_button.dart';
 import 'package:my_order/widgets/first_name_text_field.dart';
 import 'package:my_order/widgets/password_text_field.dart';
@@ -135,15 +136,7 @@ class RegisterView extends StatelessWidget {
                     ),
                     const SizedBox(height: 24.0),
                     state is RegisterLoadingState
-                        ? SizedBox(
-                            height: 54,
-                            width: MediaQuery.of(context).size.width,
-                            child: const Center(
-                                child: CupertinoActivityIndicator(
-                              radius: 16.0,
-                              animating: true,
-                            )),
-                          )
+                        ? const IndicatorWidget()
                         : MainButton(
                             text: "login.create_account".tr(),
                             onPressed: () async {

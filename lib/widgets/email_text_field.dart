@@ -1,3 +1,5 @@
+// ignore_for_file: implementation_imports
+
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 

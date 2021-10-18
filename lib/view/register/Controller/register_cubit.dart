@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_order/constants/constants.dart';
 import 'package:my_order/view/register/model/sign_up_model.dart';
 import '../../../core/dioHelper/dio_helper.dart';
@@ -56,6 +55,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String email,
     required String password,
     required String passwordConfirm,
+    //TODO: add the area id here
     int? areaId,
   }) async {
     emit(RegisterLoadingState());
@@ -71,20 +71,14 @@ class RegisterCubit extends Cubit<RegisterState> {
         'area_id': areaId ?? 1,
       },
     );
-    debugPrint(response.statusMessage);
-    debugPrint(response.statusCode.toString());
-    debugPrint(response.data.toString());
     try {
       signUpModel = SignUpModel.fromJson(response.data as Map<String, dynamic>);
       emit(RegisterSuccessState(signUpModel: signUpModel!));
     } on DioError catch (e) {
       debugPrint(e.error.toString());
-      debugPrint(1.toString());
-    } catch (e, s) {
-      Fluttertoast.showToast(msg: e.toString());
+      emit(RegisterLErrorState(error: e.toString()));
+    } catch (e) {
       debugPrint(e.toString());
-      debugPrint(s.toString());
-      debugPrint(2.toString());
       emit(RegisterLErrorState(error: e.toString()));
     }
   }
