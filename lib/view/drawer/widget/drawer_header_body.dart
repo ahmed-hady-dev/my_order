@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
+import 'package:my_order/constants/constants.dart';
+import 'package:my_order/core/getStorageHelper/get_storage_helper.dart';
+import 'package:my_order/view/drawer/widget/user_avatar.dart';
 import '../../login/login_view.dart';
 import '../../order/controller/order_cubit.dart';
 import '../../../core/router/router.dart';
 import '../../cart/cart_view.dart';
 import '../../settings/settings_view.dart';
+import 'empty_avatar.dart';
 
 class DrawerHeaderBody extends StatelessWidget {
   const DrawerHeaderBody({Key? key}) : super(key: key);
@@ -13,7 +18,7 @@ class DrawerHeaderBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         IconButton(
           onPressed: () {
@@ -27,35 +32,32 @@ class DrawerHeaderBody extends StatelessWidget {
               const FaIcon(FontAwesomeIcons.shoppingCart, color: Colors.white),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          padding: const EdgeInsets.symmetric(vertical: 12.0),
           child: Column(
             children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white),
-                    borderRadius: BorderRadius.circular(50)),
-                child: const CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                  foregroundColor: Colors.white,
-                  radius: 30,
-                  child: Center(
-                      child: Icon(
-                    Icons.person_outline,
-                    size: 30,
-                  )),
-                ),
-              ),
+              GetStorageHelper.storage.hasData(userImage)
+                  ? const UserAvatar()
+                  : const EmptyAvatar(),
               const SizedBox(height: 8),
               InkWell(
-                onTap: () =>
-                    MagicRouter.navigateAndPopUntilFirstPage(const LoginView()),
-                child: const Text(
-                  //TODO: add the user name here
-                  "Login",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),
+                onTap: GetStorageHelper.storage.hasData(userToken)
+                    ? () {}
+                    : () => MagicRouter.navigateAndPopUntilFirstPage(
+                        const LoginView()),
+                child: SizedBox(
+                  width: 160,
+                  child: Text(
+                    GetStorageHelper.storage.hasData(userToken)
+                        ? toBeginningOfSentenceCase(GetStorageHelper.storage
+                            .read(userFirstName)
+                            .toString())!
+                        : "Login",
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18),
+                  ),
                 ),
               ),
             ],

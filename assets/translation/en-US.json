@@ -156,7 +156,9 @@
     "location": "Location",
     "home": "Home",
     "profile": "Profile",
-    "login": "Login"
+    "login": "Login",
+    "logout": "Logout",
+    "logout_success": "Logout successfully."
   },
   "cart": {
     "appBar_title": "Cart",

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:my_order/core/getStorageHelper/get_storage_helper.dart';
 import 'package:my_order/view/home/home_view.dart';
 
 import '../../constants/app_colors.dart';
@@ -22,6 +23,7 @@ class _SplashViewState extends State<SplashView> {
       setState(() {
         _visible = !_visible;
       });
+      debugPrint('toke :' + GetStorageHelper.storage.read('token'));
     });
     Timer(const Duration(milliseconds: 2500), () {
       MagicRouter.navigateAndPopAll(const HomeView());

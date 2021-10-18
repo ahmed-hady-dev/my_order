@@ -2,13 +2,10 @@
 
 import 'package:auto_size_text_pk/auto_size_text_pk.dart';
 import 'package:easy_localization/src/public_ext.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_order/constants/app_colors.dart';
-import 'package:my_order/constants/constants.dart';
-import 'package:my_order/core/getStorageHelper/get_storage_helper.dart';
 import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/home/home_view.dart';
 import 'package:my_order/view/register/Controller/register_cubit.dart';
@@ -36,9 +33,6 @@ class RegisterView extends StatelessWidget {
             listener: (context, state) {
               if (state is RegisterSuccessState) {
                 if (state.signUpModel.tokenType == 'bearer') {
-                  token = state.signUpModel.accessToken!;
-                  GetStorageHelper.storage
-                      .write('token', state.signUpModel.accessToken.toString());
                   Fluttertoast.showToast(msg: "register.success".tr());
                   MagicRouter.navigateAndPopAll(const HomeView());
                 } else if (state.signUpModel.errors!.email != null) {
@@ -147,14 +141,14 @@ class RegisterView extends StatelessWidget {
                               }
                               if (cubit.formKey.currentState!.validate()) {
                                 cubit.userSignUp(
-                                    firstName: cubit.firstNameController.text,
-                                    lastName: cubit.lastNameController.text,
-                                    phone: cubit.phoneController.text,
-                                    email: cubit.emailController.text,
-                                    password: cubit.passwordController.text,
-                                    passwordConfirm:
-                                        cubit.confirmPasswordController.text,
-                                    areaId: 1);
+                                  firstName: cubit.firstNameController.text,
+                                  lastName: cubit.lastNameController.text,
+                                  phone: cubit.phoneController.text,
+                                  email: cubit.emailController.text,
+                                  password: cubit.passwordController.text,
+                                  passwordConfirm:
+                                      cubit.confirmPasswordController.text,
+                                );
                               }
                             },
                           ),

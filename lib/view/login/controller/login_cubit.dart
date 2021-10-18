@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_order/constants/constants.dart';
+import 'package:my_order/core/getStorageHelper/get_storage_helper.dart';
 import 'package:my_order/view/login/model/login_model.dart';
 import '../../../core/dioHelper/dio_helper.dart';
 
@@ -30,9 +30,33 @@ class LoginCubit extends Cubit<LoginState> {
     });
     try {
       loginModel = LoginModel.fromJson(response.data);
+      await GetStorageHelper.storage
+          .write(userId, loginModel!.data!.id.toString());
+      await GetStorageHelper.storage
+          .write(userToken, loginModel!.accessToken.toString());
+      await GetStorageHelper.storage
+          .write(userEmail, loginModel!.data!.email.toString());
+      await GetStorageHelper.storage
+          .write(userPhone, loginModel!.data!.phone.toString());
+      await GetStorageHelper.storage
+          .write(userImage, loginModel!.data!.image.toString());
+      await GetStorageHelper.storage
+          .write(userFirstName, loginModel!.data!.firstName.toString());
+      await GetStorageHelper.storage
+          .write(userLastName, loginModel!.data!.lastName.toString());
+      await GetStorageHelper.storage
+          .write(areaId, loginModel!.data!.area!.id.toString());
+      await GetStorageHelper.storage
+          .write(areaName, loginModel!.data!.area!.name.toString());
+      await GetStorageHelper.storage
+          .write(cityId, loginModel!.data!.area!.city!.id.toString());
+      await GetStorageHelper.storage
+          .write(cityName, loginModel!.data!.area!.city!.name.toString());
+
       emit(LoginSuccessState(loginModel: loginModel!));
-    } catch (e) {
-      Fluttertoast.showToast(msg: e.toString());
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
       emit(LoginLErrorState(error: e.toString()));
     }
   }

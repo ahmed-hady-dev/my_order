@@ -13,5 +13,6 @@ class DrawerCubit extends Cubit<DrawerState> {
   void itemSelection(int value) {
     isSelected = value;
     emit(DrawerSelectedItem());
+    isSelected = 0;
   }
 }

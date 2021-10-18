@@ -27,7 +27,7 @@ class NavigationDrawer extends StatelessWidget {
               children: const [
                 DrawerHeaderBody(),
                 DrawerBody(),
-                SizedBox(height: 20),
+                SizedBox(height: 22.0),
                 DrawerFooter(),
               ],
             ),

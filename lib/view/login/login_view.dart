@@ -5,8 +5,6 @@ import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:my_order/constants/constants.dart';
-import 'package:my_order/core/getStorageHelper/get_storage_helper.dart';
 import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/home/home_view.dart';
 import 'package:my_order/view/login/controller/login_cubit.dart';
@@ -31,9 +29,6 @@ class LoginView extends StatelessWidget {
             listener: (context, state) {
               if (state is LoginSuccessState) {
                 if (state.loginModel.tokenType == 'bearer') {
-                  token = state.loginModel.accessToken.toString();
-                  GetStorageHelper.storage
-                      .write('token', state.loginModel.accessToken.toString());
                   Fluttertoast.showToast(msg: "login.success".tr());
                   MagicRouter.navigateAndPopAll(const HomeView());
                 } else if (state.loginModel.status == 0 ||
@@ -86,7 +81,7 @@ class LoginView extends StatelessWidget {
                                 );
                               }
                             },
-                          )
+                          ),
                   ],
                 ),
               );
