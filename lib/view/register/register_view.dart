@@ -32,15 +32,15 @@ class RegisterView extends StatelessWidget {
           child: BlocConsumer<RegisterCubit, RegisterState>(
             listener: (context, state) {
               if (state is RegisterSuccessState) {
-                if (state.signUpModel.tokenType == 'bearer') {
+                if (state.userModel.tokenType == 'bearer') {
                   Fluttertoast.showToast(msg: "register.success".tr());
                   MagicRouter.navigateAndPopAll(const HomeView());
-                } else if (state.signUpModel.errors!.email != null) {
+                } else if (state.userModel.errors!.email != null) {
                   Fluttertoast.showToast(
-                      msg: state.signUpModel.errors!.email!.join());
-                } else if (state.signUpModel.errors!.phone != null) {
+                      msg: state.userModel.errors!.email!.join());
+                } else if (state.userModel.errors!.phone != null) {
                   Fluttertoast.showToast(
-                      msg: state.signUpModel.errors!.phone!.join());
+                      msg: state.userModel.errors!.phone!.join());
                 }
               }
             },
@@ -141,14 +141,20 @@ class RegisterView extends StatelessWidget {
                               }
                               if (cubit.formKey.currentState!.validate()) {
                                 cubit.userSignUp(
-                                  firstName: cubit.firstNameController.text,
-                                  lastName: cubit.lastNameController.text,
-                                  phone: cubit.phoneController.text,
-                                  email: cubit.emailController.text,
-                                  password: cubit.passwordController.text,
-                                  passwordConfirm:
-                                      cubit.confirmPasswordController.text,
-                                );
+                                    firstName: cubit.firstNameController.text,
+                                    lastName: cubit.lastNameController.text,
+                                    phone: cubit.phoneController.text,
+                                    email: cubit.emailController.text
+                                        .toLowerCase()
+                                        .trim(),
+                                    password: cubit.passwordController.text
+                                        .toLowerCase()
+                                        .trim(),
+                                    passwordConfirm: cubit
+                                        .confirmPasswordController.text
+                                        .toLowerCase()
+                                        .trim(),
+                                    notifiToken: '123456');
                               }
                             },
                           ),

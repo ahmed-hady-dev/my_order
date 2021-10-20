@@ -1,8 +1,11 @@
+// ignore_for_file: curly_braces_in_flow_control_structures
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/constants/constants.dart';
-import 'package:my_order/core/getStorageHelper/get_storage_helper.dart';
-import 'package:my_order/view/login/model/login_model.dart';
+import 'package:my_order/core/cacheHelper/cache_helper.dart';
+import 'package:my_order/view/login/model/user_model.dart';
 import '../../../core/dioHelper/dio_helper.dart';
 
 part 'login_state.dart';
@@ -11,7 +14,7 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitial());
   static LoginCubit get(context) => BlocProvider.of(context);
 //===============================================================
-  LoginModel? loginModel;
+  UserModel? userModel;
   bool isPassword = true;
   IconData suffix = Icons.visibility_outlined;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -19,41 +22,25 @@ class LoginCubit extends Cubit<LoginState> {
   TextEditingController passwordController = TextEditingController();
 
 //===============================================================
-  void userLogin({
+  Future<void> userLogin({
     required String email,
     required String password,
+    String? notifiToken,
   }) async {
     emit(LoginLoadingState());
     final response = await DioHelper.postData(url: login, data: {
       'email': email,
       'password': password,
+      'notifi_token': notifiToken,
     });
     try {
-      loginModel = LoginModel.fromJson(response.data);
-      await GetStorageHelper.storage
-          .write(userId, loginModel!.data!.id.toString());
-      await GetStorageHelper.storage
-          .write(userToken, loginModel!.accessToken.toString());
-      await GetStorageHelper.storage
-          .write(userEmail, loginModel!.data!.email.toString());
-      await GetStorageHelper.storage
-          .write(userPhone, loginModel!.data!.phone.toString());
-      await GetStorageHelper.storage
-          .write(userImage, loginModel!.data!.image.toString());
-      await GetStorageHelper.storage
-          .write(userFirstName, loginModel!.data!.firstName.toString());
-      await GetStorageHelper.storage
-          .write(userLastName, loginModel!.data!.lastName.toString());
-      await GetStorageHelper.storage
-          .write(areaId, loginModel!.data!.area!.id.toString());
-      await GetStorageHelper.storage
-          .write(areaName, loginModel!.data!.area!.name.toString());
-      await GetStorageHelper.storage
-          .write(cityId, loginModel!.data!.area!.city!.id.toString());
-      await GetStorageHelper.storage
-          .write(cityName, loginModel!.data!.area!.city!.name.toString());
-
-      emit(LoginSuccessState(loginModel: loginModel!));
+      userModel = UserModel.fromJson(response.data);
+      if (userModel!.accessToken != null)
+        CacheHelper.cacheUserInfo(
+            token: userModel!.accessToken!.toString(), userModel: userModel!);
+      emit(LoginSuccessState(userModel: userModel!));
+    } on DioError catch (e) {
+      debugPrint(e.error.toString());
     } catch (e, s) {
       debugPrint(e.toString());
       debugPrint(s.toString());

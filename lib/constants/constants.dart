@@ -1,15 +1,13 @@
-String userId = 'id';
-String userToken = 'token';
-String userEmail = 'email';
-String userPhone = 'phone';
-String userImage = 'image';
-String userFirstName = 'firstName';
-String userLastName = 'lastName';
-String areaId = 'areaId';
-String areaName = 'areaName';
-String cityId = 'cityId';
-String cityName = 'cityName';
+String language = 'en';
 //===============================================================
+const String collectionLink =
+    'https://www.getpostman.com/collections/c9848a1ee05785298d78';
 const String base = 'http://www.inoutdesigners.com/talabat/public/api';
 const String signUp = '/client/auth/signUp';
 const String login = '/client/auth/login';
+const String logout = '/client/auth/logout';
+const String update = '/client/update';
+const String updatePassword = '/client/update/password';
+const String updateImage = '/client/update/image';
+const String storeCategories = '/client/storeCategories';
+const String storeSubCategories = '/client/storeSubCategories';

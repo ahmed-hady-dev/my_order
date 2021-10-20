@@ -132,13 +132,15 @@
   },
   "user_details": {
     "appBar_title": "User Details",
-    "full_name": "Full Name",
     "email": "Email",
     "phone_number": "Phone Number",
     "password": "Password",
     "edit": "Edit",
     "address": "Address",
-    "change_password": "Change Password"
+    "change_password": "Change Password",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "security_information": "Security information"
   },
   "filter_result": {
     "search_bar": "what are you looking for?"
@@ -177,6 +179,17 @@
     "phone_valid": "phone number must be 11 digits",
     "phone_empty": "phone must not be empty",
     "password_valid": "password must be at least 6 digits",
-    "password_empty": "password must not be empty"
+    "password_empty": "password must not be empty",
+    "white_space": "The password cannot have space."
+  },
+  "change_password": {
+    "appBar_title": "Change Password",
+    "change_password": "Change Password",
+    "old_password": "Old password",
+    "new_password": "New password",
+    "confirm_new_password": "Confirm new password",
+    "password_update_success": "Password updated successfully",
+    "wrong_password": "Wrong password",
+    "some_error": "Some error happened"
   }
 }

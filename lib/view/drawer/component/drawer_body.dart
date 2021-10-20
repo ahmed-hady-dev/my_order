@@ -4,8 +4,8 @@ import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:my_order/constants/constants.dart';
-import 'package:my_order/core/getStorageHelper/get_storage_helper.dart';
+import 'package:my_order/core/cacheHelper/cache_helper.dart';
+import 'package:my_order/core/dioHelper/dio_helper.dart';
 import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/about/about_view.dart';
 import 'package:my_order/view/drawer/controller/drawer_cubit.dart';
@@ -37,26 +37,31 @@ class DrawerBody extends StatelessWidget {
             MagicRouter.navigateAndPopAll(const HomeView());
           },
         ),
-        DrawerItem(
-          selected: 1,
-          icon: Icons.person,
-          text: "drawer.profile".tr(),
-          onTap: () {
-            DrawerCubit.get(context).itemSelection(1);
-            MagicRouter.pop();
-            MagicRouter.navigateAndPopUntilFirstPage(const UserDetailsView());
-          },
-        ),
-        DrawerItem(
-          selected: 2,
-          icon: FontAwesomeIcons.clipboardList,
-          text: "drawer.your_orders".tr(),
-          onTap: () {
-            DrawerCubit.get(context).itemSelection(2);
-            MagicRouter.pop();
-            MagicRouter.navigateAndPopUntilFirstPage(const OrdersView());
-          },
-        ),
+        CacheHelper.isLogged
+            ? DrawerItem(
+                selected: 1,
+                icon: Icons.person,
+                text: "drawer.profile".tr(),
+                onTap: () {
+                  DrawerCubit.get(context).itemSelection(1);
+                  MagicRouter.pop();
+                  MagicRouter.navigateAndPopUntilFirstPage(
+                      const UserDetailsView());
+                },
+              )
+            : const SizedBox(),
+        CacheHelper.isLogged
+            ? DrawerItem(
+                selected: 2,
+                icon: FontAwesomeIcons.clipboardList,
+                text: "drawer.your_orders".tr(),
+                onTap: () {
+                  DrawerCubit.get(context).itemSelection(2);
+                  MagicRouter.pop();
+                  MagicRouter.navigateAndPopUntilFirstPage(const OrdersView());
+                },
+              )
+            : const SizedBox(),
         DrawerItem(
           selected: 3,
           icon: Icons.local_offer_rounded,
@@ -67,16 +72,19 @@ class DrawerBody extends StatelessWidget {
             MagicRouter.navigateAndPopUntilFirstPage(const OffersView());
           },
         ),
-        DrawerItem(
-          selected: 4,
-          icon: Icons.notifications,
-          text: "drawer.notifications".tr(),
-          onTap: () {
-            DrawerCubit.get(context).itemSelection(4);
-            MagicRouter.pop();
-            MagicRouter.navigateAndPopUntilFirstPage(const NotificationsView());
-          },
-        ),
+        CacheHelper.isLogged
+            ? DrawerItem(
+                selected: 4,
+                icon: Icons.notifications,
+                text: "drawer.notifications".tr(),
+                onTap: () {
+                  DrawerCubit.get(context).itemSelection(4);
+                  MagicRouter.pop();
+                  MagicRouter.navigateAndPopUntilFirstPage(
+                      const NotificationsView());
+                },
+              )
+            : const SizedBox(),
         DrawerItem(
           selected: 5,
           icon: FontAwesomeIcons.ticketAlt,
@@ -107,14 +115,14 @@ class DrawerBody extends StatelessWidget {
             MagicRouter.navigateAndPopUntilFirstPage(const AboutView());
           },
         ),
-        GetStorageHelper.storage.hasData(userToken)
+        CacheHelper.isLogged
             ? DrawerItem(
                 selected: 8,
                 icon: Icons.logout,
                 text: "drawer.logout".tr(),
                 onTap: () async {
                   DrawerCubit.get(context).itemSelection(8);
-                  await GetStorageHelper.storage.erase();
+                  await DrawerCubit.get(context).signOut();
                   Fluttertoast.showToast(msg: "drawer.logout_success".tr());
                   MagicRouter.pop();
                 },

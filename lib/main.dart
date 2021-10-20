@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_order/core/getStorageHelper/get_storage_helper.dart';
+import 'package:my_order/core/cacheHelper/cache_helper.dart';
 
 import 'core/blocObserver/bloc_observer.dart';
 import 'core/dioHelper/dio_helper.dart';
@@ -21,7 +21,8 @@ void main() async {
   //===============================================================
   await EasyLocalization.ensureInitialized();
   //===============================================================
-  await GetStorageHelper.init();
+  await CacheHelper.init();
+  // await GetStorageHelper.init();
   //===============================================================
   runApp(EasyLocalization(
     child: const MyApp(),

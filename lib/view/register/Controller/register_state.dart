@@ -1,4 +1,4 @@
-import 'package:my_order/view/register/model/sign_up_model.dart';
+import 'package:my_order/view/login/model/user_model.dart';
 
 abstract class RegisterState {}
 
@@ -14,9 +14,9 @@ class RegisterChangeCheckBoxState extends RegisterState {}
 class RegisterLoadingState extends RegisterState {}
 
 class RegisterSuccessState extends RegisterState {
-  final SignUpModel signUpModel;
+  final UserModel userModel;
 
-  RegisterSuccessState({required this.signUpModel});
+  RegisterSuccessState({required this.userModel});
 }
 
 class RegisterLErrorState extends RegisterState {

@@ -3,8 +3,8 @@
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 
-class ConfirmPasswordTextField extends StatelessWidget {
-  const ConfirmPasswordTextField({
+class OldPasswordTextField extends StatelessWidget {
+  const OldPasswordTextField({
     Key? key,
     required this.hintText,
     required this.controller,
@@ -13,14 +13,12 @@ class ConfirmPasswordTextField extends StatelessWidget {
     required this.onPressed,
     required this.icon,
   }) : super(key: key);
-
   final String hintText;
   final TextEditingController? controller;
   final Function(String) onFieldSubmitted;
   final bool obscureText;
   final Function() onPressed;
   final IconData icon;
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -44,10 +42,7 @@ class ConfirmPasswordTextField extends StatelessWidget {
         hintText: "login.password".tr(),
         border: const OutlineInputBorder(),
         prefixIcon: const Icon(Icons.lock_outlined, size: 24.0),
-        suffixIcon: IconButton(
-          onPressed: onPressed,
-          icon: Icon(icon),
-        ),
+        suffixIcon: IconButton(onPressed: onPressed, icon: Icon(icon)),
       ),
     );
   }

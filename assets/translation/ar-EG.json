@@ -132,13 +132,15 @@
   },
   "user_details": {
     "appBar_title": "تفاصيل المستخدم",
-    "full_name": "الإسم",
     "email": "البريد الإلكتروني",
     "phone_number": "رقم الهاتف",
     "password": "كلمة السر",
     "edit": "تعديل",
     "address": "العنوان",
-    "change_password": "تغيير كلمة المرور"
+    "change_password": "تغيير كلمة المرور",
+    "first_name": "الإسم الأول",
+    "last_name": "الإسم الأخير",
+    "security_information": "معلومات الأمان"
   },
   "filter_result": {
     "search_bar": "بتدور علي إيه ؟"
@@ -177,6 +179,17 @@
     "phone_valid": "يجب أن يتكون رقم الهاتف من 11 رقم",
     "phone_empty": "يجب ألا يكون الهاتف فارغ",
     "password_valid": "يجب أن تتكون كلمة المرور من 6 أرقام على الأقل",
-    "password_empty": "يجب ألا تكون كلمة المرور فارغة"
+    "password_empty": "يجب ألا تكون كلمة المرور فارغة",
+    "white_space": "لا يمكن أن تحتوي كلمة المرور على مسافة."
+  },
+  "change_password": {
+    "appBar_title": "تغيير كلمة المرور",
+    "change_password": "تغيير كلمة المرور",
+    "old_password": "كلمة السر القديمه",
+    "new_password": "كلمة السرالجديدة",
+    "confirm_new_password": "تأكيد كلمة المرور الجديدة",
+    "password_update_success": "تم تحديث كلمة المرور بنجاح",
+    "wrong_password": "كلمة المرور خاطئة",
+    "some_error": "حدث خطأ ما"
   }
 }

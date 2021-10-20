@@ -28,11 +28,11 @@ class LoginView extends StatelessWidget {
           child: BlocConsumer<LoginCubit, LoginState>(
             listener: (context, state) {
               if (state is LoginSuccessState) {
-                if (state.loginModel.tokenType == 'bearer') {
+                if (state.userModel.tokenType == 'bearer') {
                   Fluttertoast.showToast(msg: "login.success".tr());
                   MagicRouter.navigateAndPopAll(const HomeView());
-                } else if (state.loginModel.status == 0 ||
-                    state.loginModel.status != null) {
+                } else if (state.userModel.status == 0 ||
+                    state.userModel.status != null) {
                   Fluttertoast.showToast(msg: "login.failed".tr());
                 }
               }
@@ -76,9 +76,13 @@ class LoginView extends StatelessWidget {
                             onPressed: () async {
                               if (cubit.formKey.currentState!.validate()) {
                                 cubit.userLogin(
-                                  email: cubit.emailController.text,
-                                  password: cubit.passwordController.text,
-                                );
+                                    email: cubit.emailController.text
+                                        .toLowerCase()
+                                        .trim(),
+                                    password: cubit.passwordController.text
+                                        .toLowerCase()
+                                        .trim(),
+                                    notifiToken: '123456');
                               }
                             },
                           ),

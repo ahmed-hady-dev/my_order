@@ -21,9 +21,11 @@ class DioHelper {
   static Future<Response> getData({
     required String url,
     Map<String, dynamic>? query,
+    required String lang,
   }) async {
     dio!.options.headers = {
       "Accept": "application/json",
+      "lang": lang,
     };
     return await dio!.get(
       url,
@@ -36,9 +38,13 @@ class DioHelper {
     required String url,
     required Map<String, dynamic> data,
     Map<String, dynamic>? query,
+    String? lang = 'en',
+    String? token,
   }) async {
     dio!.options.headers = {
       "Accept": "application/json",
+      'Authorization': 'Bearer $token',
+      'lang': lang,
     };
     return dio!.post(
       url,

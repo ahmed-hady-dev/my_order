@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
-import 'package:my_order/constants/constants.dart';
-import 'package:my_order/core/getStorageHelper/get_storage_helper.dart';
+import 'package:my_order/core/cacheHelper/cache_helper.dart';
 import 'package:my_order/view/drawer/widget/user_avatar.dart';
 import '../../login/login_view.dart';
 import '../../order/controller/order_cubit.dart';
@@ -35,23 +33,17 @@ class DrawerHeaderBody extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 12.0),
           child: Column(
             children: <Widget>[
-              GetStorageHelper.storage.hasData(userImage)
-                  ? const UserAvatar()
-                  : const EmptyAvatar(),
+              CacheHelper.isLogged ? const UserAvatar() : const EmptyAvatar(),
               const SizedBox(height: 8),
               InkWell(
-                onTap: GetStorageHelper.storage.hasData(userToken)
+                onTap: CacheHelper.isLogged
                     ? () {}
                     : () => MagicRouter.navigateAndPopUntilFirstPage(
                         const LoginView()),
                 child: SizedBox(
                   width: 160,
                   child: Text(
-                    GetStorageHelper.storage.hasData(userToken)
-                        ? toBeginningOfSentenceCase(GetStorageHelper.storage
-                            .read(userFirstName)
-                            .toString())!
-                        : "Login",
+                    CacheHelper.isLogged ? CacheHelper.userFirstName : "Login",
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         color: Colors.white,

@@ -10,8 +10,6 @@ import 'package:my_order/view/home/model/food_card_model.dart';
 import 'package:my_order/view/home/widgets/section_header.dart';
 import 'package:my_order/view/search/search_view.dart';
 import 'package:my_order/widgets/drawer_icon.dart';
-
-import 'component/filter_button.dart';
 import 'component/home_appbar_title.dart';
 import 'component/category_buttons_listview.dart';
 import 'component/food_item_card.dart';
@@ -43,7 +41,7 @@ class HomeView extends StatelessWidget {
                 title: HomeAppBarTitle(onPressed: () {
                   MagicRouter.navigateTo(const SearchView());
                 }),
-                actions: const [FilterButton()],
+                // actions: const [FilterButton()],
               ),
               body: ListView(
                 shrinkWrap: true,

@@ -12,9 +12,9 @@ class LoginChangePasswordVisibilityState extends LoginState {}
 class LoginLoadingState extends LoginState {}
 
 class LoginSuccessState extends LoginState {
-  final LoginModel loginModel;
+  final UserModel userModel;
 
-  LoginSuccessState({required this.loginModel});
+  LoginSuccessState({required this.userModel});
 }
 
 class LoginLErrorState extends LoginState {

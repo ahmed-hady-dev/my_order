@@ -3,6 +3,7 @@
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_order/constants/constants.dart';
 import 'component/language_row.dart';
 import 'component/notification_row.dart';
 import 'controller/settings_cubit.dart';
@@ -20,6 +21,7 @@ class SettingsView extends StatelessWidget {
             final cubit = SettingsCubit.get(context);
             if (context.locale.languageCode == 'ar') {
               cubit.langDropdownValue = 'العربية';
+              language = 'ar';
             }
             return Scaffold(
               appBar: AppBar(

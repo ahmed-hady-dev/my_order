@@ -32,6 +32,8 @@ class PasswordTextField extends StatelessWidget {
           return "validation.password_empty".tr();
         } else if (value.length < 6) {
           return "validation.password_valid".tr();
+        } else if (value.contains(' ')) {
+          return "validation.white_space".tr();
         } else {
           return null;
         }
@@ -42,10 +44,7 @@ class PasswordTextField extends StatelessWidget {
         hintText: "login.password".tr(),
         border: const OutlineInputBorder(),
         prefixIcon: const Icon(Icons.lock_outlined, size: 24.0),
-        suffixIcon: IconButton(
-          onPressed: onPressed,
-          icon: Icon(icon),
-        ),
+        suffixIcon: IconButton(onPressed: onPressed, icon: Icon(icon)),
       ),
     );
   }

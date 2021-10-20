@@ -1,28 +1,50 @@
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:my_order/core/router/router.dart';
+import 'package:my_order/view/login/model/user_model.dart';
+import 'package:my_order/view/splash/splash_view.dart';
+
+import 'package:get_storage/get_storage.dart';
 
 class CacheHelper {
-  static SharedPreferences? prefs;
-  //===============================================================
-  static init() async {
-    prefs = await SharedPreferences.getInstance();
+  static final GetStorage _appBox = GetStorage();
+
+  static Future<void> init() async => await GetStorage.init();
+
+  static Future<void> cacheUserInfo({
+    required String token,
+    required UserModel userModel,
+  }) async {
+    await _cacheUserToken(token);
+    await _cacheUserModel(userModel);
   }
 
-  //===============================================================
-  static dynamic get({required String key}) {
-    return prefs!.get(key);
+  static Future<void> _cacheUserModel(UserModel userModel) async =>
+      await _appBox.write('userModel', userModel.toJson());
+
+  static Future<void> _cacheUserToken(String token) async =>
+      await _appBox.write('token', token);
+
+  static String? get getUserToken => _appBox.read('token');
+
+  static bool get isLogged => getUserInfo != null;
+
+  static UserModel? get getUserInfo {
+    UserModel? userModel;
+    if (_appBox.hasData('userModel')) {
+      userModel = UserModel.fromJson(_appBox.read('userModel'));
+    }
+    return userModel;
   }
 
-  //===============================================================
-  static Future<bool> saveData(
-      {required String key, required dynamic value}) async {
-    if (value is String) return await prefs!.setString(key, value);
-    if (value is int) return await prefs!.setInt(key, value);
-    if (value is bool) return await prefs!.setBool(key, value);
-    return await prefs!.setDouble(key, value);
-  }
+  static String get userName =>
+      toBeginningOfSentenceCase(getUserInfo!.data!.firstName!).toString() +
+      ' ' +
+      toBeginningOfSentenceCase(getUserInfo!.data!.lastName!).toString();
 
-//===============================================================
-  static Future<bool> removeData({required String key}) async {
-    return await prefs!.remove(key);
-  }
+  static String get userFirstName =>
+      toBeginningOfSentenceCase(getUserInfo!.data!.firstName!).toString();
+  static String get userLastName =>
+      toBeginningOfSentenceCase(getUserInfo!.data!.lastName!).toString();
+
+  static Future<void> signOut() async => await _appBox.erase();
 }
