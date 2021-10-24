@@ -30,6 +30,12 @@ class SearchAppBarTitle extends StatelessWidget {
           },
           decoration: InputDecoration(
             suffixIconConstraints: const BoxConstraints(),
+            suffixIcon: IconButton(
+              onPressed: () => controller.clear(),
+              icon: const Icon(Icons.clear),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              constraints: const BoxConstraints(),
+            ),
             isDense: true,
             contentPadding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
             hintText: "search.search_bar".tr(),
