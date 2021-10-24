@@ -1,9 +1,6 @@
-import 'dart:math';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:my_order/constants/constants.dart';
 import 'package:my_order/core/cacheHelper/cache_helper.dart';
 import 'package:my_order/core/dioHelper/dio_helper.dart';
@@ -28,8 +25,7 @@ class DrawerCubit extends Cubit<DrawerState> {
 //===============================================================
   Future<void> signOut() async {
     emit(LogoutLoadingState());
-    final response = await DioHelper.postData(
-        url: logout, data: {}, token: CacheHelper.getUserToken);
+    final response = await DioHelper.postData(url: logout, data: {});
     try {
       logoutModel = LogoutModel.fromJson(response.data);
       await CacheHelper.signOut();

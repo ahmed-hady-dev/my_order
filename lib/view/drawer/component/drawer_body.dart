@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_order/core/cacheHelper/cache_helper.dart';
-import 'package:my_order/core/dioHelper/dio_helper.dart';
 import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/about/about_view.dart';
 import 'package:my_order/view/drawer/controller/drawer_cubit.dart';

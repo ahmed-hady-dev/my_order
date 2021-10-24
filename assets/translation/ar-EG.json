@@ -54,7 +54,9 @@
   "restaurant": {
     "info": "معلومات",
     "reviews": "التقييمات",
-    "offer_of_the_restaurant": "عروض المطعم"
+    "offer_of_the_restaurant": "عروض المطعم",
+    "close_at": "يغلق",
+    "open_at": "يفتح"
   },
   "order": {
     "cart_button_title": "إضافة إلى العربة"
@@ -89,7 +91,10 @@
   "cuisines": {},
   "search": {
     "search_bar": "بتدور علي إيه ؟",
-    "popular_search": "البحث المتداول"
+    "popular_search": "البحث المتداول",
+    "start_search": "ابدأ البحث",
+    "search_empty": "يجب ألا يكون البحث فارغًا",
+    "no_results": "لم يتم العثور على نتائج!"
   },
   "settings": {
     "appBar_title": "الإعدادات",

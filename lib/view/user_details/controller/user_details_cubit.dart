@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/constants/constants.dart';
-import 'package:my_order/core/cacheHelper/cache_helper.dart';
 import 'package:my_order/core/dioHelper/dio_helper.dart';
 import 'package:my_order/view/user_details/model/update_password_model.dart';
 
@@ -68,16 +67,13 @@ class UserDetailsCubit extends Cubit<UserDetailsState> {
     required String confirmNewPassword,
   }) async {
     emit(UserPasswordUpdateLoadingState());
-    final respnse = await DioHelper.postData(
-        url: updatePassword,
-        token: CacheHelper.getUserToken,
-        data: {
-          'old_password': oldPassword,
-          'password': newPassword,
-          'password_confirmation': confirmNewPassword,
-        });
+    final response = await DioHelper.postData(url: updatePassword, data: {
+      'old_password': oldPassword,
+      'password': newPassword,
+      'password_confirmation': confirmNewPassword,
+    });
     try {
-      updatePasswordModel = UpdatePasswordModel.fromJson(respnse.data);
+      updatePasswordModel = UpdatePasswordModel.fromJson(response.data);
       emit(UserPasswordUpdateSuccessState(
           updatePasswordModel: updatePasswordModel!));
     } on DioError catch (e) {

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:my_order/constants/constants.dart';
+import 'package:my_order/core/cacheHelper/cache_helper.dart';
 
 class DioHelper {
   static Dio? dio;
@@ -21,11 +22,10 @@ class DioHelper {
   static Future<Response> getData({
     required String url,
     Map<String, dynamic>? query,
-    required String lang,
   }) async {
     dio!.options.headers = {
       "Accept": "application/json",
-      "lang": lang,
+      'Authorization': 'Bearer ${CacheHelper.getUserToken}',
     };
     return await dio!.get(
       url,
@@ -39,11 +39,10 @@ class DioHelper {
     required Map<String, dynamic> data,
     Map<String, dynamic>? query,
     String? lang = 'en',
-    String? token,
   }) async {
     dio!.options.headers = {
       "Accept": "application/json",
-      'Authorization': 'Bearer $token',
+      'Authorization': 'Bearer ${CacheHelper.getUserToken}',
       'lang': lang,
     };
     return dio!.post(

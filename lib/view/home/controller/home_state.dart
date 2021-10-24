@@ -27,4 +27,15 @@ class GetStoreSubCategoriesSuccess extends HomeState {
   GetStoreSubCategoriesSuccess({required this.storeSubCategoriesModel});
 }
 
-class GetStoreSubCategoriesError extends HomeState {}
+class GetStoreSubCategoriesError extends HomeState {
+} //===============================================================
+
+class GetStoreSubCategoriesByIdLoading extends HomeState {}
+
+class GetStoreSubCategoriesByIdSuccess extends HomeState {
+  final StoreSubCategoriesModel storeSubCategoriesModel;
+
+  GetStoreSubCategoriesByIdSuccess({required this.storeSubCategoriesModel});
+}
+
+class GetStoreSubCategoriesByIdError extends HomeState {}

@@ -30,8 +30,9 @@ class HomeCubit extends Cubit<HomeState> {
 //===============================================================
   Future<void> getStoreCategories() async {
     emit(GetStoreCategoriesLoading());
-    final response =
-        await DioHelper.getData(url: storeCategories, lang: language);
+    final response = await DioHelper.getData(
+      url: storeCategories,
+    );
     try {
       storeCategoriesModel = StoreCategoriesModel.fromJson(response.data);
       emit(GetStoreCategoriesSuccess(
@@ -48,8 +49,9 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<void> getStoreSubCategories() async {
     emit(GetStoreSubCategoriesLoading());
-    final response =
-        await DioHelper.getData(url: storeSubCategories, lang: language);
+    final response = await DioHelper.getData(
+      url: storeSubCategories,
+    );
     try {
       storeSubCategoriesModel = StoreSubCategoriesModel.fromJson(response.data);
       emit(GetStoreSubCategoriesSuccess(
@@ -61,6 +63,26 @@ class HomeCubit extends Cubit<HomeState> {
       debugPrint(e.toString());
       debugPrint(s.toString());
       emit(GetStoreSubCategoriesError());
+    }
+  }
+
+  //===============================================================
+
+  Future<void> getStoreSubCategoriesById({required String id}) async {
+    emit(GetStoreSubCategoriesByIdLoading());
+    final response = await DioHelper.getData(
+        url: storeOfCategories + id, query: {'lang': language});
+    try {
+      storeSubCategoriesModel = StoreSubCategoriesModel.fromJson(response.data);
+      emit(GetStoreSubCategoriesByIdSuccess(
+          storeSubCategoriesModel: storeSubCategoriesModel!));
+    } on DioError catch (e) {
+      debugPrint(e.error.toString());
+      emit(GetStoreSubCategoriesByIdError());
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      emit(GetStoreSubCategoriesByIdError());
     }
   }
 }

@@ -11,3 +11,5 @@ const String updatePassword = '/client/update/password';
 const String updateImage = '/client/update/image';
 const String storeCategories = '/client/storeCategories';
 const String storeSubCategories = '/client/storeSubCategories';
+const String storeOfCategories = '/client/stores/category/';
+const String search = '/client/stores/search';

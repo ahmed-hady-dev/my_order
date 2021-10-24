@@ -54,7 +54,9 @@
   "restaurant": {
     "info": "Info",
     "reviews": "Reviews",
-    "offer_of_the_restaurant": " Offer of the restaurant"
+    "offer_of_the_restaurant": " Offer of the restaurant",
+    "close_at": "Close at",
+    "open_at": "Open at"
   },
   "order": {
     "cart_button_title": "Add to cart"
@@ -89,7 +91,10 @@
   "cuisines": {},
   "search": {
     "search_bar": "what are you looking for?",
-    "popular_search": "Popular Search"
+    "popular_search": "Popular Search",
+    "start_search": "Start searching",
+    "search_empty": "Search must not be empty",
+    "no_results": "No results found!"
   },
   "settings": {
     "appBar_title": "Settings",

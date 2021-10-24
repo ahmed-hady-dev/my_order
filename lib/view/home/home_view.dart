@@ -10,10 +10,10 @@ import 'package:my_order/view/home/model/food_card_model.dart';
 import 'package:my_order/view/home/widgets/section_header.dart';
 import 'package:my_order/view/search/search_view.dart';
 import 'package:my_order/widgets/drawer_icon.dart';
+import 'package:my_order/widgets/indicator_widget.dart';
 import 'component/home_appbar_title.dart';
 import 'component/category_buttons_listview.dart';
 import 'component/food_item_card.dart';
-import 'component/home_carousel.dart';
 import 'component/restaurant_item_card.dart';
 import 'model/restaurant_item_model.dart';
 
@@ -24,8 +24,13 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: BlocProvider(
-        create: (context) => HomeCubit(),
-        child: BlocBuilder<HomeCubit, HomeState>(
+        create: (context) => HomeCubit()..getStoreCategories(),
+        child: BlocConsumer<HomeCubit, HomeState>(
+          listener: (context, state) {
+            if (state is GetStoreCategoriesLoading) {
+              debugPrint('loading.........................');
+            }
+          },
           builder: (context, state) {
             final cubit = HomeCubit.get(context);
             return Scaffold(
@@ -47,8 +52,10 @@ class HomeView extends StatelessWidget {
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
                 children: [
-                  CategoryButtonsListView(cubit: cubit),
-                  HomeCarousel(cubit: cubit),
+                  state is GetStoreCategoriesLoading
+                      ? const IndicatorWidget()
+                      : CategoryButtonsListView(cubit: cubit),
+                  // HomeCarousel(cubit: cubit),
                   SectionHeader(
                     buttonText: "home.view_more".tr(),
                     headerText: "home.popular_food".tr(),
@@ -71,10 +78,6 @@ class HomeView extends StatelessWidget {
                     ),
                   ),
                   FoodItemCard(foodCardModel: foodCardModel),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    child: HomeCarousel(cubit: cubit),
-                  ),
                 ],
               ),
             );
@@ -84,3 +87,8 @@ class HomeView extends StatelessWidget {
     );
   }
 }
+// the bottom carousel
+// Padding(
+//   padding: const EdgeInsets.symmetric(vertical: 16.0),
+//   child: HomeCarousel(cubit: cubit),
+// ),

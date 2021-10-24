@@ -1,13 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/login/model/user_model.dart';
-import 'package:my_order/view/splash/splash_view.dart';
 
 import 'package:get_storage/get_storage.dart';
 
 class CacheHelper {
   static final GetStorage _appBox = GetStorage();
-
   static Future<void> init() async => await GetStorage.init();
 
   static Future<void> cacheUserInfo({
@@ -16,6 +13,15 @@ class CacheHelper {
   }) async {
     await _cacheUserToken(token);
     await _cacheUserModel(userModel);
+  }
+
+  static Future<void> cacheSomeThing(
+      {required String key, required dynamic value}) async {
+    await _appBox.writeIfNull(key, value);
+  }
+
+  static Future<void> readSomeThing({required String key}) async {
+    await _appBox.read(key);
   }
 
   static Future<void> _cacheUserModel(UserModel userModel) async =>
