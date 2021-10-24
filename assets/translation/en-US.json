@@ -78,7 +78,14 @@
     "used": "Used",
     "expired": "Expired",
     "no_vouchers_available": "No vouchers available",
-    "voucher_text": "You can get vouchers by redeeming your rewards points"
+    "voucher_text": "You can get vouchers by redeeming your rewards points",
+    "all": "All",
+    "discount": "Discount",
+    "get_your_voucher": "Get your voucher",
+    "use_the_code": "Use the code",
+    "use_the_code ": "asdfasdf",
+    "start_at": "Start at",
+    "end_at": "End at"
   },
   "help": {
     "appBar_title": "Help",

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_order/view/vouchers/component/no_voucher_widget.dart';
 import 'package:my_order/view/vouchers/controller/voucher_cubit.dart';
+import 'package:my_order/view/vouchers/widgets/voucher_card.dart';
 import 'package:my_order/widgets/indicator_widget.dart';
-import '../widgets/voucher_card.dart';
-import 'no_voucher_widget.dart';
 
-class ExpiredTabView extends StatelessWidget {
-  const ExpiredTabView({Key? key}) : super(key: key);
+class AllTabView extends StatelessWidget {
+  const AllTabView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,26 +15,25 @@ class ExpiredTabView extends StatelessWidget {
         final cubit = VoucherCubit.get(context);
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: cubit.expiredVoucherModel == null
+          child: cubit.allVoucherModel == null
               ? const Center(child: IndicatorWidget())
-              : cubit.expiredVoucherModel!.data!.isEmpty
+              : cubit.allVoucherModel!.data!.isEmpty
                   ? const NoVoucherWidget()
                   : ListView.separated(
-                      itemCount: cubit.expiredVoucherModel!.data!.length,
+                      itemCount: cubit.allVoucherModel!.data!.length,
                       separatorBuilder: (context, index) => const Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.0),
                         child: Divider(),
                       ),
                       itemBuilder: (context, index) => VoucherCard(
-                        discountCode: cubit
-                            .expiredVoucherModel!.data![index].code
+                        discountCode:
+                            cubit.allVoucherModel!.data![index].code.toString(),
+                        endAt: cubit.allVoucherModel!.data![index].endAt
                             .toString(),
-                        endAt: cubit.expiredVoucherModel!.data![index].endAt
-                            .toString(),
-                        startAt: cubit.expiredVoucherModel!.data![index].startAt
+                        startAt: cubit.allVoucherModel!.data![index].startAt
                             .toString(),
                         percentage:
-                            cubit.expiredVoucherModel!.data![index].discount!,
+                            cubit.allVoucherModel!.data![index].discount!,
                       ),
                     ),
         );

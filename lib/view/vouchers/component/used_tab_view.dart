@@ -1,26 +1,43 @@
 import 'package:flutter/material.dart';
-import '../model/voucher_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_order/view/vouchers/controller/voucher_cubit.dart';
+import 'package:my_order/widgets/indicator_widget.dart';
 import '../widgets/voucher_card.dart';
+import 'no_voucher_widget.dart';
 
 class UsedTabView extends StatelessWidget {
   const UsedTabView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: ListView.separated(
-        itemCount: voucherList.length,
-        separatorBuilder: (context, index) => const Padding(
-          padding: EdgeInsets.symmetric(vertical: 8.0),
-          child: Divider(),
-        ),
-        itemBuilder: (context, index) => VoucherCard(
-          discountCode: voucherList[index].discountCode,
-          discountText: voucherList[index].discountText,
-          percentage: voucherList[index].percentage,
-        ),
-      ),
+    return BlocBuilder<VoucherCubit, VoucherState>(
+      builder: (context, state) {
+        final cubit = VoucherCubit.get(context);
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: cubit.usedVoucherModel == null
+              ? const Center(child: IndicatorWidget())
+              : cubit.usedVoucherModel!.data!.isEmpty
+                  ? const NoVoucherWidget()
+                  : ListView.separated(
+                      itemCount: cubit.usedVoucherModel!.data!.length,
+                      separatorBuilder: (context, index) => const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
+                        child: Divider(),
+                      ),
+                      itemBuilder: (context, index) => VoucherCard(
+                        discountCode: cubit.usedVoucherModel!.data![index].code
+                            .toString(),
+                        endAt: cubit.usedVoucherModel!.data![index].endAt
+                            .toString(),
+                        startAt: cubit.usedVoucherModel!.data![index].startAt
+                            .toString(),
+                        percentage:
+                            cubit.usedVoucherModel!.data![index].discount!,
+                      ),
+                    ),
+        );
+      },
     );
   }
 }

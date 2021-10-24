@@ -1,5 +1,9 @@
+// ignore_for_file: implementation_imports
+
 import 'package:auto_size_text_pk/auto_size_text_pk.dart';
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../constants/app_colors.dart';
 import '../../../widgets/custom_vertical_divider.dart';
 
@@ -7,12 +11,14 @@ class VoucherCard extends StatelessWidget {
   const VoucherCard(
       {Key? key,
       required this.percentage,
-      required this.discountText,
-      required this.discountCode})
+      required this.discountCode,
+      required this.startAt,
+      required this.endAt})
       : super(key: key);
-  final double percentage;
-  final String discountText;
+  final int percentage;
   final String discountCode;
+  final String startAt;
+  final String endAt;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +41,8 @@ class VoucherCard extends StatelessWidget {
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.3,
-                  child: AutoSizeText('${percentage.toInt()}% $discountText',
+                  child: AutoSizeText(
+                      '${percentage.toInt()}% ' + "vouchers.discount".tr(),
                       softWrap: true,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
@@ -52,18 +59,58 @@ class VoucherCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                const AutoSizeText(
-                  'Get your voucher',
-                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                AutoSizeText(
+                  "vouchers.get_your_voucher".tr(),
+                  style: const TextStyle(
+                      fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 4),
                 AutoSizeText(
-                  'Write the code $discountCode',
+                  "vouchers.use_the_code".tr() + ' ' + discountCode,
                   softWrap: true,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontSize: 14.0, fontWeight: FontWeight.normal),
                 ),
+                const SizedBox(height: 4),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const FaIcon(
+                          FontAwesomeIcons.clock,
+                          size: 12.0,
+                          color: Colors.green,
+                        ),
+                        const SizedBox(width: 4.0),
+                        Text(
+                          "vouchers.start_at".tr() + ' ' + startAt,
+                          style: const TextStyle(
+                              fontSize: 10.0, fontWeight: FontWeight.normal),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const FaIcon(
+                          FontAwesomeIcons.clock,
+                          size: 12.0,
+                          color: Colors.red,
+                        ),
+                        const SizedBox(width: 4.0),
+                        Text(
+                          "vouchers.end_at".tr() + ' ' + endAt,
+                          style: const TextStyle(
+                              fontSize: 10.0, fontWeight: FontWeight.normal),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
               ],
             ),
           )

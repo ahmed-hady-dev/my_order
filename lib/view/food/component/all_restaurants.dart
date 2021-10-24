@@ -20,7 +20,7 @@ class AllRestaurants extends StatelessWidget {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {},
-            child: StoreCard(
+            child: const StoreCard(
               image: 'http://via.placeholder.com/200x200?text=No+Image',
               name: 'gedo',
               description: 'pastapastapastapastapastapastapastapasta',

@@ -125,33 +125,6 @@ class StoreCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                // const SizedBox(
-                //   height: 5,
-                // ),
-                // Row(
-                //   children: [
-                //     Container(
-                //       height: 12.0,
-                //       width: 12.0,
-                //       decoration: BoxDecoration(
-                //         color: Colors.green,
-                //         shape: BoxShape.circle,
-                //         border: Border.all(
-                //           width: 2.0,
-                //           color: Colors.white,
-                //         ),
-                //       ),
-                //     ),
-                //     const SizedBox(
-                //       width: 5,
-                //     ),
-                //     const Text(
-                //       "Online",
-                //       style:
-                //           TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                //     )
-                //   ],
-                // ),
               ],
             ),
           ))

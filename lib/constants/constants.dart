@@ -13,3 +13,7 @@ const String storeCategories = '/client/storeCategories';
 const String storeSubCategories = '/client/storeSubCategories';
 const String storeOfCategories = '/client/stores/category/';
 const String search = '/client/stores/search';
+const String allVoucher = '/client/vouchers';
+const String activeVoucher = '/client/vouchers/active';
+const String usedVoucher = '/client/vouchers/used';
+const String expiredVoucher = '/client/vouchers/expired';
