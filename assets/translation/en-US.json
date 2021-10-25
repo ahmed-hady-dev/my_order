@@ -16,7 +16,9 @@
     "last_name": "Last name",
     "confirm_password": "Confirm password",
     "password_match": "Please make sure both passwords match",
-    "success": "Register success."
+    "success": "Register success.",
+    "choose_area": "Choose area",
+    "please_choose_area": "Please choose area!"
   },
   "login": {
     "appBar_title": "Login",

@@ -1,11 +1,14 @@
-// ignore_for_file: curly_braces_in_flow_control_structures
+// ignore_for_file: curly_braces_in_flow_control_structures, implementation_imports
 
 import 'package:dio/dio.dart';
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_order/constants/constants.dart';
 import 'package:my_order/core/cacheHelper/cache_helper.dart';
 import 'package:my_order/view/login/model/user_model.dart';
+import 'package:my_order/view/register/model/areas_model.dart';
 import '../../../core/dioHelper/dio_helper.dart';
 import 'register_state.dart';
 
@@ -14,6 +17,8 @@ class RegisterCubit extends Cubit<RegisterState> {
   static RegisterCubit get(context) => BlocProvider.of(context);
 //===============================================================
   UserModel? userModel;
+  AreasModel? areasModel;
+  String? dropDownValue;
   bool isPassword = true;
   bool isPasswordConfirm = true;
   bool isChecked = false;
@@ -36,6 +41,12 @@ class RegisterCubit extends Cubit<RegisterState> {
   }
 
 //===============================================================
+  changeDropDown({required String? value}) {
+    dropDownValue = value;
+    emit(ChangeDropDownState());
+  }
+
+//===============================================================
   void changeConfirmPasswordVisibility() {
     isPasswordConfirm = !isPasswordConfirm;
     suffixConfirm = isPasswordConfirm
@@ -51,6 +62,25 @@ class RegisterCubit extends Cubit<RegisterState> {
   }
 
 //===============================================================
+  Future<void> getArea() async {
+    emit(GetAreaLoading());
+    final response = await DioHelper.getData(url: areas);
+    try {
+      areasModel = AreasModel.fromJson(response.data);
+      emit(GetAreaSuccess(areasModel: areasModel!));
+    } on DioError catch (e) {
+      debugPrint(e.error.toString());
+      emit(GetAreaError());
+      Fluttertoast.showToast(msg: "change_password.some_error".tr());
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      emit(GetAreaError());
+      Fluttertoast.showToast(msg: "change_password.some_error".tr());
+    }
+  }
+
+//===============================================================
   Future<void> userSignUp({
     required String firstName,
     required String lastName,
@@ -58,8 +88,8 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String email,
     required String password,
     required String passwordConfirm,
-    //TODO: add the area id here
-    int? registerAreaId,
+    required int registerAreaId,
+    //TODO: add the notifiToken here
     String? notifiToken,
   }) async {
     emit(RegisterLoadingState());
@@ -72,7 +102,7 @@ class RegisterCubit extends Cubit<RegisterState> {
         'phone': phone,
         'password': password,
         'password_confirmation': passwordConfirm,
-        'area_id': registerAreaId ?? 1,
+        'area_id': registerAreaId,
         'notifi_token': notifiToken,
       },
     );

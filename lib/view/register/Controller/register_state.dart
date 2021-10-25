@@ -1,4 +1,5 @@
 import 'package:my_order/view/login/model/user_model.dart';
+import 'package:my_order/view/register/model/areas_model.dart';
 
 abstract class RegisterState {}
 
@@ -8,7 +9,22 @@ class RegisterInitial extends RegisterState {}
 class RegisterChangePasswordVisibilityState extends RegisterState {}
 
 //===============================================================
+class ChangeDropDownState extends RegisterState {}
+
+//===============================================================
 class RegisterChangeCheckBoxState extends RegisterState {}
+
+//===============================================================
+class GetAreaLoading extends RegisterState {}
+
+class GetAreaSuccess extends RegisterState {
+  final AreasModel areasModel;
+
+  GetAreaSuccess({required this.areasModel});
+}
+
+class GetAreaError extends RegisterState {}
+
 //===============================================================
 
 class RegisterLoadingState extends RegisterState {}

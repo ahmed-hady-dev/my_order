@@ -10,6 +10,7 @@ import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/home/home_view.dart';
 import 'package:my_order/view/register/Controller/register_cubit.dart';
 import 'package:my_order/view/register/Controller/register_state.dart';
+import 'package:my_order/view/register/components/area_drop_down_button.dart';
 import 'package:my_order/widgets/confirm_password_text_field.dart';
 import 'package:my_order/widgets/email_text_field.dart';
 import 'package:my_order/widgets/indicator_widget.dart';
@@ -18,6 +19,7 @@ import 'package:my_order/widgets/first_name_text_field.dart';
 import 'package:my_order/widgets/password_text_field.dart';
 import 'package:my_order/widgets/phone_text_field.dart';
 import 'package:my_order/widgets/last_name_text_field.dart';
+import 'package:shimmer/shimmer.dart';
 
 class RegisterView extends StatelessWidget {
   const RegisterView({Key? key}) : super(key: key);
@@ -28,7 +30,7 @@ class RegisterView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(title: Text("register.appBar_title".tr())),
         body: BlocProvider(
-          create: (context) => RegisterCubit(),
+          create: (context) => RegisterCubit()..getArea(),
           child: BlocConsumer<RegisterCubit, RegisterState>(
             listener: (context, state) {
               if (state is RegisterSuccessState) {
@@ -59,20 +61,29 @@ class RegisterView extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(fontSize: 24.0)),
                     ),
-                    FirstNameTextField(
-                      hintText: "register.first_name".tr(),
-                      controller: cubit.firstNameController,
-                      onFieldSubmitted: (value) {
-                        if (cubit.formKey.currentState!.validate()) {}
-                      },
-                    ),
-                    const SizedBox(height: 12.0),
-                    LastNameTextField(
-                      hintText: "register.last_name".tr(),
-                      controller: cubit.lastNameController,
-                      onFieldSubmitted: (value) {
-                        if (cubit.formKey.currentState!.validate()) {}
-                      },
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                            flex: 1,
+                            child: FirstNameTextField(
+                              hintText: "register.first_name".tr(),
+                              controller: cubit.firstNameController,
+                              onFieldSubmitted: (value) {
+                                if (cubit.formKey.currentState!.validate()) {}
+                              },
+                            )),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          flex: 1,
+                          child: LastNameTextField(
+                            hintText: "register.last_name".tr(),
+                            controller: cubit.lastNameController,
+                            onFieldSubmitted: (value) {
+                              if (cubit.formKey.currentState!.validate()) {}
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 12.0),
                     EmailTextField(
@@ -111,6 +122,24 @@ class RegisterView extends StatelessWidget {
                             cubit.changeConfirmPasswordVisibility(),
                         icon: cubit.suffixConfirm),
                     const SizedBox(height: 12.0),
+                    cubit.areasModel == null
+                        ? const ShimmerDropDownButton()
+                        : AreaDropDownButton(
+                            itemsList: cubit.areasModel!.data!,
+                            value: cubit.dropDownValue,
+                            onChanged: (value) {
+                              cubit.changeDropDown(value: value);
+                              debugPrint(value);
+                              debugPrint(cubit.dropDownValue);
+                              debugPrint(cubit.areasModel!.data!
+                                  .firstWhere((element) =>
+                                      element.id ==
+                                      int.parse(cubit.dropDownValue!))
+                                  .name
+                                  .toString());
+                            },
+                          ),
+                    const SizedBox(height: 12.0),
                     Row(
                       children: <Widget>[
                         Checkbox(
@@ -133,30 +162,43 @@ class RegisterView extends StatelessWidget {
                         ? const IndicatorWidget()
                         : MainButton(
                             text: "login.create_account".tr(),
-                            onPressed: () async {
-                              if (cubit.passwordController.value.text !=
-                                  cubit.confirmPasswordController.value.text) {
-                                Fluttertoast.showToast(
-                                    msg: "register.password_match".tr());
-                              }
-                              if (cubit.formKey.currentState!.validate()) {
-                                cubit.userSignUp(
-                                    firstName: cubit.firstNameController.text,
-                                    lastName: cubit.lastNameController.text,
-                                    phone: cubit.phoneController.text,
-                                    email: cubit.emailController.text
-                                        .toLowerCase()
-                                        .trim(),
-                                    password: cubit.passwordController.text
-                                        .toLowerCase()
-                                        .trim(),
-                                    passwordConfirm: cubit
-                                        .confirmPasswordController.text
-                                        .toLowerCase()
-                                        .trim(),
-                                    notifiToken: '123456');
-                              }
-                            },
+                            onPressed: cubit.dropDownValue == null
+                                ? () => ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                        content: Text(
+                                            "register.please_choose_area"
+                                                .tr())))
+                                : () {
+                                    if (cubit.passwordController.value.text !=
+                                        cubit.confirmPasswordController.value
+                                            .text) {
+                                      Fluttertoast.showToast(
+                                          msg: "register.password_match".tr());
+                                    }
+                                    if (cubit.formKey.currentState!
+                                        .validate()) {
+                                      cubit.userSignUp(
+                                          firstName:
+                                              cubit.firstNameController.text,
+                                          lastName:
+                                              cubit.lastNameController.text,
+                                          phone: cubit.phoneController.text,
+                                          email: cubit.emailController.text
+                                              .toLowerCase()
+                                              .trim(),
+                                          password: cubit
+                                              .passwordController.text
+                                              .toLowerCase()
+                                              .trim(),
+                                          passwordConfirm: cubit
+                                              .confirmPasswordController.text
+                                              .toLowerCase()
+                                              .trim(),
+                                          registerAreaId:
+                                              int.parse(cubit.dropDownValue!),
+                                          notifiToken: '123456');
+                                    }
+                                  },
                           ),
                     const SizedBox(height: 24.0),
                     Text("register.terms".tr(),
@@ -169,6 +211,30 @@ class RegisterView extends StatelessWidget {
               );
             },
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class ShimmerDropDownButton extends StatelessWidget {
+  const ShimmerDropDownButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      direction: ShimmerDirection.ltr,
+      period: const Duration(seconds: 2),
+      child: Container(
+        height: 50,
+        decoration: ShapeDecoration(
+          color: Colors.grey[400]!,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
         ),
       ),
     );

@@ -41,7 +41,7 @@ class ConfirmPasswordTextField extends StatelessWidget {
       onFieldSubmitted: onFieldSubmitted,
       decoration: InputDecoration(
         isDense: true,
-        hintText: "login.password".tr(),
+        hintText: hintText,
         border: const OutlineInputBorder(),
         prefixIcon: const Icon(Icons.lock_outlined, size: 24.0),
         suffixIcon: IconButton(

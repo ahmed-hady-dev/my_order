@@ -18,7 +18,7 @@ class VoucherCubit extends Cubit<VoucherState> {
 //===============================================================
   Future<void> getAllVouchers() async {
     emit(AllVoucherLoading());
-    final response = await DioHelper.getData(url: allVoucher);
+    final response = await DioHelper.getDataByToken(url: allVoucher);
     try {
       allVoucherModel = VoucherModel.fromJson(response.data);
       emit(AllVoucherSuccess(voucherModel: allVoucherModel!));
@@ -35,7 +35,7 @@ class VoucherCubit extends Cubit<VoucherState> {
   //===============================================================
   Future<void> getActiveVouchers() async {
     emit(ActiveVoucherLoading());
-    final response = await DioHelper.getData(url: activeVoucher);
+    final response = await DioHelper.getDataByToken(url: activeVoucher);
     try {
       activeVoucherModel = VoucherModel.fromJson(response.data);
       emit(ActiveVoucherSuccess(voucherModel: activeVoucherModel!));
@@ -52,7 +52,7 @@ class VoucherCubit extends Cubit<VoucherState> {
   //===============================================================
   Future<void> getUsedVouchers() async {
     emit(UsedVoucherLoading());
-    final response = await DioHelper.getData(url: usedVoucher);
+    final response = await DioHelper.getDataByToken(url: usedVoucher);
     try {
       usedVoucherModel = VoucherModel.fromJson(response.data);
       emit(ActiveVoucherSuccess(voucherModel: usedVoucherModel!));
@@ -69,7 +69,7 @@ class VoucherCubit extends Cubit<VoucherState> {
   //===============================================================
   Future<void> getExpiredVouchers() async {
     emit(ExpiredVoucherLoading());
-    final response = await DioHelper.getData(url: expiredVoucher);
+    final response = await DioHelper.getDataByToken(url: expiredVoucher);
     try {
       expiredVoucherModel = VoucherModel.fromJson(response.data);
       emit(ActiveVoucherSuccess(voucherModel: expiredVoucherModel!));

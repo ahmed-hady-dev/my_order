@@ -16,7 +16,9 @@
     "last_name": "الإسم الأخير",
     "confirm_password": "تأكيد كلمة السر",
     "password_match": "من فضلك تأكد من أن كلمتي المرور متشابهتين",
-    "success": "تم التسجيل بنجاح"
+    "success": "تم التسجيل بنجاح",
+    "choose_area": "اختر المنطقة",
+    "please_choose_area": "الرجاء اختيار منطقة!"
   },
   "login": {
     "appBar_title": "تسجيل الدخول",

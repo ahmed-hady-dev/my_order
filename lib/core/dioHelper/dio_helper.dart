@@ -18,13 +18,30 @@ class DioHelper {
     );
   }
 
-  //===============================================================
+//===============================================================
   static Future<Response> getData({
     required String url,
     Map<String, dynamic>? query,
   }) async {
     dio!.options.headers = {
       "Accept": "application/json",
+      'lang': language,
+      // 'Authorization': 'Bearer ${CacheHelper.getUserToken}',
+    };
+    return await dio!.get(
+      url,
+      queryParameters: query,
+    );
+  }
+
+//===============================================================
+  static Future<Response> getDataByToken({
+    required String url,
+    Map<String, dynamic>? query,
+  }) async {
+    dio!.options.headers = {
+      "Accept": "application/json",
+      'lang': language,
       'Authorization': 'Bearer ${CacheHelper.getUserToken}',
     };
     return await dio!.get(
@@ -38,19 +55,19 @@ class DioHelper {
     required String url,
     required Map<String, dynamic> data,
     Map<String, dynamic>? query,
-    String? lang = 'en',
   }) async {
     dio!.options.headers = {
       "Accept": "application/json",
       'Authorization': 'Bearer ${CacheHelper.getUserToken}',
-      'lang': lang,
+      'lang': language,
     };
     return dio!.post(
       url,
       queryParameters: query,
       data: data,
     );
-  } //===============================================================
+  }
+//===============================================================
 
   static Future<Response> putData({
     required String url,

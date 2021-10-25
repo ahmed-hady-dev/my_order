@@ -17,3 +17,6 @@ const String allVoucher = '/client/vouchers';
 const String activeVoucher = '/client/vouchers/active';
 const String usedVoucher = '/client/vouchers/used';
 const String expiredVoucher = '/client/vouchers/expired';
+const String cities = '/cities';
+const String areas = '/areas';
+const String areasOfCity = '/areas/city'; //areas/city/1 بتاخد id هنا
