@@ -30,7 +30,7 @@ class DrawerItem extends StatelessWidget {
           decoration: drawerCubit.isSelected == selected
               ? BoxDecoration(
                   color: Colors.black,
-                  borderRadius: context.locale == const Locale('en', 'US')
+                  borderRadius: context.locale.languageCode == 'en'
                       ? const BorderRadius.horizontal(
                           right: Radius.circular(30),
                         )

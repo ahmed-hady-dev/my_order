@@ -1,8 +1,12 @@
+// ignore_for_file: implementation_imports
+
 import 'package:dio/dio.dart';
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/constants/constants.dart';
 import 'package:my_order/core/dioHelper/dio_helper.dart';
+import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/vouchers/model/voucher_model.dart';
 
 part 'voucher_state.dart';
@@ -18,7 +22,10 @@ class VoucherCubit extends Cubit<VoucherState> {
 //===============================================================
   Future<void> getAllVouchers() async {
     emit(AllVoucherLoading());
-    final response = await DioHelper.getDataByToken(url: allVoucher);
+    final response = await DioHelper.getDataByToken(url: allVoucher, query: {
+      'lang':
+          MagicRouter.currentContext!.locale.languageCode == 'en' ? 'en' : 'ar'
+    });
     try {
       allVoucherModel = VoucherModel.fromJson(response.data);
       emit(AllVoucherSuccess(voucherModel: allVoucherModel!));
@@ -35,7 +42,10 @@ class VoucherCubit extends Cubit<VoucherState> {
   //===============================================================
   Future<void> getActiveVouchers() async {
     emit(ActiveVoucherLoading());
-    final response = await DioHelper.getDataByToken(url: activeVoucher);
+    final response = await DioHelper.getDataByToken(url: activeVoucher, query: {
+      'lang':
+          MagicRouter.currentContext!.locale.languageCode == 'en' ? 'en' : 'ar'
+    });
     try {
       activeVoucherModel = VoucherModel.fromJson(response.data);
       emit(ActiveVoucherSuccess(voucherModel: activeVoucherModel!));
@@ -52,7 +62,10 @@ class VoucherCubit extends Cubit<VoucherState> {
   //===============================================================
   Future<void> getUsedVouchers() async {
     emit(UsedVoucherLoading());
-    final response = await DioHelper.getDataByToken(url: usedVoucher);
+    final response = await DioHelper.getDataByToken(url: usedVoucher, query: {
+      'lang':
+          MagicRouter.currentContext!.locale.languageCode == 'en' ? 'en' : 'ar'
+    });
     try {
       usedVoucherModel = VoucherModel.fromJson(response.data);
       emit(ActiveVoucherSuccess(voucherModel: usedVoucherModel!));
@@ -69,7 +82,11 @@ class VoucherCubit extends Cubit<VoucherState> {
   //===============================================================
   Future<void> getExpiredVouchers() async {
     emit(ExpiredVoucherLoading());
-    final response = await DioHelper.getDataByToken(url: expiredVoucher);
+    final response =
+        await DioHelper.getDataByToken(url: expiredVoucher, query: {
+      'lang':
+          MagicRouter.currentContext!.locale.languageCode == 'en' ? 'en' : 'ar'
+    });
     try {
       expiredVoucherModel = VoucherModel.fromJson(response.data);
       emit(ActiveVoucherSuccess(voucherModel: expiredVoucherModel!));

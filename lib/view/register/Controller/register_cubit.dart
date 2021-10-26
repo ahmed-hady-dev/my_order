@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_order/constants/constants.dart';
 import 'package:my_order/core/cacheHelper/cache_helper.dart';
+import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/login/model/user_model.dart';
 import 'package:my_order/view/register/model/areas_model.dart';
 import '../../../core/dioHelper/dio_helper.dart';
@@ -64,7 +65,14 @@ class RegisterCubit extends Cubit<RegisterState> {
 //===============================================================
   Future<void> getArea() async {
     emit(GetAreaLoading());
-    final response = await DioHelper.getData(url: areas);
+    final response = await DioHelper.getData(
+      url: areas,
+      query: {
+        'lang': MagicRouter.currentContext!.locale.languageCode == 'en'
+            ? 'en'
+            : 'ar'
+      },
+    );
     try {
       areasModel = AreasModel.fromJson(response.data);
       emit(GetAreaSuccess(areasModel: areasModel!));

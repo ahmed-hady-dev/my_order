@@ -1,5 +1,5 @@
-import 'package:my_order/view/login/model/user_model.dart';
-import 'package:my_order/view/register/model/areas_model.dart';
+import '../../login/model/user_model.dart';
+import '../model/areas_model.dart';
 
 abstract class RegisterState {}
 

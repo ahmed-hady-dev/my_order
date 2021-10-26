@@ -19,7 +19,8 @@ import 'package:my_order/widgets/first_name_text_field.dart';
 import 'package:my_order/widgets/password_text_field.dart';
 import 'package:my_order/widgets/phone_text_field.dart';
 import 'package:my_order/widgets/last_name_text_field.dart';
-import 'package:shimmer/shimmer.dart';
+
+import 'components/shimmer_drop_down_button.dart';
 
 class RegisterView extends StatelessWidget {
   const RegisterView({Key? key}) : super(key: key);
@@ -127,18 +128,8 @@ class RegisterView extends StatelessWidget {
                         : AreaDropDownButton(
                             itemsList: cubit.areasModel!.data!,
                             value: cubit.dropDownValue,
-                            onChanged: (value) {
-                              cubit.changeDropDown(value: value);
-                              debugPrint(value);
-                              debugPrint(cubit.dropDownValue);
-                              debugPrint(cubit.areasModel!.data!
-                                  .firstWhere((element) =>
-                                      element.id ==
-                                      int.parse(cubit.dropDownValue!))
-                                  .name
-                                  .toString());
-                            },
-                          ),
+                            onChanged: (value) =>
+                                cubit.changeDropDown(value: value)),
                     const SizedBox(height: 12.0),
                     Row(
                       children: <Widget>[
@@ -211,30 +202,6 @@ class RegisterView extends StatelessWidget {
               );
             },
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class ShimmerDropDownButton extends StatelessWidget {
-  const ShimmerDropDownButton({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Shimmer.fromColors(
-      baseColor: Colors.grey[300]!,
-      highlightColor: Colors.grey[100]!,
-      direction: ShimmerDirection.ltr,
-      period: const Duration(seconds: 2),
-      child: Container(
-        height: 50,
-        decoration: ShapeDecoration(
-          color: Colors.grey[400]!,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
         ),
       ),
     );

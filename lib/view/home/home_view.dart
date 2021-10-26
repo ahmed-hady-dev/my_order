@@ -10,7 +10,7 @@ import 'package:my_order/view/home/model/food_card_model.dart';
 import 'package:my_order/view/home/widgets/section_header.dart';
 import 'package:my_order/view/search/search_view.dart';
 import 'package:my_order/widgets/drawer_icon.dart';
-import 'package:my_order/widgets/indicator_widget.dart';
+import 'component/buttons_shimmer.dart';
 import 'component/home_appbar_title.dart';
 import 'component/category_buttons_listview.dart';
 import 'component/food_item_card.dart';
@@ -53,7 +53,7 @@ class HomeView extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 children: [
                   state is GetStoreCategoriesLoading
-                      ? const IndicatorWidget()
+                      ? const ButtonsShimmer()
                       : CategoryButtonsListView(cubit: cubit),
                   // HomeCarousel(cubit: cubit),
                   SectionHeader(
@@ -87,6 +87,7 @@ class HomeView extends StatelessWidget {
     );
   }
 }
+
 // the bottom carousel
 // Padding(
 //   padding: const EdgeInsets.symmetric(vertical: 16.0),

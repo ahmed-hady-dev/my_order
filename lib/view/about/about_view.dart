@@ -5,9 +5,9 @@ class AboutView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Scaffold(
-        body: Container(),
+        body: Center(child: Text('About us', style: TextStyle())),
       ),
     );
   }

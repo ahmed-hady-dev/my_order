@@ -44,8 +44,7 @@ class SearchView extends StatelessWidget {
                           onFieldSubmitted: (value) {
                             if (cubit.formKey.currentState!.validate()) {
                               cubit.searchStore(
-                                  query: cubit.searchController.text
-                                      .toLowerCase());
+                                  query: cubit.searchController.text);
                             }
                           },
                         )),

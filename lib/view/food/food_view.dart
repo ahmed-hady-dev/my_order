@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_order/core/router/router.dart';
-import 'package:my_order/view/home/component/home_appbar_title.dart';
-import 'package:my_order/view/search/search_view.dart';
-import 'package:my_order/widgets/indicator_widget.dart';
+import '../../core/router/router.dart';
+import '../home/component/buttons_shimmer.dart';
+import '../home/component/home_appbar_title.dart';
+import '../search/search_view.dart';
 import 'widgets/food_section_header.dart';
 import '../home/component/food_item_card.dart';
 import '../home/controller/home_cubit.dart';
@@ -18,12 +18,7 @@ class FoodView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: BlocConsumer<HomeCubit, HomeState>(
-        listener: (context, state) {
-          if (state is GetStoreSubCategoriesLoading) {
-            debugPrint('GetStoreSubCategoriesLoading.............');
-          }
-        },
+      child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
           final cubit = HomeCubit.get(context);
           return Scaffold(
@@ -36,8 +31,8 @@ class FoodView extends StatelessWidget {
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
               children: [
-                state is GetStoreSubCategoriesLoading
-                    ? const IndicatorWidget()
+                state is GetStoreSubCategoriesByIdLoading
+                    ? const ButtonsShimmer()
                     : CategoryFoodListView(cubit: cubit),
                 const FoodSectionHeader(text: "Fast delivery", fontSize: 25),
                 FoodItemCard(foodCardModel: foodCardModel),

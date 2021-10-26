@@ -1,8 +1,12 @@
+// ignore_for_file: implementation_imports
+
 import 'package:dio/dio.dart';
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/constants/constants.dart';
 import 'package:my_order/core/dioHelper/dio_helper.dart';
+import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/home/model/store_categories_model.dart';
 import 'package:my_order/view/home/model/store_sub_categories_model.dart';
 
@@ -32,6 +36,11 @@ class HomeCubit extends Cubit<HomeState> {
     emit(GetStoreCategoriesLoading());
     final response = await DioHelper.getData(
       url: storeCategories,
+      query: {
+        'lang': MagicRouter.currentContext!.locale.languageCode == 'en'
+            ? 'en'
+            : 'ar'
+      },
     );
     try {
       storeCategoriesModel = StoreCategoriesModel.fromJson(response.data);
@@ -51,6 +60,11 @@ class HomeCubit extends Cubit<HomeState> {
     emit(GetStoreSubCategoriesLoading());
     final response = await DioHelper.getData(
       url: storeSubCategories,
+      query: {
+        'lang': MagicRouter.currentContext!.locale.languageCode == 'en'
+            ? 'en'
+            : 'ar'
+      },
     );
     try {
       storeSubCategoriesModel = StoreSubCategoriesModel.fromJson(response.data);
@@ -71,7 +85,13 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> getStoreSubCategoriesById({required String id}) async {
     emit(GetStoreSubCategoriesByIdLoading());
     final response = await DioHelper.getData(
-        url: storeOfCategories + id, query: {'lang': language});
+      url: storeSubCategoriesForCategory + id,
+      query: {
+        'lang': MagicRouter.currentContext!.locale.languageCode == 'en'
+            ? 'en'
+            : 'ar'
+      },
+    );
     try {
       storeSubCategoriesModel = StoreSubCategoriesModel.fromJson(response.data);
       emit(GetStoreSubCategoriesByIdSuccess(

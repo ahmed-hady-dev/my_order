@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_order/constants/constants.dart';
-import 'package:my_order/core/dioHelper/dio_helper.dart';
-import 'package:my_order/view/user_details/model/update_password_model.dart';
+import '../../../constants/constants.dart';
+import '../../../core/dioHelper/dio_helper.dart';
+import '../model/update_password_model.dart';
 
 part 'user_details_state.dart';
 

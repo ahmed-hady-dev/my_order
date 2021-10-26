@@ -1,3 +1,6 @@
+// ignore_for_file: implementation_imports
+
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -43,7 +46,9 @@ class DrawerHeaderBody extends StatelessWidget {
                 child: SizedBox(
                   width: 160,
                   child: Text(
-                    CacheHelper.isLogged ? CacheHelper.userFirstName : "Login",
+                    CacheHelper.isLogged
+                        ? CacheHelper.userFirstName
+                        : "drawer.login".tr(),
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         color: Colors.white,

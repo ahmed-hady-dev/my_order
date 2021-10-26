@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:my_order/constants/constants.dart';
-import 'package:my_order/core/cacheHelper/cache_helper.dart';
+import '../../constants/constants.dart';
+import '../cacheHelper/cache_helper.dart';
 
 class DioHelper {
   static Dio? dio;
@@ -25,8 +25,6 @@ class DioHelper {
   }) async {
     dio!.options.headers = {
       "Accept": "application/json",
-      'lang': language,
-      // 'Authorization': 'Bearer ${CacheHelper.getUserToken}',
     };
     return await dio!.get(
       url,
@@ -41,7 +39,6 @@ class DioHelper {
   }) async {
     dio!.options.headers = {
       "Accept": "application/json",
-      'lang': language,
       'Authorization': 'Bearer ${CacheHelper.getUserToken}',
     };
     return await dio!.get(
@@ -59,7 +56,6 @@ class DioHelper {
     dio!.options.headers = {
       "Accept": "application/json",
       'Authorization': 'Bearer ${CacheHelper.getUserToken}',
-      'lang': language,
     };
     return dio!.post(
       url,

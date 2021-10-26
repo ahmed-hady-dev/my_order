@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_order/core/cacheHelper/cache_helper.dart';
+import '../../../core/cacheHelper/cache_helper.dart';
 
 class UserAvatar extends StatelessWidget {
   const UserAvatar({Key? key, this.width = 70.0, this.height = 70.0})

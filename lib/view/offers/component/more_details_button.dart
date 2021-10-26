@@ -28,10 +28,8 @@ class MoreDetailsButton extends StatelessWidget {
           color: AppColors.redColor,
           borderRadius: BorderRadius.circular(4.0),
         ),
-        child: Flexible(
-          child: AutoSizeText(text,
-              style: const TextStyle(fontSize: 12.0, color: Colors.white)),
-        ),
+        child: AutoSizeText(text,
+            style: const TextStyle(fontSize: 12.0, color: Colors.white)),
       ),
     );
   }

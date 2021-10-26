@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_order/view/vouchers/controller/voucher_cubit.dart';
-import 'package:my_order/widgets/indicator_widget.dart';
+import '../controller/voucher_cubit.dart';
+import '../../../widgets/indicator_widget.dart';
 import '../widgets/voucher_card.dart';
 import 'no_voucher_widget.dart';
 

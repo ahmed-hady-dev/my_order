@@ -61,16 +61,18 @@ class DrawerBody extends StatelessWidget {
                 },
               )
             : const SizedBox(),
-        DrawerItem(
-          selected: 3,
-          icon: Icons.local_offer_rounded,
-          text: "drawer.offers".tr(),
-          onTap: () {
-            DrawerCubit.get(context).itemSelection(3);
-            MagicRouter.pop();
-            MagicRouter.navigateAndPopUntilFirstPage(const OffersView());
-          },
-        ),
+        CacheHelper.isLogged
+            ? DrawerItem(
+                selected: 3,
+                icon: Icons.local_offer_rounded,
+                text: "drawer.offers".tr(),
+                onTap: () {
+                  DrawerCubit.get(context).itemSelection(3);
+                  MagicRouter.pop();
+                  MagicRouter.navigateAndPopUntilFirstPage(const OffersView());
+                },
+              )
+            : const SizedBox(),
         CacheHelper.isLogged
             ? DrawerItem(
                 selected: 4,
@@ -84,16 +86,19 @@ class DrawerBody extends StatelessWidget {
                 },
               )
             : const SizedBox(),
-        DrawerItem(
-          selected: 5,
-          icon: FontAwesomeIcons.ticketAlt,
-          text: "drawer.vouchers".tr(),
-          onTap: () {
-            DrawerCubit.get(context).itemSelection(5);
-            MagicRouter.pop();
-            MagicRouter.navigateAndPopUntilFirstPage(const VouchersView());
-          },
-        ),
+        CacheHelper.isLogged
+            ? DrawerItem(
+                selected: 5,
+                icon: FontAwesomeIcons.ticketAlt,
+                text: "drawer.vouchers".tr(),
+                onTap: () {
+                  DrawerCubit.get(context).itemSelection(5);
+                  MagicRouter.pop();
+                  MagicRouter.navigateAndPopUntilFirstPage(
+                      const VouchersView());
+                },
+              )
+            : const SizedBox(),
         DrawerItem(
           selected: 6,
           icon: FontAwesomeIcons.bullhorn,

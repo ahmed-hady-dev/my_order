@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:my_order/core/cacheHelper/cache_helper.dart';
-import 'package:my_order/view/home/home_view.dart';
+import '../../core/cacheHelper/cache_helper.dart';
+import '../home/home_view.dart';
 
 import '../../constants/app_colors.dart';
 import '../../core/router/router.dart';
@@ -23,7 +23,7 @@ class _SplashViewState extends State<SplashView> {
       setState(() {
         _visible = !_visible;
       });
-      debugPrint('toke :' + (CacheHelper.getUserToken ?? ''));
+      debugPrint('token : ' + (CacheHelper.getUserToken ?? ''));
     });
     Timer(const Duration(milliseconds: 2500), () {
       MagicRouter.navigateAndPopAll(const HomeView());
