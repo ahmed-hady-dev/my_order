@@ -9,30 +9,30 @@ import 'component/offer_button.dart';
 import 'controller/restaurant_cubit.dart';
 import 'model/label_text_list.dart';
 
-class RestaurantView extends StatefulWidget {
-  final String name;
+class StoreView extends StatefulWidget {
   final String image;
-  final double price;
-  final String time;
-  final String status;
-  final double stars;
-  final String distance;
-  const RestaurantView(
+  final String name;
+  final String description;
+  final double rate;
+  final double deliveryFees;
+  final String openAt;
+  final String closeAt;
+  const StoreView(
       {Key? key,
       required this.name,
       required this.image,
-      required this.price,
-      required this.time,
-      required this.stars,
-      required this.distance,
-      required this.status})
+      required this.rate,
+      required this.description,
+      required this.openAt,
+      required this.closeAt,
+      required this.deliveryFees})
       : super(key: key);
 
   @override
-  State<RestaurantView> createState() => _RestaurantViewState();
+  State<StoreView> createState() => _StoreViewState();
 }
 
-class _RestaurantViewState extends State<RestaurantView>
+class _StoreViewState extends State<StoreView>
     with SingleTickerProviderStateMixin {
   late TabController controller;
   @override
@@ -66,13 +66,12 @@ class _RestaurantViewState extends State<RestaurantView>
                   FoodImage(image: widget.image),
                   const SizedBox(height: 24.0),
                   MainHeader(
-                    name: widget.name,
-                    status: widget.status,
-                    stars: widget.stars,
-                    price: widget.price,
-                    time: widget.time,
-                    distance: widget.distance,
-                  ),
+                      name: widget.name,
+                      rate: widget.rate,
+                      description: widget.description,
+                      openAt: widget.openAt,
+                      closeAt: widget.closeAt,
+                      deliveryFees: widget.deliveryFees),
                   const SizedBox(height: 20.0),
                   const OfferButton(),
                   FoodCategoryTabBar(

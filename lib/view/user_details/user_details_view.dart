@@ -6,10 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/core/cacheHelper/cache_helper.dart';
 import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/change_password/change_password_view.dart';
-import 'package:my_order/view/drawer/widget/user_avatar.dart';
 import 'package:my_order/widgets/main_button.dart';
 
 import 'component/user_details_form.dart';
+import 'component/user_profile_image.dart';
 import 'controller/user_details_cubit.dart';
 
 class UserDetailsView extends StatelessWidget {
@@ -22,24 +22,24 @@ class UserDetailsView extends StatelessWidget {
         create: (context) => UserDetailsCubit(),
         child: BlocBuilder<UserDetailsCubit, UserDetailsState>(
           builder: (context, state) {
+            final cubit = UserDetailsCubit.get(context);
             return Scaffold(
               appBar: AppBar(title: Text("user_details.appBar_title".tr())),
               body: ListView(
-                  shrinkWrap: true,
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   children: <Widget>[
-                    const UserAvatar(height: 120.0, width: 120.0),
+                    UserProfileImage(cubit: cubit),
                     const SizedBox(height: 8),
                     Center(
                         child: Text(CacheHelper.userName,
                             style: const TextStyle(fontSize: 18.0))),
                     const UserDetailsForm(),
-                    MainButton(
-                      text: "user_details.edit".tr(),
-                      onPressed: () {
-                        //TODO: add the edit function here
-                      },
-                    ),
+                    // MainButton(
+                    //   text: "user_details.edit".tr(),
+                    //   onPressed: () {
+                    //     //TODO: add the edit function here
+                    //   },
+                    // ),
                     const SizedBox(height: 12),
                     Text("user_details.security_information".tr(),
                         style: const TextStyle(

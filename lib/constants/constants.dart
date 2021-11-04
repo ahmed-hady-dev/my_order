@@ -1,5 +1,3 @@
-String language = 'en';
-//===============================================================
 const String collectionLink =
     'https://www.getpostman.com/collections/c9848a1ee05785298d78';
 const String base = 'http://www.inoutdesigners.com/talabat/public/api';
@@ -11,6 +9,8 @@ const String updatePassword = '/client/update/password';
 const String updateImage = '/client/update/image';
 const String storeCategories = '/client/storeCategories';
 const String storeSubCategories = '/client/storeSubCategories';
+const String storesOfCategory = '/client/stores/category/'; //بتاخد id
+const String store = '/client/stores/'; //بتاخد id
 const String storeSubCategoriesForCategory =
     '/client/storeSubCategories/category/';
 const String storeOfCategories = '/client/stores/category/';

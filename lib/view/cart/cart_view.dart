@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/view/cart/widgets/food_cart_card.dart';
 import 'package:my_order/view/order/controller/order_cubit.dart';
-import 'package:my_order/view/restaurant/model/food_category_model.dart';
+import 'package:my_order/view/store/model/food_category_model.dart';
 
 import 'component/buttons_row.dart';
 import 'component/order_details_card.dart';

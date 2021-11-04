@@ -16,10 +16,10 @@ class HomeAppBarTitle extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Padding(
-        padding: const EdgeInsetsDirectional.only(end: 8.0),
+        padding: const EdgeInsetsDirectional.only(end: 4.0),
         child: OutlinedButton.icon(
           style: ButtonStyle(
-            alignment: context.locale == const Locale('en', 'US')
+            alignment: context.locale.languageCode == 'en'
                 ? Alignment.centerLeft
                 : Alignment.centerRight,
             shape: MaterialStateProperty.all(

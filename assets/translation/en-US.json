@@ -1,8 +1,4 @@
 {
-  "map_intro": {
-    "search_bar": "what are you looking for?",
-    "choose_location": "choose location"
-  },
   "register": {
     "continue_with_Email": "Continue with Email",
     "appBar_title": "Register",
@@ -43,8 +39,6 @@
     "new_password": "New password",
     "make_sure": "Make sure the two passwords are the same"
   },
-  "confirm_email": {},
-  "create_account": {},
   "home": {
     "search_bar": "what are you looking for?",
     "popular_food": "Popular Food",
@@ -52,13 +46,18 @@
     "brands": "Popular brands near you",
     "special_offers": "Special Offers"
   },
-  "food": {},
+  "food": {
+    "all_stores": "All stores",
+    "no_results": "No results found"
+  },
   "restaurant": {
     "info": "Info",
     "reviews": "Reviews",
     "offer_of_the_restaurant": " Offer of the restaurant",
     "close_at": "Close at",
-    "open_at": "Open at"
+    "open_at": "Open at",
+    "delivery": "Delivery fees :",
+    "egp": "EGP"
   },
   "order": {
     "cart_button_title": "Add to cart"
@@ -85,7 +84,6 @@
     "discount": "Discount",
     "get_your_voucher": "Get your voucher",
     "use_the_code": "Use the code",
-    "use_the_code ": "asdfasdf",
     "start_at": "Start at",
     "end_at": "End at"
   },
@@ -94,10 +92,6 @@
     "title": "How can we help?",
     "hi": "Hi"
   },
-  "payment": {},
-  "confirm_payment": {},
-  "finishing_payment": {},
-  "cuisines": {},
   "search": {
     "search_bar": "what are you looking for?",
     "popular_search": "Popular Search",
@@ -154,7 +148,8 @@
     "change_password": "Change Password",
     "first_name": "First name",
     "last_name": "Last name",
-    "security_information": "Security information"
+    "security_information": "Security information",
+    "update": "Update"
   },
   "filter_result": {
     "search_bar": "what are you looking for?"

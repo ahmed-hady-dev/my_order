@@ -53,16 +53,6 @@ class SettingsView extends StatelessWidget {
                     },
                   ),
                   const Divider(),
-                  SettingsRow(
-                    text: "settings.country".tr(),
-                    hint: "settings.country".tr(),
-                    list: cubit.countryList,
-                    value: cubit.countryDropdownValue,
-                    onChanged: (newValue) {
-                      cubit.changeCountryDropDown(value: newValue!);
-                    },
-                  ),
-                  const Divider(),
                 ],
               ),
             );

@@ -28,11 +28,14 @@ class LoginCubit extends Cubit<LoginState> {
     String? notifiToken,
   }) async {
     emit(LoginLoadingState());
-    final response = await DioHelper.postData(url: login, data: {
-      'email': email,
-      'password': password,
-      'notifi_token': notifiToken,
-    });
+    final response = await DioHelper.postData(
+      url: login,
+      data: {
+        'email': email,
+        'password': password,
+        'notifi_token': notifiToken,
+      },
+    );
     try {
       userModel = UserModel.fromJson(response.data);
       if (userModel!.accessToken != null)

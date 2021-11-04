@@ -4,8 +4,12 @@ import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/food/component/store_card.dart';
+import 'package:my_order/view/store/store_view.dart';
 import 'package:my_order/widgets/indicator_widget.dart';
+import 'package:my_order/widgets/loading_dialog.dart';
+import 'package:my_order/widgets/no_result_widget.dart';
 
 import 'component/search_appbar_title.dart';
 import 'controller/search_cubit.dart';
@@ -52,35 +56,52 @@ class SearchView extends StatelessWidget {
                 ),
                 state is SearchLoadingState
                     ? const Expanded(child: IndicatorWidget())
-                    : state is SearchSuccessState
+                    : cubit.searchModel != null
                         ? cubit.searchModel!.data!.isEmpty
-                            ? Expanded(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const Icon(Icons.error_outline_rounded,
-                                        size: 52.0),
-                                    const SizedBox(height: 8.0),
-                                    Text(
-                                      "search.no_results".tr(),
-                                      style:
-                                          Theme.of(context).textTheme.headline5,
-                                    )
-                                  ],
-                                ),
-                              )
-                            : Expanded(
-                                child: ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: cubit.searchModel!.data!.length,
-                                  itemBuilder: (context, index) {
-                                    return StoreCard(
+                            ? NoResultsWidget(text: "search.no_results".tr())
+                            : ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: cubit.searchModel!.data!.length,
+                                itemBuilder: (context, index) {
+                                  return InkWell(
+                                    onTap: () {
+                                      debugPrint(cubit
+                                          .searchModel!.data![index]!.id
+                                          .toString());
+                                      loadingDialog(context);
+                                      cubit
+                                          .getStore(
+                                              storeId: cubit
+                                                  .searchModel!.data![index]!.id
+                                                  .toString())
+                                          .then((storeModel) {
+                                        MagicRouter.pop();
+                                        MagicRouter.navigateTo(
+                                          StoreView(
+                                            name: storeModel!.data!.name
+                                                .toString(),
+                                            image: storeModel.data!.image
+                                                .toString(),
+                                            rate: double.tryParse(
+                                                storeModel.data!.rate!)!,
+                                            description: storeModel
+                                                .data!.description
+                                                .toString(),
+                                            openAt: storeModel.data!.openAt
+                                                .toString(),
+                                            closeAt: storeModel.data!.closeAt
+                                                .toString(),
+                                            deliveryFees:
+                                                storeModel.data!.deliveryFees!,
+                                          ),
+                                        );
+                                      });
+                                    },
+                                    child: StoreCard(
                                         vertical: 4,
-                                        image: cubit
-                                            .searchModel!.data![index]!.image
+                                        image: cubit.searchModel!.data![index]!.image
                                             .toString(),
-                                        name: cubit
-                                            .searchModel!.data![index]!.name
+                                        name: cubit.searchModel!.data![index]!.name
                                             .toString(),
                                         description: cubit.searchModel!
                                             .data![index]!.description
@@ -93,27 +114,38 @@ class SearchView extends StatelessWidget {
                                             .toString(),
                                         closeAt: cubit
                                             .searchModel!.data![index]!.closeAt
-                                            .toString());
-                                  },
-                                ),
+                                            .toString()),
+                                  );
+                                },
                               )
-                        : Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Icon(Icons.search_rounded, size: 52.0),
-                                const SizedBox(height: 8.0),
-                                Text(
-                                  "search.start_search".tr(),
-                                  style: Theme.of(context).textTheme.headline5,
-                                )
-                              ],
-                            ),
-                          ),
+                        : const StartSearchWidget(),
               ],
             ));
           },
         ),
+      ),
+    );
+  }
+}
+
+class StartSearchWidget extends StatelessWidget {
+  const StartSearchWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.search_rounded, size: 52.0),
+          const SizedBox(height: 8.0),
+          Text(
+            "search.start_search".tr(),
+            style: Theme.of(context).textTheme.headline5,
+          )
+        ],
       ),
     );
   }

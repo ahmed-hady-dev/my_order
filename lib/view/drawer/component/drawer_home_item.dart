@@ -1,26 +1,29 @@
+// ignore_for_file: implementation_imports
+
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 
-class DrawerItem extends StatelessWidget {
+class DrawerHomeItem extends StatelessWidget {
+  const DrawerHomeItem(
+      {Key? key, required this.icon, required this.text, required this.onTap})
+      : super(key: key);
   final IconData icon;
   final String text;
   final GestureTapCallback onTap;
-
-  const DrawerItem({
-    Key? key,
-    required this.text,
-    required this.icon,
-    required this.onTap,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 250,
       height: 50,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.horizontal(
-          left: Radius.circular(30),
-        ),
+      decoration: BoxDecoration(
+        color: Colors.black,
+        borderRadius: context.locale.languageCode == 'en'
+            ? const BorderRadius.horizontal(
+                right: Radius.circular(30),
+              )
+            : const BorderRadius.horizontal(
+                left: Radius.circular(30),
+              ),
       ),
       child: ListTile(
         title: Row(

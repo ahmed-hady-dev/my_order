@@ -18,7 +18,7 @@ class FoodImage extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.grey,
           borderRadius: BorderRadius.circular(40.0),
-          image: DecorationImage(fit: BoxFit.cover, image: AssetImage(image)),
+          image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(image)),
         ),
       ),
     );

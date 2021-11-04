@@ -17,9 +17,7 @@ class SmallGreyText extends StatelessWidget {
     return Text(
       text.toString(),
       style: TextStyle(
-        fontSize: fontSize,
-        color: color,
-      ),
+          fontSize: fontSize, color: color, fontWeight: FontWeight.normal),
       overflow: TextOverflow.ellipsis,
     );
   }

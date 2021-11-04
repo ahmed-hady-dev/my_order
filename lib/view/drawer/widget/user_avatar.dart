@@ -9,17 +9,17 @@ class UserAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width,
       height: height,
+      width: width,
       decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.grey,
         border: Border.all(color: Colors.white),
-        borderRadius: BorderRadius.circular(100),
-      ),
-      child: CircleAvatar(
-        backgroundColor: Colors.grey.shade300,
-        child: ClipOval(
-          child: Image.network(CacheHelper.getUserInfo!.data!.image!,
-              fit: BoxFit.cover),
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: NetworkImage(
+            CacheHelper.getUserInfo!.data!.image!,
+          ),
         ),
       ),
     );

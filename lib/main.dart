@@ -7,7 +7,6 @@ import 'core/blocObserver/bloc_observer.dart';
 import 'core/dioHelper/dio_helper.dart';
 import 'core/router/router.dart';
 import 'core/theme/theme.dart';
-import 'view/drawer/controller/drawer_cubit.dart';
 import 'view/order/controller/order_cubit.dart';
 import 'view/orders/controller/orders_cubit.dart';
 import 'view/splash/splash_view.dart';
@@ -38,7 +37,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => DrawerCubit()),
         BlocProvider(create: (context) => OrdersCubit()),
         BlocProvider(create: (context) => OrderCubit()),
       ],

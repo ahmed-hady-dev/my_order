@@ -15,28 +15,13 @@ class CacheHelper {
     await _cacheUserModel(userModel);
   }
 
-  // static Future<void> cacheSomeThing(
-  //     {required String key, required dynamic value}) async {
-  //   await _appBox.write(key, value);
-  // }
-
-  // static Future<void> readSomeThing({required String key}) async {
-  //   await _appBox.read(key);
-  // }
-
   static Future<void> _cacheUserModel(UserModel userModel) async =>
       await _appBox.write('userModel', userModel.toJson());
 
   static Future<void> _cacheUserToken(String token) async =>
       await _appBox.write('token', token);
 
-  // static Future<void> cacheArLang() async => await _appBox.write('lang', 'ar');
-
-  // static Future<void> cacheEnLang() async => await _appBox.write('lang', 'en');
-
   static String? get getUserToken => _appBox.read('token');
-
-  // static String? get getLanguage => _appBox.read('lang');
 
   static bool get isLogged => getUserInfo != null;
 

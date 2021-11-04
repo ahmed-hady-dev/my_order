@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../constants/app_colors.dart';
 import '../../../core/router/router.dart';
 import '../model/food_card_model.dart';
-import '../../restaurant/restaurant_view.dart';
+import '../../store/store_view.dart';
 
 class FoodItemCard extends StatelessWidget {
   final List<FoodCardModel> foodCardModel;
@@ -26,14 +26,14 @@ class FoodItemCard extends StatelessWidget {
         itemCount: foodCardModel.length,
         itemBuilder: (context, index) {
           return InkWell(
-            onTap: () => MagicRouter.navigateTo(RestaurantView(
+            onTap: () => MagicRouter.navigateTo(StoreView(
               name: foodCardModel[index].name,
               image: foodCardModel[index].image,
-              price: foodCardModel[index].deliveryPrice,
-              time: foodCardModel[index].time,
-              stars: foodCardModel[index].stars,
-              distance: foodCardModel[index].distance,
-              status: foodCardModel[index].status,
+              rate: foodCardModel[index].stars,
+              closeAt: '22',
+              description: '22',
+              openAt: '22',
+              deliveryFees: 12.5,
             )),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),

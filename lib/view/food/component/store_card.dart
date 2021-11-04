@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_order/widgets/store_time.dart';
 import '../../../widgets/stars_bar.dart';
 
 class StoreCard extends StatelessWidget {
@@ -84,43 +84,17 @@ class StoreCard extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Row(
-                          children: [
-                            const FaIcon(
-                              FontAwesomeIcons.clock,
-                              size: 12.0,
-                              color: Colors.green,
-                            ),
-                            const SizedBox(width: 4.0),
-                            Text(
-                              "restaurant.open_at".tr() +
-                                  ' ' +
-                                  DateFormat.jm().format(DateTime.parse(open)),
-                              style: const TextStyle(
-                                  fontSize: 10.0,
-                                  fontWeight: FontWeight.normal),
-                            ),
-                          ],
-                        ),
+                        StoreTime(
+                            color: Colors.green,
+                            text: "restaurant.open_at".tr() +
+                                ' ' +
+                                DateFormat.jm().format(DateTime.parse(open))),
                         const SizedBox(height: 4),
-                        Row(
-                          children: [
-                            const FaIcon(
-                              FontAwesomeIcons.clock,
-                              size: 12.0,
-                              color: Colors.red,
-                            ),
-                            const SizedBox(width: 4.0),
-                            Text(
-                              "restaurant.close_at".tr() +
-                                  ' ' +
-                                  DateFormat.jm().format(DateTime.parse(close)),
-                              style: const TextStyle(
-                                  fontSize: 10.0,
-                                  fontWeight: FontWeight.normal),
-                            ),
-                          ],
-                        ),
+                        StoreTime(
+                            color: Colors.red,
+                            text: "restaurant.close_at".tr() +
+                                ' ' +
+                                DateFormat.jm().format(DateTime.parse(close))),
                       ],
                     ),
                   ],

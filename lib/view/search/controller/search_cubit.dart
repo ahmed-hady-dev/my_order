@@ -1,6 +1,11 @@
+// ignore_for_file: implementation_imports
+
 import 'package:dio/dio.dart';
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_order/core/router/router.dart';
+import 'package:my_order/view/food/model/store_model.dart';
 import '../../../constants/constants.dart';
 import '../../../core/dioHelper/dio_helper.dart';
 import '../model/search_model.dart';
@@ -15,6 +20,7 @@ class SearchCubit extends Cubit<SearchState> {
   TextEditingController searchController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   SearchModel? searchModel;
+  StoreModel? storeModel;
   //===============================================================
   bool isRTL(String text) {
     return intl.Bidi.detectRtlDirectionality(text);
@@ -40,4 +46,31 @@ class SearchCubit extends Cubit<SearchState> {
       emit(SearchErrorState());
     }
   }
+
+//===============================================================
+  Future<StoreModel?> getStore({required String storeId}) async {
+    emit(GetStoreLoading());
+    final response = await DioHelper.getDataByToken(
+      url: store + storeId,
+      query: {
+        'lang': MagicRouter.currentContext!.locale.languageCode == 'en'
+            ? 'en'
+            : 'ar'
+      },
+    );
+    try {
+      storeModel = StoreModel.fromJson(response.data);
+      emit(GetStoreSuccess(storeModel: storeModel!));
+      return storeModel!;
+    } on DioError catch (e) {
+      debugPrint(e.error.toString());
+      emit(GetStoreError());
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      emit(GetStoreError());
+    }
+  }
+//===============================================================
+
 }

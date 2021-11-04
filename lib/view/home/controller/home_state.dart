@@ -17,18 +17,38 @@ class GetStoreCategoriesSuccess extends HomeState {
 }
 
 class GetStoreCategoriesError extends HomeState {}
+
+//===============================================================
+class LogoutLoadingState extends HomeState {}
+
+class LogoutErrorState extends HomeState {}
+
+class LogoutSuccessState extends HomeState {}
+
 //===============================================================
 
-class GetStoreSubCategoriesLoading extends HomeState {}
+class GetStoreOfCategoryLoading extends HomeState {}
 
-class GetStoreSubCategoriesSuccess extends HomeState {
-  final StoreSubCategoriesModel storeSubCategoriesModel;
+class GetStoreOfCategorySuccess extends HomeState {
+  final StoreOfCategoryModel storeOfCategoryModel;
 
-  GetStoreSubCategoriesSuccess({required this.storeSubCategoriesModel});
+  GetStoreOfCategorySuccess({required this.storeOfCategoryModel});
 }
 
-class GetStoreSubCategoriesError extends HomeState {
-} //===============================================================
+class GetStoreOfCategoryError extends HomeState {}
+
+//===============================================================
+
+class GetStoreLoading extends HomeState {}
+
+class GetStoreSuccess extends HomeState {
+  final StoreModel storeModel;
+
+  GetStoreSuccess({required this.storeModel});
+}
+
+class GetStoreError extends HomeState {}
+//===============================================================
 
 class GetStoreSubCategoriesByIdLoading extends HomeState {}
 

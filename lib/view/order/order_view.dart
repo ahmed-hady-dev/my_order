@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../home/widgets/section_header.dart';
 import 'component/order_main_header.dart';
 import 'widgets/choices_card.dart';
-import '../restaurant/component/food_image.dart';
+import '../store/component/food_image.dart';
 import 'component/add_to_cart_button.dart';
 import 'controller/order_cubit.dart';
 import 'model/choices_model.dart';

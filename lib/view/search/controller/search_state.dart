@@ -14,13 +14,15 @@ class SearchSuccessState extends SearchState {
 }
 
 class SearchErrorState extends SearchState {}
+//===============================================================
 
-// class ChangeSelectedFilterButton extends SearchState {}
-//
-// class FilterSearchTermsState extends SearchState {}
-//
-// class AddSearchTermState extends SearchState {}
-//
-// class DeleteSearchTermState extends SearchState {}
-//
-// class PutSearchTermFirstState extends SearchState {}
+class GetStoreLoading extends SearchState {}
+
+class GetStoreSuccess extends SearchState {
+  final StoreModel storeModel;
+
+  GetStoreSuccess({required this.storeModel});
+}
+
+class GetStoreError extends SearchState {}
+//===============================================================

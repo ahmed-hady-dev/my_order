@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../constants/constants.dart';
 import '../../../core/dioHelper/dio_helper.dart';
 import '../model/update_password_model.dart';
@@ -12,6 +13,7 @@ class UserDetailsCubit extends Cubit<UserDetailsState> {
   static UserDetailsCubit get(context) => BlocProvider.of(context);
 //===============================================================
   UpdatePasswordModel? updatePasswordModel;
+  XFile? image;
   bool isOldPassword = true;
   bool isNewPassword = true;
   bool isConfirmPassword = true;
@@ -83,6 +85,34 @@ class UserDetailsCubit extends Cubit<UserDetailsState> {
       debugPrint(e.toString());
       debugPrint(s.toString());
       emit(UserPasswordUpdateErrorState());
+    }
+  }
+
+//===============================================================
+  Future<String> pickImageFromGallery() async {
+    final ImagePicker picker = ImagePicker();
+    final imageFile = await picker.pickImage(source: ImageSource.gallery);
+    image = imageFile;
+    return image!.path;
+  }
+
+  Future<dynamic> uploadUserImage({required String path}) async {
+    emit(UploadUserImageLoadingState());
+    final formData = FormData.fromMap({});
+    formData.files
+        .add(MapEntry('image', await MultipartFile.fromFile(image!.path)));
+    final response = await DioHelper.postData(url: updateImage, data: formData);
+    try {
+      debugPrint(response.statusMessage.toString());
+      debugPrint(response.data.toString());
+      emit(UploadUserImageSuccessState());
+    } on DioError catch (e) {
+      debugPrint(e.error.toString());
+      emit(UploadUserImageErrorState());
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      emit(UploadUserImageErrorState());
     }
   }
 }

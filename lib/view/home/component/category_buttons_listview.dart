@@ -32,6 +32,9 @@ class CategoryButtonsListView extends StatelessWidget {
                 value: HomeCubit()
                   ..getStoreSubCategoriesById(
                       id: cubit.storeCategoriesModel!.data![index].id
+                          .toString())
+                  ..getStoreOfCategory(
+                      categoryId: cubit.storeCategoriesModel!.data![index].id
                           .toString()),
                 child: const FoodView(),
               ));
