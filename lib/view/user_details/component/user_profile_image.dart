@@ -36,16 +36,20 @@ class UserProfileImage extends StatelessWidget {
           bottom: 0.0,
           right: 0.0,
           left: 80.0,
-          child: IconButton(
-              onPressed: () async {
-                final image = await cubit.pickImageFromGallery();
-                await cubit.uploadUserImage(path: image);
-              },
-              icon: const FaIcon(
-                FontAwesomeIcons.edit,
-                color: AppColors.redColor,
-                size: 20.0,
-              )),
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colors.grey.shade300, shape: BoxShape.circle),
+            child: IconButton(
+                onPressed: () async {
+                  final image = await cubit.pickImageFromGallery();
+                  await cubit.uploadUserImage(path: image);
+                },
+                icon: const FaIcon(
+                  FontAwesomeIcons.edit,
+                  color: AppColors.redColor,
+                  size: 16.0,
+                )),
+          ),
         )
       ],
     );

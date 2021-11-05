@@ -11,6 +11,7 @@ import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/food/model/store_model.dart';
 import 'package:my_order/view/food/model/store_model_of_category.dart';
 import 'package:my_order/view/home/model/logout_model.dart';
+import 'package:my_order/view/home/model/popular_brands_model.dart';
 import 'package:my_order/view/home/model/store_categories_model.dart';
 import 'package:my_order/view/home/model/store_sub_categories_model.dart';
 
@@ -24,6 +25,7 @@ class HomeCubit extends Cubit<HomeState> {
   StoreSubCategoriesModel? storeSubCategoriesModel;
   StoreOfCategoryModel? storeOfCategoryModel;
   StoreModel? storeModel;
+  PopularBrandsModel? popularBrandsModel;
   LogoutModel? logoutModel;
   int carouselIndex = 0;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
@@ -60,6 +62,31 @@ class HomeCubit extends Cubit<HomeState> {
       debugPrint(e.toString());
       debugPrint(s.toString());
       emit(GetStoreCategoriesError());
+    }
+  }
+
+//===============================================================
+  Future<void> getPopularBrands() async {
+    emit(GetPopularBrandsLoading());
+    //TODO: change the getDataByToken to getData here
+    final response = await DioHelper.getDataByToken(
+      url: popularBrandsNearYou,
+      query: {
+        'lang': MagicRouter.currentContext!.locale.languageCode == 'en'
+            ? 'en'
+            : 'ar'
+      },
+    );
+    try {
+      popularBrandsModel = PopularBrandsModel.fromJson(response.data);
+      emit(GetPopularBrandsSuccess(popularBrandsModel: popularBrandsModel!));
+    } on DioError catch (e) {
+      debugPrint(e.error.toString());
+      emit(GetPopularBrandsError());
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      emit(GetPopularBrandsError());
     }
   }
 //===============================================================

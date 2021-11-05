@@ -24,7 +24,6 @@ class AllStores extends StatelessWidget {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              debugPrint(stores[index]!.id.toString());
               loadingDialog(context);
               cubit.getStore(storeId: stores[index]!.id.toString()).then(
                 (storeModel) {

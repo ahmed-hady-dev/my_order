@@ -5,17 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/drawer/drawer.dart';
+import 'package:my_order/view/home/component/popular_brands_card_shimmer.dart';
 import 'package:my_order/view/home/controller/home_cubit.dart';
 import 'package:my_order/view/home/model/food_card_model.dart';
 import 'package:my_order/view/home/widgets/section_header.dart';
 import 'package:my_order/view/search/search_view.dart';
 import 'package:my_order/widgets/drawer_icon.dart';
+import 'package:my_order/widgets/no_result_widget.dart';
 import 'component/buttons_shimmer.dart';
 import 'component/home_appbar_title.dart';
 import 'component/category_buttons_listview.dart';
 import 'component/food_item_card.dart';
-import 'component/restaurant_item_card.dart';
-import 'model/restaurant_item_model.dart';
+import 'component/popular_brand_near_you_list_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -24,7 +25,9 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: BlocProvider(
-        create: (context) => HomeCubit()..getStoreCategories(),
+        create: (context) => HomeCubit()
+          ..getStoreCategories()
+          ..getPopularBrands(),
         child: BlocConsumer<HomeCubit, HomeState>(
           listener: (context, state) {
             if (state is GetStoreCategoriesLoading) {
@@ -52,9 +55,10 @@ class HomeView extends StatelessWidget {
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
                 children: [
-                  state is GetStoreCategoriesLoading
+                  cubit.storeCategoriesModel == null
                       ? const ButtonsShimmer()
-                      : CategoryButtonsListView(cubit: cubit),
+                      : CategoryButtonsListView(
+                          storeCategoriesModel: cubit.storeCategoriesModel!),
                   // HomeCarousel(cubit: cubit),
                   SectionHeader(
                     buttonText: "home.view_more".tr(),
@@ -67,7 +71,11 @@ class HomeView extends StatelessWidget {
                     headerText: "home.brands".tr(),
                     onPressed: () {},
                   ),
-                  RestaurantItemCard(restaurantItemModel: restaurantItemModel),
+                  cubit.popularBrandsModel == null
+                      ? const PopularBrandsCardShimmer()
+                      : cubit.popularBrandsModel!.data!.isEmpty
+                          ? NoResultsWidget(text: "search.no_results".tr())
+                          : PopularBrandNearYouListView(cubit: cubit),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: SectionHeader(

@@ -19,6 +19,17 @@ class GetStoreCategoriesSuccess extends HomeState {
 class GetStoreCategoriesError extends HomeState {}
 
 //===============================================================
+class GetPopularBrandsLoading extends HomeState {}
+
+class GetPopularBrandsSuccess extends HomeState {
+  final PopularBrandsModel popularBrandsModel;
+
+  GetPopularBrandsSuccess({required this.popularBrandsModel});
+}
+
+class GetPopularBrandsError extends HomeState {}
+
+//===============================================================
 class LogoutLoadingState extends HomeState {}
 
 class LogoutErrorState extends HomeState {}

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_order/view/home/model/store_categories_model.dart';
 import '../../../core/router/router.dart';
 import '../../food/food_view.dart';
 import '../controller/home_cubit.dart';
@@ -7,10 +8,9 @@ import '../controller/home_cubit.dart';
 class CategoryButtonsListView extends StatelessWidget {
   const CategoryButtonsListView({
     Key? key,
-    required this.cubit,
+    required this.storeCategoriesModel,
   }) : super(key: key);
-
-  final HomeCubit cubit;
+  final StoreCategoriesModel storeCategoriesModel;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class CategoryButtonsListView extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 8.0),
       child: ListView.builder(
         shrinkWrap: true,
-        itemCount: cubit.storeCategoriesModel!.data!.length,
+        itemCount: storeCategoriesModel.data!.length,
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         itemBuilder: (context, index) => Padding(
@@ -27,20 +27,18 @@ class CategoryButtonsListView extends StatelessWidget {
           child: ElevatedButton.icon(
             style: ElevatedButton.styleFrom(elevation: 0.0),
             onPressed: () {
-              //TODO: insert the on pressed function
               MagicRouter.navigateTo(BlocProvider.value(
                 value: HomeCubit()
                   ..getStoreSubCategoriesById(
-                      id: cubit.storeCategoriesModel!.data![index].id
-                          .toString())
+                      id: storeCategoriesModel.data![index].id.toString())
                   ..getStoreOfCategory(
-                      categoryId: cubit.storeCategoriesModel!.data![index].id
-                          .toString()),
+                      categoryId:
+                          storeCategoriesModel.data![index].id.toString()),
                 child: const FoodView(),
               ));
             },
             label: Text(
-              cubit.storeCategoriesModel!.data![index].name.toString(),
+              storeCategoriesModel.data![index].name.toString(),
               style:
                   const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w300),
             ),
@@ -48,7 +46,7 @@ class CategoryButtonsListView extends StatelessWidget {
               height: 20.0,
               width: 30.0,
               child: Image.network(
-                  cubit.storeCategoriesModel!.data![index].image.toString(),
+                  storeCategoriesModel.data![index].image.toString(),
                   fit: BoxFit.cover),
             ),
           ),
