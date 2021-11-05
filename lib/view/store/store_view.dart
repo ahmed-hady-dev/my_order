@@ -79,7 +79,8 @@ class _StoreViewState extends State<StoreView> {
                     Flexible(
                       child: TabBarView(
                         children: data
-                            .map((e) => FoodCategoryListView(items: e.items!))
+                            .map((e) => FoodCategoryListView(
+                                storeId: widget.storeId, items: e.items!))
                             .toList(),
                       ),
                     ),

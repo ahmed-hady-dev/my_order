@@ -6,25 +6,23 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/cart/cart_view.dart';
 import 'package:my_order/view/order/controller/order_cubit.dart';
+import 'package:my_order/widgets/loading_indicator.dart';
 import 'package:my_order/widgets/main_button.dart';
 
 class AddToCartButton extends StatelessWidget {
-  const AddToCartButton({
+  AddToCartButton({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final cubit = OrderCubit.get(context);
+    final isLoading = cubit.state is OrderButtonLoading;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
-      child: MainButton(
+      child: isLoading ? LoadingIndicator() : MainButton(
         text: "order.cart_button_title".tr(),
-        onPressed: () => MagicRouter.navigateTo(
-          BlocProvider.value(
-            value: OrderCubit.get(context),
-            child: const CartView(),
-          ),
-        ),
+        onPressed: cubit.addToCart,
       ),
     );
   }

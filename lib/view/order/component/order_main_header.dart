@@ -49,7 +49,7 @@ class OrderMainHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               OrderCounterRow(orderCount: orderCount),
-              PriceContainer(totalPrice: totalPrice),
+              // PriceContainer(totalPrice: totalPrice),
             ],
           ),
         ],
