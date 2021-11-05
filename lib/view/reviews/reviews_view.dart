@@ -7,13 +7,12 @@ import 'package:my_order/view/store/controller/restaurant_cubit.dart';
 import 'package:my_order/widgets/loading_indicator.dart';
 
 import 'component/all_rev_tile.dart';
-import 'component/read_more_button.dart';
 import 'component/stars_review_row.dart';
 
 class ReviewsView extends StatelessWidget {
   const ReviewsView(
       {Key? key,
-        required this.storeId,
+      required this.storeId,
       required this.rate,
       required this.reviewsNumber,
       required this.cubit})
@@ -32,9 +31,11 @@ class ReviewsView extends StatelessWidget {
           appBar: AppBar(
             title: Text("reviews.appBar_title".tr()),
             actions: [
-              IconButton(onPressed: (){
-                showRateDialog(storeId, cubit);
-              }, icon: Icon(Icons.rate_review)),
+              IconButton(
+                  onPressed: () {
+                    showRateDialog(storeId, cubit);
+                  },
+                  icon: const Icon(Icons.rate_review)),
             ],
           ),
           body: cubit.storeReviewModel == null
@@ -71,10 +72,12 @@ class ReviewsView extends StatelessWidget {
                           //     rateText: "4.0"),
                           Center(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 16.0),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 16.0),
                               child: Text("reviews.rating_and_reviews".tr(),
                                   style: const TextStyle(
-                                      fontSize: 25, fontWeight: FontWeight.bold)),
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold)),
                             ),
                           ),
                           AllRevTile(

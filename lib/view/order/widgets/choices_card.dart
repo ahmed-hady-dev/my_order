@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:my_order/view/order/controller/order_cubit.dart';
 import 'package:my_order/view/order/model/item_details.dart';
 import '../../home/widgets/section_header.dart';
-import '../model/choices_model.dart';
 import '../../../widgets/custom_shape_radio_option.dart';
 
 class ChoicesCard extends StatefulWidget {
@@ -16,7 +15,8 @@ class ChoicesCard extends StatefulWidget {
     required this.headerText,
     required this.list,
     this.subText = '',
-    required this.isSubText,required this.isSize,
+    required this.isSubText,
+    required this.isSize,
   }) : super(key: key);
 
   @override
@@ -62,7 +62,8 @@ class _ChoicesCardState extends State<ChoicesCard> {
               isSize: widget.isSize,
               price: widget.list[index].price!,
               groupValue: groupValue,
-              onChanged: (v)=> OrderCubit.get(context).valueChangedHandler(widget.isSize, widget.list[index].id!),
+              onChanged: (v) => OrderCubit.get(context)
+                  .valueChangedHandler(widget.isSize, widget.list[index].id!),
               title: widget.list[index].name!,
             ),
           ),

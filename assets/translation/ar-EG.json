@@ -69,7 +69,7 @@
     "choose_size": "اختر الحجم",
     "extras": "إضافات",
     "write": "اكتب أي أشياء خاصة تريد القيام بها.",
-    "Optional": "(اختياري)"
+    "optional": "(اختياري)"
   },
   "checkout": {
     "appBar_title": "الدفع",

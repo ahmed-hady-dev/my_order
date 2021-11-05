@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/view/drawer/drawer.dart';
 import 'package:my_order/view/home/component/item_card_shimmer.dart';
 import 'package:my_order/view/home/component/popular_brands_card_shimmer.dart';
+import 'package:my_order/view/home/component/special_offer_card.dart';
 import 'package:my_order/view/home/controller/home_cubit.dart';
 import 'package:my_order/view/home/widgets/section_header.dart';
 import 'package:my_order/widgets/no_result_widget.dart';
@@ -25,7 +26,8 @@ class HomeView extends StatelessWidget {
         create: (context) => HomeCubit()
           ..getStoreCategories()
           ..getPopularBrands()
-          ..getPopularFood(),
+          ..getPopularFood()
+          ..getSpecialOffers(),
         child: BlocConsumer<HomeCubit, HomeState>(
           listener: (context, state) {},
           builder: (context, state) {
@@ -43,18 +45,26 @@ class HomeView extends StatelessWidget {
                       : CategoryButtonsListView(
                           storeCategoriesModel: cubit.storeCategoriesModel!),
                   // HomeCarousel(cubit: cubit),
-                  SectionHeader(
-                    buttonText: "home.view_more".tr(),
-                    headerText: "home.popular_food".tr(),
-                    onPressed: () {},
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: SectionHeader(
+                      showButton: false,
+                      buttonText: '',
+                      headerText: "home.popular_food".tr(),
+                      onPressed: () {},
+                    ),
                   ),
                   cubit.popularFoodModel == null
                       ? const ItemCardShimmer()
                       : ItemCard(cubit: cubit),
-                  SectionHeader(
-                    buttonText: "home.view_more".tr(),
-                    headerText: "home.brands".tr(),
-                    onPressed: () {},
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: SectionHeader(
+                      buttonText: '',
+                      headerText: "home.brands".tr(),
+                      onPressed: () {},
+                      showButton: false,
+                    ),
                   ),
                   cubit.popularBrandsModel == null
                       ? const PopularBrandsCardShimmer()
@@ -70,7 +80,10 @@ class HomeView extends StatelessWidget {
                       onPressed: () {},
                     ),
                   ),
-                  // ItemCard(foodCardModel: foodCardModel),
+                  cubit.specialOffersModel == null
+                      ? const ItemCardShimmer()
+                      : SpecialOfferCard(cubit: cubit),
+                  const SizedBox(height: 20.0),
                 ],
               ),
             );

@@ -9,7 +9,8 @@ class FoodCategoryListView extends StatelessWidget {
   final int storeId;
   const FoodCategoryListView({
     required this.items,
-    Key? key, required this.storeId,
+    Key? key,
+    required this.storeId,
   }) : super(key: key);
 
   @override
@@ -29,8 +30,6 @@ class FoodCategoryListView extends StatelessWidget {
             storeId: storeId,
             itemId: item.id!,
             image: item.image!,
-            // TODO: Price
-            price: 100,
             name: item.name!,
             description: item.description!,
           )),

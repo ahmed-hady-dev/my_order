@@ -48,10 +48,11 @@ class _StoreViewState extends State<StoreView> {
           ..getReviewByStoreId(storeId: widget.storeId),
         child: BlocBuilder<RestaurantCubit, RestaurantState>(
           builder: (context, state) {
-            if (cubit.storeItemsModel == null)
-              return Scaffold(
+            if (cubit.storeItemsModel == null) {
+              return const Scaffold(
                 body: LoadingIndicator(),
               );
+            }
             final data = cubit.storeItemsModel!.data!;
             return DefaultTabController(
               length: data.length,

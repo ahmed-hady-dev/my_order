@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:my_order/core/router/router.dart';
@@ -6,14 +5,19 @@ import 'package:my_order/view/store/controller/restaurant_cubit.dart';
 import 'package:my_order/widgets/loading_indicator.dart';
 import 'package:my_order/widgets/main_button.dart';
 
-showRateDialog(int storeId, RestaurantCubit cubit){
+showRateDialog(int storeId, RestaurantCubit cubit) {
   showGeneralDialog(
     context: MagicRouter.currentContext!,
-    pageBuilder: (context, animation, secondaryAnimation) => _Dialog(storeId: storeId, cubit: cubit,),);
+    pageBuilder: (context, animation, secondaryAnimation) => _Dialog(
+      storeId: storeId,
+      cubit: cubit,
+    ),
+  );
 }
 
 class _Dialog extends StatefulWidget {
-  const _Dialog({Key? key, required this.storeId, required this.cubit}) : super(key: key);
+  const _Dialog({Key? key, required this.storeId, required this.cubit})
+      : super(key: key);
   final int storeId;
   final RestaurantCubit cubit;
   @override
@@ -21,13 +25,12 @@ class _Dialog extends StatefulWidget {
 }
 
 class _DialogState extends State<_Dialog> {
-
   bool isLoading = false;
   double rateValue = 3.0;
   String? comment;
 
   void rate() async {
-    if(comment == null || comment!.isEmpty) return;
+    if (comment == null || comment!.isEmpty) return;
     isLoading = true;
     setState(() {});
     await widget.cubit.addReview(widget.storeId, rateValue, comment!);
@@ -48,8 +51,8 @@ class _DialogState extends State<_Dialog> {
               direction: Axis.horizontal,
               allowHalfRating: true,
               itemCount: 5,
-              itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-              itemBuilder: (context, _) => Icon(
+              itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+              itemBuilder: (context, _) => const Icon(
                 Icons.star,
                 color: Colors.amber,
               ),
@@ -58,16 +61,16 @@ class _DialogState extends State<_Dialog> {
               },
             ),
             _TextField(
-              onChanged: (v){
+              onChanged: (v) {
                 comment = v;
               },
             ),
             isLoading
-                ? LoadingIndicator()
+                ? const LoadingIndicator()
                 : MainButton(
-              text: "Rate",
-              onPressed: rate,
-            ),
+                    text: "Rate",
+                    onPressed: rate,
+                  ),
           ],
         ),
       ),
@@ -78,7 +81,6 @@ class _DialogState extends State<_Dialog> {
 class _TextField extends StatelessWidget {
   const _TextField({Key? key, required this.onChanged}) : super(key: key);
   final Function(String) onChanged;
-
 
   @override
   Widget build(BuildContext context) {
@@ -94,9 +96,7 @@ class _TextField extends StatelessWidget {
           return null;
         },
         autovalidateMode: AutovalidateMode.always,
-        decoration: InputDecoration(
-            hintText: "Comment"
-        ),
+        decoration: const InputDecoration(hintText: "Comment"),
       ),
     );
   }

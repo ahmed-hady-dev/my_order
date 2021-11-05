@@ -3,11 +3,8 @@
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_order/core/cacheHelper/cache_helper.dart';
 import 'package:my_order/view/cart/states.dart';
 import 'package:my_order/view/cart/widgets/food_cart_card.dart';
-import 'package:my_order/view/order/controller/order_cubit.dart';
-import 'package:my_order/view/store/model/food_category_model.dart';
 import 'package:my_order/widgets/loading_indicator.dart';
 
 import 'component/buttons_row.dart';
@@ -15,7 +12,7 @@ import 'component/order_details_card.dart';
 import 'cubit.dart';
 
 class CartView extends StatelessWidget {
-  CartView({Key? key}) : super(key: key);
+  const CartView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -25,13 +22,14 @@ class CartView extends StatelessWidget {
           appBar: AppBar(
             title: Text("cart.appBar_title".tr()),
             actions: [
-              IconButton(onPressed: () {}, icon: Icon(Icons.delete_forever)),
+              IconButton(
+                  onPressed: () {}, icon: const Icon(Icons.delete_forever)),
             ],
           ),
           body: Center(
             child: BlocBuilder<CartCubit, CartStates>(
               builder: (context, state) {
-                if (state is CartLoading) return LoadingIndicator();
+                if (state is CartLoading) return const LoadingIndicator();
                 final data = CartCubit.of(context).cartModel!.data!;
                 return ListView(
                   children: [
@@ -50,7 +48,7 @@ class CartView extends StatelessWidget {
                           image: item.image!,
                           description: item.description!,
                           onTap: () {
-                            print("remove");
+                            debugPrint("remove");
                           },
                         );
                       },
@@ -59,7 +57,7 @@ class CartView extends StatelessWidget {
                       totalPrice: data.total!.toDouble(),
                       deliveryFee: data.deliveryFees!.toDouble(),
                     ),
-                    ButtonsRow(),
+                    const ButtonsRow(),
                   ],
                 );
               },

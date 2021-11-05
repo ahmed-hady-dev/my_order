@@ -41,6 +41,17 @@ class GetPopularFoodSuccess extends HomeState {
 class GetPopularFoodError extends HomeState {}
 
 //===============================================================
+class GetSpecialOffersLoading extends HomeState {}
+
+class GetSpecialOffersSuccess extends HomeState {
+  final SpecialOffersModel specialOffersModel;
+
+  GetSpecialOffersSuccess({required this.specialOffersModel});
+}
+
+class GetSpecialOffersError extends HomeState {}
+
+//===============================================================
 class GetItemLoading extends HomeState {}
 
 class GetItemSuccess extends HomeState {

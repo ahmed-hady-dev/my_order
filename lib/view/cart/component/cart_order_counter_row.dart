@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_order/view/cart/cubit.dart';
 import 'package:my_order/view/cart/model/cart.dart';
 
-import '../../order/controller/order_cubit.dart';
 import '../../order/widgets/change_order_button.dart';
 
 class CartOrderCounterRow extends StatefulWidget {
-  CartOrderCounterRow({
+  const CartOrderCounterRow({
     Key? key,
-    required this.orderCount, required this.item, required this.storeId,
+    required this.orderCount,
+    required this.item,
+    required this.storeId,
   }) : super(key: key);
 
   final Item item;
@@ -22,7 +21,6 @@ class CartOrderCounterRow extends StatefulWidget {
 }
 
 class _CartOrderCounterRowState extends State<CartOrderCounterRow> {
-
   late int counter;
 
   @override
@@ -40,9 +38,9 @@ class _CartOrderCounterRowState extends State<CartOrderCounterRow> {
             iconSize: 20.0,
             constraints: const BoxConstraints(),
             onPressed: () {
-              if(counter == 1){
-                print("remove");
-              }else{
+              if (counter == 1) {
+                debugPrint("remove");
+              } else {
                 counter--;
                 setState(() {});
                 CartCubit.of(context).updateCart(
@@ -50,7 +48,10 @@ class _CartOrderCounterRowState extends State<CartOrderCounterRow> {
                     quantity: counter,
                     itemId: widget.item.id!,
                     sizeId: widget.item.pivot!.itemSizeId!.id!,
-                    extraId: widget.item.pivot!.extras != null && widget.item.pivot!.extras!.isNotEmpty ? widget.item.pivot!.extras!.first.id! : null);
+                    extraId: widget.item.pivot!.extras != null &&
+                            widget.item.pivot!.extras!.isNotEmpty
+                        ? widget.item.pivot!.extras!.first.id!
+                        : null);
               }
             },
             icon: FontAwesomeIcons.minusCircle),
@@ -73,7 +74,10 @@ class _CartOrderCounterRowState extends State<CartOrderCounterRow> {
                   quantity: counter,
                   itemId: widget.item.id!,
                   sizeId: widget.item.pivot!.itemSizeId!.id!,
-                  extraId: widget.item.pivot!.extras != null && widget.item.pivot!.extras!.isNotEmpty ? widget.item.pivot!.extras!.first.id! : null);
+                  extraId: widget.item.pivot!.extras != null &&
+                          widget.item.pivot!.extras!.isNotEmpty
+                      ? widget.item.pivot!.extras!.first.id!
+                      : null);
             },
             icon: FontAwesomeIcons.plusCircle),
       ],

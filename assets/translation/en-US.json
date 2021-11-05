@@ -69,7 +69,7 @@
     "choose_size": "Choose Size",
     "extras": "Extras",
     "write": "Write any special things you want to do.",
-    "Optional": "(Optional)"
+    "optional": "(Optional)"
   },
   "checkout": {
     "appBar_title": "Check out",

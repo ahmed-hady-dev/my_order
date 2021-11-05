@@ -10,16 +10,12 @@ import 'package:my_order/widgets/loading_dialog.dart';
 import 'package:my_order/widgets/stars_bar.dart';
 import '../../../core/router/router.dart';
 
-class ItemCard extends StatelessWidget {
-  const ItemCard({
-    Key? key,
-    required this.cubit,
-  }) : super(key: key);
+class SpecialOfferCard extends StatelessWidget {
+  const SpecialOfferCard({Key? key, required this.cubit}) : super(key: key);
   final HomeCubit cubit;
-
   @override
   Widget build(BuildContext context) {
-    final item = cubit.popularFoodModel!.data!;
+    final item = cubit.specialOffersModel!.data!;
     return SizedBox(
       height: 190.0,
       child: ListView.builder(
@@ -39,14 +35,14 @@ class ItemCard extends StatelessWidget {
                   MagicRouter.navigateTo(
                     BlocProvider.value(
                       value: OrderCubit(
-                          storeId: item[index]!.itemCategory!.store!.id!,
+                          storeId: item[index]!.store!.id!,
                           itemId: item[index]!.id!),
                       child: OrderView(
                           image: item[index]!.image!.toString(),
-                          name: item[index]!.name!.toString(),
-                          description: item[index]!.description!.toString(),
+                          name: item[index]!.nameAr!.toString(),
+                          description: item[index]!.descriptionAr!.toString(),
                           itemId: item[index]!.id!,
-                          storeId: item[index]!.itemCategory!.store!.id!),
+                          storeId: item[index]!.store!.id!),
                     ),
                   );
                 },
@@ -78,7 +74,7 @@ class ItemCard extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
-                        item[index]!.name!.toString(),
+                        item[index]!.nameAr!.toString(),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
@@ -97,11 +93,7 @@ class ItemCard extends StatelessWidget {
                           Text(
                             "home.delivery".tr() +
                                 ' ' +
-                                item[index]!
-                                    .itemCategory!
-                                    .store!
-                                    .deliveryFees!
-                                    .toString() +
+                                item[index]!.store!.deliveryFees!.toString() +
                                 ' ' +
                                 "restaurant.egp".tr(),
                             style: const TextStyle(
@@ -109,8 +101,7 @@ class ItemCard extends StatelessWidget {
                           ),
                           //TODO: the rate is the store rate
                           StarsBar(
-                              stars: double.parse(
-                                  item[index]!.itemCategory!.store!.rate!)),
+                              stars: double.parse(item[index]!.store!.rate!)),
                         ],
                       ),
                       // const SizedBox(width: 60),

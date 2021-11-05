@@ -22,15 +22,17 @@ class OrdersView extends StatelessWidget {
         child: BlocBuilder<OrdersCubit, OrdersState>(
           builder: (context, state) {
             final cubit = OrdersCubit.get(context);
-            if(state is OrdersLoading)
-              return Scaffold(
+            if (state is OrdersLoading) {
+              return const Scaffold(
                 body: LoadingIndicator(),
               );
+            }
             return Scaffold(
                 appBar: AppBar(title: Text("orders.appBar_title".tr())),
                 body: SingleChildScrollView(
                   child: Padding(
-                    padding: EdgeInsets.only(top: 40, right: 16, left: 16),
+                    padding:
+                        const EdgeInsets.only(top: 40, right: 16, left: 16),
                     child: Column(
                       children: [
                         ToggleSwitch(
@@ -38,7 +40,7 @@ class OrdersView extends StatelessWidget {
                           cornerRadius: 20.0,
                           minHeight: 46,
                           fontSize: 18,
-                          activeBgColors: [
+                          activeBgColors: const [
                             [AppColors.redColor],
                             [AppColors.redColor]
                           ],
@@ -47,13 +49,13 @@ class OrdersView extends StatelessWidget {
                           inactiveBgColor: AppColors.redColor.withOpacity(0.5),
                           initialLabelIndex: cubit.labelSelect ? 1 : 0,
                           totalSwitches: 2,
-                          labels: ['Old Orders', 'Recent Orders'],
+                          labels: const ['Old Orders', 'Recent Orders'],
                           radiusStyle: true,
                           onToggle: cubit.itemSelection,
                         ),
                         cubit.isSelected == 0
-                            ? OldOrders()
-                            : RecentOrders(),
+                            ? const OldOrders()
+                            : const RecentOrders(),
                       ],
                     ),
                   ),

@@ -6,7 +6,7 @@ class OrdersListCard extends StatelessWidget {
   final List<Datum> orderModel;
   final int index;
 
-  OrdersListCard(
+  const OrdersListCard(
       {Key? key, required this.orderModel, required this.index})
       : super(key: key);
 

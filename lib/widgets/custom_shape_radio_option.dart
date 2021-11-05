@@ -1,5 +1,6 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_order/view/order/controller/order_cubit.dart';
 import '../constants/app_colors.dart';
 
@@ -16,14 +17,15 @@ class CustomShapeRadioOption<T> extends StatelessWidget {
     required this.price,
     required this.groupValue,
     required this.title,
-    required this.onChanged,required this.id, required this.isSize,
+    required this.onChanged,
+    required this.id,
+    required this.isSize,
   }) : super(key: key);
 
   Widget _buildLabel(context) {
     final cubit = OrderCubit.get(context);
-    final bool isSelected = (
-    isSize ? (cubit.sizeId == id) : (cubit.extraId == id)
-    );
+    final bool isSelected =
+        (isSize ? (cubit.sizeId == id) : (cubit.extraId == id));
     return Container(
       width: 32.0,
       height: 20.0,

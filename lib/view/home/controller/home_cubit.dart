@@ -14,6 +14,7 @@ import 'package:my_order/view/home/model/item_model.dart';
 import 'package:my_order/view/home/model/logout_model.dart';
 import 'package:my_order/view/home/model/popular_brands_model.dart';
 import 'package:my_order/view/home/model/popular_food_model.dart';
+import 'package:my_order/view/home/model/special_offers_model.dart';
 import 'package:my_order/view/home/model/store_categories_model.dart';
 import 'package:my_order/view/home/model/store_sub_categories_model.dart';
 
@@ -29,6 +30,7 @@ class HomeCubit extends Cubit<HomeState> {
   StoreModel? storeModel;
   PopularBrandsModel? popularBrandsModel;
   PopularFoodModel? popularFoodModel;
+  SpecialOffersModel? specialOffersModel;
   ItemModel? itemModel;
   LogoutModel? logoutModel;
   int carouselIndex = 0;
@@ -116,6 +118,31 @@ class HomeCubit extends Cubit<HomeState> {
       debugPrint(e.toString());
       debugPrint(s.toString());
       emit(GetPopularFoodError());
+    }
+  }
+
+//===============================================================
+  Future<void> getSpecialOffers() async {
+    emit(GetSpecialOffersLoading());
+    //TODO: change the getDataByToken to getData here
+    final response = await DioHelper.getDataByToken(
+      url: specialOffers,
+      query: {
+        'lang': MagicRouter.currentContext!.locale.languageCode == 'en'
+            ? 'en'
+            : 'ar'
+      },
+    );
+    try {
+      specialOffersModel = SpecialOffersModel.fromJson(response.data);
+      emit(GetSpecialOffersSuccess(specialOffersModel: specialOffersModel!));
+    } on DioError catch (e) {
+      debugPrint(e.error.toString());
+      emit(GetSpecialOffersError());
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      emit(GetSpecialOffersError());
     }
   }
 //===============================================================

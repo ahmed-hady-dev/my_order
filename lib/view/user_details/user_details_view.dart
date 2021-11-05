@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/core/cacheHelper/cache_helper.dart';
 import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/change_password/change_password_view.dart';
+import 'package:my_order/widgets/main_button.dart';
 import 'component/user_details_form.dart';
 import 'component/user_profile_image.dart';
 import 'controller/user_details_cubit.dart';
@@ -32,12 +33,12 @@ class UserDetailsView extends StatelessWidget {
                         child: Text(CacheHelper.userName,
                             style: const TextStyle(fontSize: 18.0))),
                     const UserDetailsForm(),
-                    // MainButton(
-                    //   text: "user_details.edit".tr(),
-                    //   onPressed: () {
-                    //     //TODO: add the edit function here
-                    //   },
-                    // ),
+                    MainButton(
+                      text: "user_details.edit".tr(),
+                      onPressed: () {
+                        //TODO: add the edit function here
+                      },
+                    ),
                     const SizedBox(height: 12),
                     Text("user_details.security_information".tr(),
                         style: const TextStyle(

@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
-import 'price_container.dart';
 import '../../../widgets/description_text.dart';
 
 import 'order_counter_row.dart';
 
 class OrderMainHeader extends StatelessWidget {
-  const OrderMainHeader(
-      {Key? key,
-      required this.name,
-      required this.description,
-      required this.orderCount,
-      required this.price})
-      : super(key: key);
+  const OrderMainHeader({
+    Key? key,
+    required this.name,
+    required this.description,
+    required this.orderCount,
+  }) : super(key: key);
   final String name;
   final String description;
   final int orderCount;
-  final double price;
 
   @override
   Widget build(BuildContext context) {
-    double totalPrice = price * orderCount;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Row(

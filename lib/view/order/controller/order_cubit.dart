@@ -8,7 +8,8 @@ import 'package:my_order/view/order/model/item_details.dart';
 part 'order_state.dart';
 
 class OrderCubit extends Cubit<OrderState> {
-  OrderCubit(this.storeId, this.itemId) : super(OrderInitial());
+  OrderCubit({required this.storeId, required this.itemId})
+      : super(OrderInitial());
 
   final int itemId;
   final int storeId;
@@ -24,24 +25,25 @@ class OrderCubit extends Cubit<OrderState> {
 
   Future<void> getDetails() async {
     emit(OrderLoading());
-    final response = await DioHelper.getDataByToken(url: "/client/items/$itemId");
+    final response =
+        await DioHelper.getDataByToken(url: "/client/items/$itemId");
     itemDetailsModel = ItemDetailsModel.fromJson(response.data);
     emit(OrderInitial());
   }
 
   Future<void> addToCart() async {
-    if(sizeId == null) return;
+    if (sizeId == null) return;
     emit(OrderButtonLoading());
     final body = {
       'order[0][item_id]': itemId,
       'order[0][quantity]': orderCount,
-      if(extraId != null)
-        'order[0][extras][]': extraId,
+      if (extraId != null) 'order[0][extras][]': extraId,
       'store_id': storeId,
       'order[0][item_size_id]': sizeId
     };
-    final response = await DioHelper.postData(url: "/client/orders/addToCart", data: FormData.fromMap(body));
-    print(response.data);
+    final response = await DioHelper.postData(
+        url: "/client/orders/addToCart", data: FormData.fromMap(body));
+    debugPrint(response.data);
     Fluttertoast.showToast(msg: response.data['message']);
     emit(OrderInitial());
   }
@@ -59,9 +61,9 @@ class OrderCubit extends Cubit<OrderState> {
 
 //===============================================================
   void valueChangedHandler(bool isSize, int id) {
-    if(isSize){
+    if (isSize) {
       sizeId = id;
-    }else{
+    } else {
       extraId = id;
     }
     emit(OrderInitial());
