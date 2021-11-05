@@ -1,6 +1,7 @@
 // ignore_for_file: implementation_imports
 
 import 'package:easy_localization/src/public_ext.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -106,14 +107,21 @@ class DrawerBody extends StatelessWidget {
           },
         ),
         CacheHelper.isLogged
-            ? DrawerItem(
-                icon: Icons.logout,
-                text: "drawer.logout".tr(),
-                onTap: () async {
-                  await HomeCubit.get(context).signOut();
-                  Fluttertoast.showToast(msg: "drawer.logout_success".tr());
-                  MagicRouter.pop();
-                },
+            ? Row(
+                children: [
+                  DrawerItem(
+                    icon: Icons.logout,
+                    text: "drawer.logout".tr(),
+                    onTap: () async {
+                      await HomeCubit.get(context).signOut();
+                      Fluttertoast.showToast(msg: "drawer.logout_success".tr());
+                      MagicRouter.pop();
+                    },
+                  ),
+                  const CupertinoActivityIndicator(
+                    animating: true,
+                  ),
+                ],
               )
             : DrawerItem(
                 icon: Icons.login,

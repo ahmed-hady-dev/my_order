@@ -9,7 +9,8 @@ import 'package:my_order/constants/constants.dart';
 import 'package:my_order/core/cacheHelper/cache_helper.dart';
 import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/login/model/user_model.dart';
-import 'package:my_order/view/register/model/areas_model.dart';
+import 'package:my_order/view/register/model/area_of_city_model.dart';
+import 'package:my_order/view/register/model/city_model.dart';
 import '../../../core/dioHelper/dio_helper.dart';
 import 'register_state.dart';
 
@@ -18,8 +19,10 @@ class RegisterCubit extends Cubit<RegisterState> {
   static RegisterCubit get(context) => BlocProvider.of(context);
 //===============================================================
   UserModel? userModel;
-  AreasModel? areasModel;
-  String? dropDownValue;
+  CityModel? cityModel;
+  AreaOfCityModel? areaOfCityModel;
+  String? cityDropDownValue;
+  String? areaOfCityDropDownValue;
   bool isPassword = true;
   bool isPasswordConfirm = true;
   bool isChecked = false;
@@ -42,9 +45,14 @@ class RegisterCubit extends Cubit<RegisterState> {
   }
 
 //===============================================================
-  changeDropDown({required String? value}) {
-    dropDownValue = value;
-    emit(ChangeDropDownState());
+  changeCityDropDown({required String? value}) {
+    cityDropDownValue = value;
+    emit(ChangeCityDropDownState());
+  }
+
+  changeAreaOfCityDropDown({required String? value}) {
+    areaOfCityDropDownValue = value;
+    emit(ChangeAreaOfCityDropDownState());
   }
 
 //===============================================================
@@ -63,10 +71,10 @@ class RegisterCubit extends Cubit<RegisterState> {
   }
 
 //===============================================================
-  Future<void> getArea() async {
-    emit(GetAreaLoading());
+  Future<void> getCity() async {
+    emit(GetCityLoading());
     final response = await DioHelper.getData(
-      url: areas,
+      url: cities,
       query: {
         'lang': MagicRouter.currentContext!.locale.languageCode == 'en'
             ? 'en'
@@ -74,16 +82,45 @@ class RegisterCubit extends Cubit<RegisterState> {
       },
     );
     try {
-      areasModel = AreasModel.fromJson(response.data);
-      emit(GetAreaSuccess(areasModel: areasModel!));
+      cityModel = CityModel.fromJson(response.data);
+      emit(GetCitySuccess(cityModel: cityModel!));
     } on DioError catch (e) {
       debugPrint(e.error.toString());
-      emit(GetAreaError());
+      emit(GetCityError());
       Fluttertoast.showToast(msg: "change_password.some_error".tr());
     } catch (e, s) {
       debugPrint(e.toString());
       debugPrint(s.toString());
-      emit(GetAreaError());
+      emit(GetCityError());
+      Fluttertoast.showToast(msg: "change_password.some_error".tr());
+    }
+  }
+
+//===============================================================
+  Future<void> getAreaOfCityById({required int areaId}) async {
+    emit(GetAreaOfCityLoading());
+    final response = await DioHelper.getData(
+      url: areasOfCity + areaId.toString(),
+      query: {
+        'lang': MagicRouter.currentContext!.locale.languageCode == 'en'
+            ? 'en'
+            : 'ar'
+      },
+    );
+    debugPrint(response.data.toString());
+    try {
+      areaOfCityModel = AreaOfCityModel.fromJson(response.data);
+      emit(GetAreaOfCitySuccess(areaOfCityModel: areaOfCityModel!));
+      debugPrint(areaOfCityModel!.data.toString());
+      debugPrint(areaOfCityModel!.message.toString());
+    } on DioError catch (e) {
+      debugPrint(e.error.toString());
+      emit(GetAreaOfCityError());
+      Fluttertoast.showToast(msg: "change_password.some_error".tr());
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      emit(GetAreaOfCityError());
       Fluttertoast.showToast(msg: "change_password.some_error".tr());
     }
   }

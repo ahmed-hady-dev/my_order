@@ -10,7 +10,8 @@ import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/home/home_view.dart';
 import 'package:my_order/view/register/Controller/register_cubit.dart';
 import 'package:my_order/view/register/Controller/register_state.dart';
-import 'package:my_order/view/register/components/area_drop_down_button.dart';
+import 'package:my_order/view/register/components/area_of_city_drop_down_button.dart';
+import 'package:my_order/view/register/components/city_drop_down_button.dart';
 import 'package:my_order/widgets/confirm_password_text_field.dart';
 import 'package:my_order/widgets/email_text_field.dart';
 import 'package:my_order/widgets/indicator_widget.dart';
@@ -31,7 +32,7 @@ class RegisterView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(title: Text("register.appBar_title".tr())),
         body: BlocProvider(
-          create: (context) => RegisterCubit()..getArea(),
+          create: (context) => RegisterCubit()..getCity(),
           child: BlocConsumer<RegisterCubit, RegisterState>(
             listener: (context, state) {
               if (state is RegisterSuccessState) {
@@ -123,13 +124,30 @@ class RegisterView extends StatelessWidget {
                             cubit.changeConfirmPasswordVisibility(),
                         icon: cubit.suffixConfirm),
                     const SizedBox(height: 12.0),
-                    cubit.areasModel == null
+                    cubit.cityModel == null
                         ? const ShimmerDropDownButton()
-                        : AreaDropDownButton(
-                            itemsList: cubit.areasModel!.data!,
-                            value: cubit.dropDownValue,
-                            onChanged: (value) =>
-                                cubit.changeDropDown(value: value)),
+                        : CityDropDownButton(
+                            itemsList: cubit.cityModel!.data!,
+                            value: cubit.cityDropDownValue,
+                            onChanged: (value) {
+                              cubit.changeCityDropDown(value: value);
+                              debugPrint(value);
+                              cubit.areaOfCityDropDownValue = null;
+                              cubit.getAreaOfCityById(
+                                  areaId: int.parse(value!));
+                            }),
+                    const SizedBox(height: 12.0),
+                    cubit.cityDropDownValue == null
+                        ? const SizedBox()
+                        : state is GetAreaOfCityLoading
+                            ? const ShimmerDropDownButton()
+                            : AreaOfCityDropDownButton(
+                                itemsList: cubit.areaOfCityModel!.data!,
+                                value: cubit.areaOfCityDropDownValue,
+                                onChanged: (value) {
+                                  cubit.changeAreaOfCityDropDown(value: value);
+                                },
+                              ),
                     const SizedBox(height: 12.0),
                     Row(
                       children: <Widget>[
@@ -153,43 +171,50 @@ class RegisterView extends StatelessWidget {
                         ? const IndicatorWidget()
                         : MainButton(
                             text: "login.create_account".tr(),
-                            onPressed: cubit.dropDownValue == null
-                                ? () => ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
+                            onPressed: () {
+                              if (cubit.cityDropDownValue == null) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text(
+                                            "register.please_choose_city"
+                                                .tr())));
+                              }
+                              if (cubit.areaOfCityDropDownValue == null &&
+                                  cubit.areaOfCityModel != null) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
                                         content: Text(
                                             "register.please_choose_area"
-                                                .tr())))
-                                : () {
-                                    if (cubit.passwordController.value.text !=
-                                        cubit.confirmPasswordController.value
-                                            .text) {
-                                      Fluttertoast.showToast(
-                                          msg: "register.password_match".tr());
-                                    }
-                                    if (cubit.formKey.currentState!
-                                        .validate()) {
-                                      cubit.userSignUp(
-                                          firstName:
-                                              cubit.firstNameController.text,
-                                          lastName:
-                                              cubit.lastNameController.text,
-                                          phone: cubit.phoneController.text,
-                                          email: cubit.emailController.text
-                                              .toLowerCase()
-                                              .trim(),
-                                          password: cubit
-                                              .passwordController.text
-                                              .toLowerCase()
-                                              .trim(),
-                                          passwordConfirm: cubit
-                                              .confirmPasswordController.text
-                                              .toLowerCase()
-                                              .trim(),
-                                          registerAreaId:
-                                              int.parse(cubit.dropDownValue!),
-                                          notifiToken: '123456');
-                                    }
-                                  },
+                                                .tr())));
+                              }
+                              if (cubit.passwordController.value.text !=
+                                  cubit.confirmPasswordController.value.text) {
+                                Fluttertoast.showToast(
+                                    msg: "register.password_match".tr());
+                              }
+                              if (cubit.formKey.currentState!.validate()) {
+                                cubit.areaOfCityDropDownValue == null
+                                    ? () {}
+                                    : cubit.userSignUp(
+                                        firstName:
+                                            cubit.firstNameController.text,
+                                        lastName: cubit.lastNameController.text,
+                                        phone: cubit.phoneController.text,
+                                        email: cubit.emailController.text
+                                            .toLowerCase()
+                                            .trim(),
+                                        password: cubit.passwordController.text
+                                            .toLowerCase()
+                                            .trim(),
+                                        passwordConfirm: cubit
+                                            .confirmPasswordController.text
+                                            .toLowerCase()
+                                            .trim(),
+                                        registerAreaId: int.parse(
+                                            cubit.areaOfCityDropDownValue!),
+                                        notifiToken: '123456');
+                              }
+                            },
                           ),
                     const SizedBox(height: 24.0),
                     Text("register.terms".tr(),

@@ -4,8 +4,8 @@ import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:my_order/constants/app_colors.dart';
 
-class AreaDropDownButton extends StatelessWidget {
-  const AreaDropDownButton(
+class AreaOfCityDropDownButton extends StatelessWidget {
+  const AreaOfCityDropDownButton(
       {Key? key,
       required this.itemsList,
       required this.onChanged,

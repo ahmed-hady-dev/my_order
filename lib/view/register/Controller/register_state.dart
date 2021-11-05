@@ -1,5 +1,7 @@
+import 'package:my_order/view/register/model/area_of_city_model.dart';
+import 'package:my_order/view/register/model/city_model.dart';
+
 import '../../login/model/user_model.dart';
-import '../model/areas_model.dart';
 
 abstract class RegisterState {}
 
@@ -9,21 +11,34 @@ class RegisterInitial extends RegisterState {}
 class RegisterChangePasswordVisibilityState extends RegisterState {}
 
 //===============================================================
-class ChangeDropDownState extends RegisterState {}
+class ChangeCityDropDownState extends RegisterState {}
+
+class ChangeAreaOfCityDropDownState extends RegisterState {}
 
 //===============================================================
 class RegisterChangeCheckBoxState extends RegisterState {}
 
 //===============================================================
-class GetAreaLoading extends RegisterState {}
+class GetCityLoading extends RegisterState {}
 
-class GetAreaSuccess extends RegisterState {
-  final AreasModel areasModel;
+class GetCitySuccess extends RegisterState {
+  final CityModel cityModel;
 
-  GetAreaSuccess({required this.areasModel});
+  GetCitySuccess({required this.cityModel});
 }
 
-class GetAreaError extends RegisterState {}
+class GetCityError extends RegisterState {}
+
+//===============================================================
+class GetAreaOfCityLoading extends RegisterState {}
+
+class GetAreaOfCitySuccess extends RegisterState {
+  final AreaOfCityModel areaOfCityModel;
+
+  GetAreaOfCitySuccess({required this.areaOfCityModel});
+}
+
+class GetAreaOfCityError extends RegisterState {}
 
 //===============================================================
 

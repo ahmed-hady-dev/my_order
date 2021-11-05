@@ -14,7 +14,9 @@
     "password_match": "Please make sure both passwords match",
     "success": "Register success.",
     "choose_area": "Choose area",
-    "please_choose_area": "Please choose area!"
+    "please_choose_area": "Please choose city!",
+    "please_choose_city": "Please choose area!",
+    "choose_city": "Choose city"
   },
   "login": {
     "appBar_title": "Login",

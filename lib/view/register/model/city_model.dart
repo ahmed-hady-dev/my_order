@@ -1,11 +1,11 @@
-class AreasModel {
-  AreasModel({
+class CityModel {
+  CityModel({
     this.status,
     this.message,
     this.data,
   });
 
-  AreasModel.fromJson(dynamic json) {
+  CityModel.fromJson(dynamic json) {
     status = json['status'];
     message = json['message'];
     if (json['data'] != null) {

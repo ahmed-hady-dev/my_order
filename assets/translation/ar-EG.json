@@ -14,7 +14,9 @@
     "password_match": "من فضلك تأكد من أن كلمتي المرور متشابهتين",
     "success": "تم التسجيل بنجاح",
     "choose_area": "اختر المنطقة",
-    "please_choose_area": "الرجاء اختيار منطقة!"
+    "please_choose_area": "الرجاء اختيار المدينة!",
+    "please_choose_city": "الرجاء اختيار منطقة!",
+    "choose_city": "اخترالمدينة"
   },
   "login": {
     "appBar_title": "تسجيل الدخول",
