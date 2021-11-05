@@ -52,4 +52,15 @@ class RestaurantCubit extends Cubit<RestaurantState> {
       emit(GetStoreReviewError());
     }
   }
+
+  Future<void> addReview(int storeId, double rate, String comment) async {
+    final body = {
+      'rate': rate,
+      'store_id': storeId,
+      'comment': comment
+    };
+    await DioHelper.postData(url: '/client/reviews', data: FormData.fromMap(body));
+    getReviewByStoreId(storeId: storeId);
+  }
+
 }
