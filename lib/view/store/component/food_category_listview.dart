@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:my_order/view/store/model/items_model.dart';
 import '../../../core/router/router.dart';
 import '../../order/order_view.dart';
 import '../model/food_category_model.dart';
 import '../widgets/food_category_card.dart';
 
 class FoodCategoryListView extends StatelessWidget {
+
+  final List<Item> items;
   const FoodCategoryListView({
+    required this.items,
     Key? key,
   }) : super(key: key);
 
@@ -13,19 +17,24 @@ class FoodCategoryListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
-      itemCount: foodCategoryList.length,
-      itemBuilder: (context, index) => FoodCategoryCard(
-        name: foodCategoryList[index].name,
-        price: foodCategoryList[index].price,
-        image: foodCategoryList[index].image,
-        description: foodCategoryList[index].description,
-        onTap: () => MagicRouter.navigateTo(OrderView(
-          image: foodCategoryList[index].image,
-          price: foodCategoryList[index].price,
-          name: foodCategoryList[index].name,
-          description: foodCategoryList[index].description,
-        )),
-      ),
+      itemCount: items.length,
+      itemBuilder: (context, index) {
+        final item = items[index];
+        return FoodCategoryCard(
+          name: item.name!,
+          // TODO: Price
+          price: 100,
+          image: item.image!,
+          description: item.description!,
+          onTap: () => MagicRouter.navigateTo(OrderView(
+            image: item.image!,
+            // TODO: Price
+            price: 100,
+            name: item.name!,
+            description: item.description!,
+          )),
+        );
+      },
     );
   }
 }

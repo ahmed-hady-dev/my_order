@@ -78,7 +78,8 @@ class SearchView extends StatelessWidget {
                                         MagicRouter.pop();
                                         MagicRouter.navigateTo(
                                           StoreView(
-                                            name: storeModel!.data!.name
+                                            storeId: storeModel!.data!.id!,
+                                            name: storeModel.data!.name
                                                 .toString(),
                                             image: storeModel.data!.image
                                                 .toString(),

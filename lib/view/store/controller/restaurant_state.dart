@@ -4,3 +4,5 @@ part of 'restaurant_cubit.dart';
 abstract class RestaurantState {}
 
 class RestaurantInitial extends RestaurantState {}
+
+class RestaurantLoading extends RestaurantState {}

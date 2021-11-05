@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../constants/app_colors.dart';
 
 class FoodCategoryTabBar extends StatelessWidget {
-  final TabController controller;
   final List list;
   const FoodCategoryTabBar({
     Key? key,
-    required this.controller,
     required this.list,
   }) : super(key: key);
 
@@ -18,12 +16,11 @@ class FoodCategoryTabBar extends StatelessWidget {
       //padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       indicatorColor: AppColors.redColor,
       labelColor: Colors.black,
-      controller: controller,
       tabs: list
           .map((item) => Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: AutoSizeText(
-                  item.toString(),
+                  item.name.toString(),
                   maxLines: 1,
                   style: const TextStyle(
                     fontSize: 14.0,

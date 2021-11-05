@@ -30,7 +30,8 @@ class PopularBrandNearYouListView extends StatelessWidget {
                   MagicRouter.pop();
                   MagicRouter.navigateTo(
                     StoreView(
-                      name: storeModel!.data!.name.toString(),
+                      storeId: storeModel!.data!.id!,
+                      name: storeModel.data!.name.toString(),
                       image: storeModel.data!.image.toString(),
                       rate: double.tryParse(storeModel.data!.rate!)!,
                       description: storeModel.data!.description.toString(),

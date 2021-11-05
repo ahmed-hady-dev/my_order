@@ -9,7 +9,7 @@ void loadingDialog(BuildContext context) {
     barrierColor: Colors.black12,
     builder: (context) {
       return AlertDialog(
-        alignment: Alignment.center,
+        // alignment: Alignment.center,
         elevation: 1.0,
         contentPadding: const EdgeInsets.symmetric(vertical: 50),
         shape:
