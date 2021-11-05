@@ -38,7 +38,6 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => OrdersCubit()),
-        BlocProvider(create: (context) => OrderCubit()),
       ],
       child: MaterialApp(
         title: 'My Order',

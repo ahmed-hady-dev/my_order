@@ -27,6 +27,7 @@ class FoodCategoryListView extends StatelessWidget {
           image: item.image!,
           description: item.description!,
           onTap: () => MagicRouter.navigateTo(OrderView(
+            itemId: item.id!,
             image: item.image!,
             // TODO: Price
             price: 100,
