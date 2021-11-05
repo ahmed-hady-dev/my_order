@@ -104,6 +104,7 @@ class MainHeader extends StatelessWidget {
               ClickableSmallText(
                   text: "restaurant.reviews".tr(),
                   onTap: () => MagicRouter.navigateTo(ReviewsView(
+                    storeId: storeId,
                         rate: rate,
                         reviewsNumber: reviewsNumber,
                         cubit: cubit,

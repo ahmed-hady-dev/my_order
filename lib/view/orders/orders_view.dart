@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/constants/app_colors.dart';
 import 'package:my_order/view/orders/widgets/recent_orders.dart';
+import 'package:my_order/widgets/loading_indicator.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 import 'controller/orders_cubit.dart';
@@ -17,16 +18,19 @@ class OrdersView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: BlocProvider(
-        create: (context) => OrdersCubit(),
+        create: (context) => OrdersCubit()..getOrders(),
         child: BlocBuilder<OrdersCubit, OrdersState>(
           builder: (context, state) {
             final cubit = OrdersCubit.get(context);
+            if(state is OrdersLoading)
+              return Scaffold(
+                body: LoadingIndicator(),
+              );
             return Scaffold(
                 appBar: AppBar(title: Text("orders.appBar_title".tr())),
                 body: SingleChildScrollView(
                   child: Padding(
-                    padding:
-                        const EdgeInsets.only(top: 40, right: 16, left: 16),
+                    padding: EdgeInsets.only(top: 40, right: 16, left: 16),
                     child: Column(
                       children: [
                         ToggleSwitch(
@@ -34,7 +38,7 @@ class OrdersView extends StatelessWidget {
                           cornerRadius: 20.0,
                           minHeight: 46,
                           fontSize: 18,
-                          activeBgColors: const [
+                          activeBgColors: [
                             [AppColors.redColor],
                             [AppColors.redColor]
                           ],
@@ -43,13 +47,13 @@ class OrdersView extends StatelessWidget {
                           inactiveBgColor: AppColors.redColor.withOpacity(0.5),
                           initialLabelIndex: cubit.labelSelect ? 1 : 0,
                           totalSwitches: 2,
-                          labels: const ['Old Orders', 'Recent Orders'],
+                          labels: ['Old Orders', 'Recent Orders'],
                           radiusStyle: true,
                           onToggle: cubit.itemSelection,
                         ),
                         cubit.isSelected == 0
-                            ? const OldOrders()
-                            : const RecentOrders(),
+                            ? OldOrders()
+                            : RecentOrders(),
                       ],
                     ),
                   ),

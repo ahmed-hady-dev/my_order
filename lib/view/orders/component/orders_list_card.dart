@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../model/orders_model.dart';
 
 class OrdersListCard extends StatelessWidget {
-  final List<OrderModel> orderModel;
+  final List<Datum> orderModel;
   final int index;
 
-  const OrdersListCard(
+  OrdersListCard(
       {Key? key, required this.orderModel, required this.index})
       : super(key: key);
 
@@ -22,22 +22,22 @@ class OrdersListCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            orderModel[index].name,
+            orderModel[index].store!.name!,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
           ),
           const SizedBox(height: 4.0),
+          // Text(
+          //   orderModel[index].descount,
+          //   style: const TextStyle(fontSize: 14, color: Colors.black54),
+          // ),
+          // const SizedBox(height: 4.0),
           Text(
-            orderModel[index].descount,
+            "Payment: ${orderModel[index].payment}",
             style: const TextStyle(fontSize: 14, color: Colors.black54),
           ),
-          const SizedBox(height: 4.0),
+          // const SizedBox(height: 4.0),
           Text(
-            "Date: ${orderModel[index].date}",
-            style: const TextStyle(fontSize: 14, color: Colors.black54),
-          ),
-          const SizedBox(height: 4.0),
-          Text(
-            "Address: ${orderModel[index].address}",
+            "State: ${orderModel[index].state}",
             style: const TextStyle(fontSize: 14, color: Colors.black54),
           ),
           Padding(
@@ -45,7 +45,7 @@ class OrdersListCard extends StatelessWidget {
             child: Align(
               alignment: Alignment.center,
               child: Text(
-                "Total: ${orderModel[index].totalPrice}",
+                "Total: ${orderModel[index].total!}",
                 style: const TextStyle(fontSize: 18, color: Colors.black),
               ),
             ),
