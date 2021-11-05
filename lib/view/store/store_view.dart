@@ -8,7 +8,6 @@ import 'component/food_image.dart';
 import 'component/main_header.dart';
 import 'component/offer_button.dart';
 import 'controller/restaurant_cubit.dart';
-import 'model/label_text_list.dart';
 
 class StoreView extends StatefulWidget {
   final String image;
@@ -19,6 +18,7 @@ class StoreView extends StatefulWidget {
   final double deliveryFees;
   final String openAt;
   final String closeAt;
+  final int reviewsNumber;
   const StoreView(
       {Key? key,
       required this.name,
@@ -27,7 +27,9 @@ class StoreView extends StatefulWidget {
       required this.description,
       required this.openAt,
       required this.closeAt,
-      required this.deliveryFees,required this.storeId})
+      required this.deliveryFees,
+      required this.storeId,
+      required this.reviewsNumber})
       : super(key: key);
 
   @override
@@ -35,18 +37,21 @@ class StoreView extends StatefulWidget {
 }
 
 class _StoreViewState extends State<StoreView> {
-
   final cubit = RestaurantCubit();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: BlocProvider(
-        create: (context) => cubit..getItems(widget.storeId),
+        create: (context) => cubit
+          ..getItems(widget.storeId)
+          ..getReviewByStoreId(storeId: widget.storeId),
         child: BlocBuilder<RestaurantCubit, RestaurantState>(
           builder: (context, state) {
-            if(state is RestaurantLoading)
-              return Scaffold(body: LoadingIndicator(),);
+            if (cubit.storeItemsModel == null)
+              return Scaffold(
+                body: LoadingIndicator(),
+              );
             final data = cubit.storeItemsModel!.data!;
             return DefaultTabController(
               length: data.length,
@@ -59,6 +64,9 @@ class _StoreViewState extends State<StoreView> {
                     FoodImage(image: widget.image),
                     const SizedBox(height: 24.0),
                     MainHeader(
+                        cubit: cubit,
+                        reviewsNumber: widget.reviewsNumber,
+                        storeId: widget.storeId,
                         name: widget.name,
                         rate: widget.rate,
                         description: widget.description,
@@ -70,7 +78,9 @@ class _StoreViewState extends State<StoreView> {
                     FoodCategoryTabBar(list: data),
                     Flexible(
                       child: TabBarView(
-                        children: data.map((e) => FoodCategoryListView(items: e.items!)).toList(),
+                        children: data
+                            .map((e) => FoodCategoryListView(items: e.items!))
+                            .toList(),
                       ),
                     ),
                   ],

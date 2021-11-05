@@ -30,7 +30,8 @@ class AllStores extends StatelessWidget {
                   MagicRouter.pop();
                   MagicRouter.navigateTo(
                     StoreView(
-                      storeId: storeModel!.data!.id!,
+                      reviewsNumber: storeModel!.data!.reviewsNumber!,
+                      storeId: storeModel.data!.id!,
                       name: storeModel.data!.name.toString(),
                       image: storeModel.data!.image.toString(),
                       rate: double.tryParse(storeModel.data!.rate!)!,

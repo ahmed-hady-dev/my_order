@@ -7,8 +7,6 @@ import 'core/blocObserver/bloc_observer.dart';
 import 'core/dioHelper/dio_helper.dart';
 import 'core/router/router.dart';
 import 'core/theme/theme.dart';
-import 'view/order/controller/order_cubit.dart';
-import 'view/orders/controller/orders_cubit.dart';
 import 'view/splash/splash_view.dart';
 
 late Widget initialScreen;
@@ -35,22 +33,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => OrdersCubit()),
-        BlocProvider(create: (context) => OrderCubit()),
-      ],
-      child: MaterialApp(
-        title: 'My Order',
-        debugShowCheckedModeBanner: false,
-        navigatorKey: navigatorKey,
-        onGenerateRoute: onGenerateRoute,
-        theme: theme(context),
-        locale: context.locale,
-        supportedLocales: context.supportedLocales,
-        localizationsDelegates: context.localizationDelegates,
-        home: const SplashView(),
-      ),
+    return MaterialApp(
+      title: 'My Order',
+      debugShowCheckedModeBanner: false,
+      navigatorKey: navigatorKey,
+      onGenerateRoute: onGenerateRoute,
+      theme: theme(context),
+      locale: context.locale,
+      supportedLocales: context.supportedLocales,
+      localizationsDelegates: context.localizationDelegates,
+      home: const SplashView(),
     );
   }
 }

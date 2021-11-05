@@ -16,42 +16,46 @@ class OrdersView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: BlocBuilder<OrdersCubit, OrdersState>(
-        builder: (context, state) {
-          final cubit = OrdersCubit.get(context);
-          return Scaffold(
-              appBar: AppBar(title: Text("orders.appBar_title".tr())),
-              body: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 40, right: 16, left: 16),
-                  child: Column(
-                    children: [
-                      ToggleSwitch(
-                        minWidth: double.infinity,
-                        cornerRadius: 20.0,
-                        minHeight: 46,
-                        fontSize: 18,
-                        activeBgColors: const [
-                          [AppColors.redColor],
-                          [AppColors.redColor]
-                        ],
-                        activeFgColor: Colors.white,
-                        inactiveFgColor: Colors.white,
-                        inactiveBgColor: AppColors.redColor.withOpacity(0.5),
-                        initialLabelIndex: cubit.labelSelect ? 1 : 0,
-                        totalSwitches: 2,
-                        labels: const ['Old Orders', 'Recent Orders'],
-                        radiusStyle: true,
-                        onToggle: cubit.itemSelection,
-                      ),
-                      cubit.isSelected == 0
-                          ? const OldOrders()
-                          : const RecentOrders(),
-                    ],
+      child: BlocProvider(
+        create: (context) => OrdersCubit(),
+        child: BlocBuilder<OrdersCubit, OrdersState>(
+          builder: (context, state) {
+            final cubit = OrdersCubit.get(context);
+            return Scaffold(
+                appBar: AppBar(title: Text("orders.appBar_title".tr())),
+                body: SingleChildScrollView(
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(top: 40, right: 16, left: 16),
+                    child: Column(
+                      children: [
+                        ToggleSwitch(
+                          minWidth: double.infinity,
+                          cornerRadius: 20.0,
+                          minHeight: 46,
+                          fontSize: 18,
+                          activeBgColors: const [
+                            [AppColors.redColor],
+                            [AppColors.redColor]
+                          ],
+                          activeFgColor: Colors.white,
+                          inactiveFgColor: Colors.white,
+                          inactiveBgColor: AppColors.redColor.withOpacity(0.5),
+                          initialLabelIndex: cubit.labelSelect ? 1 : 0,
+                          totalSwitches: 2,
+                          labels: const ['Old Orders', 'Recent Orders'],
+                          radiusStyle: true,
+                          onToggle: cubit.itemSelection,
+                        ),
+                        cubit.isSelected == 0
+                            ? const OldOrders()
+                            : const RecentOrders(),
+                      ],
+                    ),
                   ),
-                ),
-              ));
-        },
+                ));
+          },
+        ),
       ),
     );
   }

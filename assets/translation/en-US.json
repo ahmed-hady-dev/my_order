@@ -136,7 +136,9 @@
     "delivery_time": "Delivery time",
     "quality_of_food": "Quality of food",
     "rating_and_reviews": "Rating& Reviews",
-    "read_more_reviews": "Read more reviews"
+    "read_more_reviews": "Read more reviews",
+    "based": "Based on ",
+    "review": "review"
   },
   "offers": {
     "appBar_title": "Offers",

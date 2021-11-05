@@ -28,57 +28,60 @@ class OrderView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: BlocBuilder<OrderCubit, OrderState>(
-        builder: (context, state) {
-          final cubit = OrderCubit.get(context);
-          return Scaffold(
-            appBar: AppBar(),
-            body: ListView(
-              children: <Widget>[
-                FoodImage(image: image),
-                const SizedBox(height: 24.0),
-                OrderMainHeader(
-                    name: name,
-                    description: description,
-                    orderCount: cubit.orderCount,
-                    price: price),
-                ChoicesCard(
-                    headerText: "order.choose_size".tr(),
-                    isSubText: false,
-                    list: sizeChoicesModel),
-                const SizedBox(height: 12.0),
-                ChoicesCard(
-                    headerText: "order.extras".tr(),
-                    isSubText: true,
-                    subText: "order.Optional",
-                    list: extrasChoicesModel),
-                const SizedBox(height: 12.0),
-                SectionHeader(
-                    headerText: "order.add_notes".tr(),
-                    buttonText: '',
-                    showButton: false,
-                    onPressed: () {}),
-                Container(
-                  height: 66.0,
-                  margin: const EdgeInsets.symmetric(
-                      vertical: 8.0, horizontal: 16.0),
-                  child: TextField(
-                    autofocus: false,
-                    expands: true,
-                    maxLines: null,
-                    keyboardType: TextInputType.multiline,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      isCollapsed: true,
-                      hintText: "order.write".tr(),
+      child: BlocProvider(
+        create: (context) => OrderCubit(),
+        child: BlocBuilder<OrderCubit, OrderState>(
+          builder: (context, state) {
+            final cubit = OrderCubit.get(context);
+            return Scaffold(
+              appBar: AppBar(),
+              body: ListView(
+                children: <Widget>[
+                  FoodImage(image: image),
+                  const SizedBox(height: 24.0),
+                  OrderMainHeader(
+                      name: name,
+                      description: description,
+                      orderCount: cubit.orderCount,
+                      price: price),
+                  ChoicesCard(
+                      headerText: "order.choose_size".tr(),
+                      isSubText: false,
+                      list: sizeChoicesModel),
+                  const SizedBox(height: 12.0),
+                  ChoicesCard(
+                      headerText: "order.extras".tr(),
+                      isSubText: true,
+                      subText: "order.Optional",
+                      list: extrasChoicesModel),
+                  const SizedBox(height: 12.0),
+                  SectionHeader(
+                      headerText: "order.add_notes".tr(),
+                      buttonText: '',
+                      showButton: false,
+                      onPressed: () {}),
+                  Container(
+                    height: 66.0,
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 8.0, horizontal: 16.0),
+                    child: TextField(
+                      autofocus: false,
+                      expands: true,
+                      maxLines: null,
+                      keyboardType: TextInputType.multiline,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        isCollapsed: true,
+                        hintText: "order.write".tr(),
+                      ),
                     ),
                   ),
-                ),
-                const AddToCartButton(),
-              ],
-            ),
-          );
-        },
+                  const AddToCartButton(),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/restaurant_info/restaurant_info_view.dart';
 import 'package:my_order/view/reviews/reviews_view.dart';
+import 'package:my_order/view/store/controller/restaurant_cubit.dart';
 import 'package:my_order/widgets/clickable_small_text.dart';
 import 'package:my_order/widgets/custom_vertical_divider.dart';
 import 'package:my_order/widgets/small_grey_text.dart';
@@ -19,7 +20,10 @@ class MainHeader extends StatelessWidget {
       required this.description,
       required this.openAt,
       required this.closeAt,
-      required this.deliveryFees})
+      required this.deliveryFees,
+      required this.storeId,
+      required this.reviewsNumber,
+      required this.cubit})
       : super(key: key);
 
   final String name;
@@ -28,6 +32,9 @@ class MainHeader extends StatelessWidget {
   final double deliveryFees;
   final String openAt;
   final String closeAt;
+  final int storeId;
+  final int reviewsNumber;
+  final RestaurantCubit cubit;
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +103,11 @@ class MainHeader extends StatelessWidget {
               const CustomVerticalDivider(),
               ClickableSmallText(
                   text: "restaurant.reviews".tr(),
-                  onTap: () => MagicRouter.navigateTo(const ReviewsView())),
+                  onTap: () => MagicRouter.navigateTo(ReviewsView(
+                        rate: rate,
+                        reviewsNumber: reviewsNumber,
+                        cubit: cubit,
+                      ))),
             ],
           )
         ],

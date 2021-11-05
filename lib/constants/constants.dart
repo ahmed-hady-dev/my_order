@@ -11,6 +11,7 @@ const String storeCategories = '/client/storeCategories';
 const String storeSubCategories = '/client/storeSubCategories';
 const String storesOfCategory = '/client/stores/category/'; //بتاخد id
 const String store = '/client/stores/'; //بتاخد id
+const String storeReview = '/client/reviews/store/'; //بتاخد id
 const String popularBrandsNearYou = '/client/stores/popular/nearYou';
 const String popularFood = '/client/items/popular';
 const String popularFoodItem = '/client/items/'; //بتاخد id

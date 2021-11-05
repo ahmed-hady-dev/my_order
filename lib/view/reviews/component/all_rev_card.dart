@@ -39,7 +39,10 @@ class AllRevCard extends StatelessWidget {
               Text(userName,
                   style: const TextStyle(fontSize: 18, color: Colors.black54)),
               const SizedBox(height: 8.0),
-              Text(reviewText, style: const TextStyle(color: Colors.black)),
+              reviewText == 'null'
+                  ? const SizedBox()
+                  : Text(reviewText,
+                      style: const TextStyle(color: Colors.black)),
             ],
           ),
           StarsBar(stars: stars),

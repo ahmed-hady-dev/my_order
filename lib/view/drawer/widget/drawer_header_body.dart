@@ -2,12 +2,10 @@
 
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_order/core/cacheHelper/cache_helper.dart';
 import 'package:my_order/view/drawer/widget/user_avatar.dart';
 import '../../login/login_view.dart';
-import '../../order/controller/order_cubit.dart';
 import '../../../core/router/router.dart';
 import '../../cart/cart_view.dart';
 import '../../settings/settings_view.dart';
@@ -24,10 +22,7 @@ class DrawerHeaderBody extends StatelessWidget {
         IconButton(
           onPressed: () {
             MagicRouter.pop();
-            MagicRouter.navigateTo(BlocProvider.value(
-              value: OrderCubit.get(context),
-              child: const CartView(),
-            ));
+            MagicRouter.navigateTo(const CartView());
           },
           icon:
               const FaIcon(FontAwesomeIcons.shoppingCart, color: Colors.white),

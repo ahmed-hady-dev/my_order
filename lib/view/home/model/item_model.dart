@@ -379,17 +379,17 @@ class ItemModelData {
     if (sizes != null) {
       final v = sizes;
       final arr0 = [];
-      v!.forEach((v) {
+      for (var v in v!) {
         arr0.add(v!.toJson());
-      });
+      }
       data['sizes'] = arr0;
     }
     if (extras != null) {
       final v = extras;
       final arr0 = [];
-      v!.forEach((v) {
+      for (var v in v!) {
         arr0.add(v!.toJson());
-      });
+      }
       data['extras'] = arr0;
     }
     if (itemCategory != null) {
@@ -471,9 +471,7 @@ class ItemModel {
     final data = <String, dynamic>{};
     data['status'] = status;
     data['message'] = message;
-    if (data != null) {
-      data['data'] = this.data!.toJson();
-    }
+    data['data'] = this.data!.toJson();
     return data;
   }
 }

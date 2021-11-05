@@ -50,7 +50,7 @@ class SearchCubit extends Cubit<SearchState> {
 //===============================================================
   Future<StoreModel?> getStore({required String storeId}) async {
     emit(GetStoreLoading());
-    final response = await DioHelper.getDataByToken(
+    final response = await DioHelper.getData(
       url: store + storeId,
       query: {
         'lang': MagicRouter.currentContext!.locale.languageCode == 'en'

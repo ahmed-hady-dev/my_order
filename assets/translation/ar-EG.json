@@ -136,7 +136,9 @@
     "delivery_time": "وقت التوصيل",
     "quality_of_food": "جودة الأكل",
     "rating_and_reviews": "التقييم و المراجعة",
-    "read_more_reviews": "مزيد من التقييمات"
+    "read_more_reviews": "مزيد من التقييمات",
+    "based": "أعتمادا على ",
+    "review": "تقييم"
   },
   "offers": {
     "appBar_title": "العروض",

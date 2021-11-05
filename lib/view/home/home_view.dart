@@ -7,7 +7,6 @@ import 'package:my_order/view/drawer/drawer.dart';
 import 'package:my_order/view/home/component/item_card_shimmer.dart';
 import 'package:my_order/view/home/component/popular_brands_card_shimmer.dart';
 import 'package:my_order/view/home/controller/home_cubit.dart';
-import 'package:my_order/view/home/model/food_card_model.dart';
 import 'package:my_order/view/home/widgets/section_header.dart';
 import 'package:my_order/widgets/no_result_widget.dart';
 import 'component/buttons_shimmer.dart';

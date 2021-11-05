@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:my_order/view/store/model/items_model.dart';
 import '../../../core/router/router.dart';
 import '../../order/order_view.dart';
-import '../model/food_category_model.dart';
 import '../widgets/food_category_card.dart';
 
 class FoodCategoryListView extends StatelessWidget {
-
   final List<Item> items;
   const FoodCategoryListView({
     required this.items,
