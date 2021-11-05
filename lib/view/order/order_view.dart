@@ -1,3 +1,6 @@
+// ignore_for_file: implementation_imports
+
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../home/widgets/section_header.dart';
@@ -40,18 +43,18 @@ class OrderView extends StatelessWidget {
                     orderCount: cubit.orderCount,
                     price: price),
                 ChoicesCard(
-                    headerText: 'Choose Size',
+                    headerText: "order.choose_size".tr(),
                     isSubText: false,
                     list: sizeChoicesModel),
                 const SizedBox(height: 12.0),
                 ChoicesCard(
-                    headerText: 'Extras',
+                    headerText: "order.extras".tr(),
                     isSubText: true,
-                    subText: '(Optional)',
+                    subText: "order.Optional",
                     list: extrasChoicesModel),
                 const SizedBox(height: 12.0),
                 SectionHeader(
-                    headerText: 'Add notes ...',
+                    headerText: "order.add_notes".tr(),
                     buttonText: '',
                     showButton: false,
                     onPressed: () {}),
@@ -59,16 +62,17 @@ class OrderView extends StatelessWidget {
                   height: 66.0,
                   margin: const EdgeInsets.symmetric(
                       vertical: 8.0, horizontal: 16.0),
-                  child: const TextField(
-                      autofocus: false,
-                      expands: true,
-                      maxLines: null,
-                      keyboardType: TextInputType.multiline,
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          isCollapsed: true,
-                          hintText:
-                              'Write any special things you want to do.')),
+                  child: TextField(
+                    autofocus: false,
+                    expands: true,
+                    maxLines: null,
+                    keyboardType: TextInputType.multiline,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      isCollapsed: true,
+                      hintText: "order.write".tr(),
+                    ),
+                  ),
                 ),
                 const AddToCartButton(),
               ],

@@ -30,6 +30,28 @@ class GetPopularBrandsSuccess extends HomeState {
 class GetPopularBrandsError extends HomeState {}
 
 //===============================================================
+class GetPopularFoodLoading extends HomeState {}
+
+class GetPopularFoodSuccess extends HomeState {
+  final PopularFoodModel popularFoodModel;
+
+  GetPopularFoodSuccess({required this.popularFoodModel});
+}
+
+class GetPopularFoodError extends HomeState {}
+
+//===============================================================
+class GetItemLoading extends HomeState {}
+
+class GetItemSuccess extends HomeState {
+  final ItemModel itemModel;
+
+  GetItemSuccess({required this.itemModel});
+}
+
+class GetItemError extends HomeState {}
+
+//===============================================================
 class LogoutLoadingState extends HomeState {}
 
 class LogoutErrorState extends HomeState {}

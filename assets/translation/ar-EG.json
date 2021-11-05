@@ -44,7 +44,8 @@
     "popular_food": "الطعام المنتشر",
     "view_more": "المزيد",
     "brands": "العلامات التجارية الشهيرة بالقرب منك",
-    "special_offers": "عروض خاصه"
+    "special_offers": "عروض خاصه",
+    "delivery": "التوصيل :"
   },
   "food": {
     "all_stores": "جميع المتاجر",
@@ -57,10 +58,16 @@
     "close_at": "يغلق",
     "open_at": "يفتح",
     "delivery": "رسوم التوصيل :",
-    "egp": "جنيه"
+    "egp": "جنيه",
+    "price": "السعر : "
   },
   "order": {
-    "cart_button_title": "إضافة إلى العربة"
+    "cart_button_title": "إضافة إلى العربة",
+    "add_notes": "إضافة ملاحظات ...",
+    "choose_size": "اختر الحجم",
+    "extras": "إضافات",
+    "write": "اكتب أي أشياء خاصة تريد القيام بها.",
+    "Optional": "(اختياري)"
   },
   "checkout": {
     "appBar_title": "الدفع",

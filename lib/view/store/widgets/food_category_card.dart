@@ -73,7 +73,12 @@ class FoodCategoryCard extends StatelessWidget {
                       padding: const EdgeInsetsDirectional.only(
                           start: 8.0, end: 8.0),
                       child: PriceText(
-                          price: 'Price : EGP $price', fontSize: 14.0),
+                        price: "restaurant.price".tr() +
+                            "restaurant.egp".tr() +
+                            price.toString(),
+                        // price: 'Price : EGP $price',
+                        fontSize: 14.0,
+                      ),
                     ),
                   ],
                 ),

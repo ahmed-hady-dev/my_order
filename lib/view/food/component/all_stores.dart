@@ -25,7 +25,7 @@ class AllStores extends StatelessWidget {
           return InkWell(
             onTap: () {
               loadingDialog(context);
-              cubit.getStore(storeId: stores[index]!.id.toString()).then(
+              cubit.getStoreById(storeId: stores[index]!.id.toString()).then(
                 (storeModel) {
                   MagicRouter.pop();
                   MagicRouter.navigateTo(

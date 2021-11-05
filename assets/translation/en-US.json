@@ -44,7 +44,8 @@
     "popular_food": "Popular Food",
     "view_more": "View more",
     "brands": "Popular brands near you",
-    "special_offers": "Special Offers"
+    "special_offers": "Special Offers",
+    "delivery": "Delivery :"
   },
   "food": {
     "all_stores": "All stores",
@@ -57,10 +58,16 @@
     "close_at": "Close at",
     "open_at": "Open at",
     "delivery": "Delivery fees :",
-    "egp": "EGP"
+    "egp": "EGP",
+    "price": "Price : "
   },
   "order": {
-    "cart_button_title": "Add to cart"
+    "cart_button_title": "Add to cart",
+    "add_notes": "Add notes ...",
+    "choose_size": "Choose Size",
+    "extras": "Extras",
+    "write": "Write any special things you want to do.",
+    "Optional": "(Optional)"
   },
   "checkout": {
     "appBar_title": "Check out",

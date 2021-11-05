@@ -10,8 +10,10 @@ import 'package:my_order/core/dioHelper/dio_helper.dart';
 import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/food/model/store_model.dart';
 import 'package:my_order/view/food/model/store_model_of_category.dart';
+import 'package:my_order/view/home/model/item_model.dart';
 import 'package:my_order/view/home/model/logout_model.dart';
 import 'package:my_order/view/home/model/popular_brands_model.dart';
+import 'package:my_order/view/home/model/popular_food_model.dart';
 import 'package:my_order/view/home/model/store_categories_model.dart';
 import 'package:my_order/view/home/model/store_sub_categories_model.dart';
 
@@ -26,6 +28,8 @@ class HomeCubit extends Cubit<HomeState> {
   StoreOfCategoryModel? storeOfCategoryModel;
   StoreModel? storeModel;
   PopularBrandsModel? popularBrandsModel;
+  PopularFoodModel? popularFoodModel;
+  ItemModel? itemModel;
   LogoutModel? logoutModel;
   int carouselIndex = 0;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
@@ -89,10 +93,36 @@ class HomeCubit extends Cubit<HomeState> {
       emit(GetPopularBrandsError());
     }
   }
+
+//===============================================================
+  Future<void> getPopularFood() async {
+    emit(GetPopularFoodLoading());
+    //TODO: change the getDataByToken to getData here
+    final response = await DioHelper.getDataByToken(
+      url: popularFood,
+      query: {
+        'lang': MagicRouter.currentContext!.locale.languageCode == 'en'
+            ? 'en'
+            : 'ar'
+      },
+    );
+    try {
+      popularFoodModel = PopularFoodModel.fromJson(response.data);
+      emit(GetPopularFoodSuccess(popularFoodModel: popularFoodModel!));
+    } on DioError catch (e) {
+      debugPrint(e.error.toString());
+      emit(GetPopularFoodError());
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      emit(GetPopularFoodError());
+    }
+  }
 //===============================================================
 
   Future<void> getStoreOfCategory({required String categoryId}) async {
     emit(GetStoreOfCategoryLoading());
+    //TODO: change the getDataByToken to getData here
     final response = await DioHelper.getDataByToken(
       url: storesOfCategory + categoryId,
       query: {
@@ -117,8 +147,9 @@ class HomeCubit extends Cubit<HomeState> {
 
 //===============================================================
 
-  Future<StoreModel?> getStore({required String storeId}) async {
+  Future<StoreModel?> getStoreById({required String storeId}) async {
     emit(GetStoreLoading());
+    //TODO: change the getDataByToken to getData here
     final response = await DioHelper.getDataByToken(
       url: store + storeId,
       query: {
@@ -138,6 +169,33 @@ class HomeCubit extends Cubit<HomeState> {
       debugPrint(e.toString());
       debugPrint(s.toString());
       emit(GetStoreError());
+    }
+  }
+
+//===============================================================
+
+  Future<ItemModel?> getItemById({required String itemId}) async {
+    emit(GetItemLoading());
+    //TODO: change the getDataByToken to getData here
+    final response = await DioHelper.getDataByToken(
+      url: popularFoodItem + itemId,
+      query: {
+        'lang': MagicRouter.currentContext!.locale.languageCode == 'en'
+            ? 'en'
+            : 'ar'
+      },
+    );
+    try {
+      itemModel = ItemModel.fromJson(response.data);
+      emit(GetItemSuccess(itemModel: itemModel!));
+      return itemModel!;
+    } on DioError catch (e) {
+      debugPrint(e.error.toString());
+      emit(GetItemError());
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      emit(GetItemError());
     }
   }
 

@@ -3,19 +3,17 @@
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/drawer/drawer.dart';
+import 'package:my_order/view/home/component/item_card_shimmer.dart';
 import 'package:my_order/view/home/component/popular_brands_card_shimmer.dart';
 import 'package:my_order/view/home/controller/home_cubit.dart';
 import 'package:my_order/view/home/model/food_card_model.dart';
 import 'package:my_order/view/home/widgets/section_header.dart';
-import 'package:my_order/view/search/search_view.dart';
-import 'package:my_order/widgets/drawer_icon.dart';
 import 'package:my_order/widgets/no_result_widget.dart';
 import 'component/buttons_shimmer.dart';
-import 'component/home_appbar_title.dart';
+import 'component/home_appbar.dart';
 import 'component/category_buttons_listview.dart';
-import 'component/food_item_card.dart';
+import 'component/item_card.dart';
 import 'component/popular_brand_near_you_list_view.dart';
 
 class HomeView extends StatelessWidget {
@@ -27,30 +25,16 @@ class HomeView extends StatelessWidget {
       child: BlocProvider(
         create: (context) => HomeCubit()
           ..getStoreCategories()
-          ..getPopularBrands(),
+          ..getPopularBrands()
+          ..getPopularFood(),
         child: BlocConsumer<HomeCubit, HomeState>(
-          listener: (context, state) {
-            if (state is GetStoreCategoriesLoading) {
-              debugPrint('loading.........................');
-            }
-          },
+          listener: (context, state) {},
           builder: (context, state) {
             final cubit = HomeCubit.get(context);
             return Scaffold(
               key: cubit.scaffoldKey,
               drawer: const NavigationDrawer(),
-              appBar: AppBar(
-                centerTitle: false,
-                leadingWidth: 40.0,
-                titleSpacing: 0.0,
-                leading: DrawerIcon(
-                    onPressed: () =>
-                        cubit.scaffoldKey.currentState!.openDrawer()),
-                title: HomeAppBarTitle(onPressed: () {
-                  MagicRouter.navigateTo(const SearchView());
-                }),
-                // actions: const [FilterButton()],
-              ),
+              appBar: homeAppBar(cubit),
               body: ListView(
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
@@ -65,7 +49,9 @@ class HomeView extends StatelessWidget {
                     headerText: "home.popular_food".tr(),
                     onPressed: () {},
                   ),
-                  FoodItemCard(foodCardModel: foodCardModel),
+                  cubit.popularFoodModel == null
+                      ? const ItemCardShimmer()
+                      : ItemCard(cubit: cubit),
                   SectionHeader(
                     buttonText: "home.view_more".tr(),
                     headerText: "home.brands".tr(),
@@ -85,7 +71,7 @@ class HomeView extends StatelessWidget {
                       onPressed: () {},
                     ),
                   ),
-                  FoodItemCard(foodCardModel: foodCardModel),
+                  // ItemCard(foodCardModel: foodCardModel),
                 ],
               ),
             );

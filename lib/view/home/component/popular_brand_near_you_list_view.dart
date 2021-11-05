@@ -12,7 +12,7 @@ class PopularBrandNearYouListView extends StatelessWidget {
   Widget build(BuildContext context) {
     final stores = cubit.popularBrandsModel!.data;
     return SizedBox(
-      height: 136.0,
+      height: 140.0,
       child: ListView.builder(
         shrinkWrap: true,
         addAutomaticKeepAlives: false,
@@ -25,7 +25,7 @@ class PopularBrandNearYouListView extends StatelessWidget {
           return InkWell(
             onTap: () {
               loadingDialog(context);
-              cubit.getStore(storeId: stores[index]!.id.toString()).then(
+              cubit.getStoreById(storeId: stores[index]!.id.toString()).then(
                 (storeModel) {
                   MagicRouter.pop();
                   MagicRouter.navigateTo(
