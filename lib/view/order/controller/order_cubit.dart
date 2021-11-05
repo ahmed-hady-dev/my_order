@@ -30,7 +30,7 @@ class OrderCubit extends Cubit<OrderState> {
   }
 
   Future<void> addToCart() async {
-    if(storeId == null) return;
+    if(sizeId == null) return;
     emit(OrderButtonLoading());
     final body = {
       'order[0][item_id]': itemId,
@@ -41,8 +41,8 @@ class OrderCubit extends Cubit<OrderState> {
       'order[0][item_size_id]': sizeId
     };
     final response = await DioHelper.postData(url: "/client/orders/addToCart", data: FormData.fromMap(body));
-    if(response.data['message'] == 'success')
-      Fluttertoast.showToast(msg: response.data['message']);
+    print(response.data);
+    Fluttertoast.showToast(msg: response.data['message']);
     emit(OrderInitial());
   }
 

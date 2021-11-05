@@ -24,10 +24,7 @@ class DrawerHeaderBody extends StatelessWidget {
         IconButton(
           onPressed: () {
             MagicRouter.pop();
-            MagicRouter.navigateTo(BlocProvider.value(
-              value: OrderCubit.get(context),
-              child: const CartView(),
-            ));
+            MagicRouter.navigateTo(CartView());
           },
           icon:
               const FaIcon(FontAwesomeIcons.shoppingCart, color: Colors.white),

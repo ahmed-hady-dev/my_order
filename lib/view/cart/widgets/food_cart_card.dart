@@ -2,6 +2,7 @@
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:my_order/view/cart/component/cart_order_counter_row.dart';
+import 'package:my_order/view/cart/model/cart.dart';
 import 'package:my_order/widgets/description_text.dart';
 import 'package:my_order/widgets/price_text.dart';
 import 'package:my_order/widgets/restaurant_name.dart';
@@ -12,6 +13,8 @@ class FoodCartCard extends StatelessWidget {
   final String name;
   final double price;
   final int orderCount;
+  final Item item;
+  final int storeId;
   final String image;
   final String description;
   final VoidCallback onTap;
@@ -23,7 +26,7 @@ class FoodCartCard extends StatelessWidget {
       required this.image,
       required this.description,
       required this.onTap,
-      required this.orderCount})
+      required this.orderCount, required this.item, required this.storeId})
       : super(key: key);
 
   @override
@@ -78,7 +81,7 @@ class FoodCartCard extends StatelessWidget {
                           verticalPadding: 0.0,
                         ),
                         const Spacer(),
-                        CartOrderCounterRow(orderCount: orderCount),
+                        CartOrderCounterRow(storeId: storeId,item: item,orderCount: orderCount),
                         const SizedBox(height: 8.0)
                       ],
                     ),

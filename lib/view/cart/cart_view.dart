@@ -3,39 +3,65 @@
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_order/core/cacheHelper/cache_helper.dart';
+import 'package:my_order/view/cart/states.dart';
 import 'package:my_order/view/cart/widgets/food_cart_card.dart';
 import 'package:my_order/view/order/controller/order_cubit.dart';
 import 'package:my_order/view/store/model/food_category_model.dart';
+import 'package:my_order/widgets/loading_indicator.dart';
 
 import 'component/buttons_row.dart';
 import 'component/order_details_card.dart';
+import 'cubit.dart';
 
 class CartView extends StatelessWidget {
-  const CartView({Key? key}) : super(key: key);
-
+  CartView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(title: Text("cart.appBar_title".tr())),
-        body: Center(
-          child: ListView(
-            children: [
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: foodCategoryList.length,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) => FoodCartCard(
-                    orderCount: 20,
-                    name: foodCategoryList[index].name,
-                    price: foodCategoryList[index].price,
-                    image: foodCategoryList[index].image,
-                    description: foodCategoryList[index].description,
-                    onTap: () {}),
-              ),
-              OrderDetailsCard(totalPrice: 100),
-              ButtonsRow(),
+    return BlocProvider(
+      create: (context) => CartCubit()..getDetails(),
+      child: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text("cart.appBar_title".tr()),
+            actions: [
+              IconButton(onPressed: (){}, icon: Icon(Icons.delete_forever)),
             ],
+          ),
+          body: Center(
+            child: BlocBuilder<CartCubit, CartStates>(
+              builder: (context, state) {
+                if(state is CartLoading)
+                  return LoadingIndicator();
+                final data = CartCubit.of(context).cartModel!.data!;
+                return ListView(
+                  children: [
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: data.items!.length,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        final item = data.items![index];
+                        return FoodCartCard(
+                          item: item,
+                          storeId: data.store!.id!,
+                          orderCount: item.pivot!.quantity!,
+                          name: item.name!,
+                          price: item.pivot!.itemSizeId!.price!.toDouble(),
+                          image: item.image!,
+                          description: item.description!,
+                          onTap: () {
+                            print("remove");
+                          },
+                        );
+                      },
+                    ),
+                    OrderDetailsCard(totalPrice: data.total!.toDouble(), deliveryFee: data.deliveryFees!.toDouble(),),
+                    ButtonsRow(),
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),
