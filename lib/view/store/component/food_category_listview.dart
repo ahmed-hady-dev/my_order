@@ -8,9 +8,10 @@ import '../widgets/food_category_card.dart';
 class FoodCategoryListView extends StatelessWidget {
 
   final List<Item> items;
+  final int storeId;
   const FoodCategoryListView({
     required this.items,
-    Key? key,
+    Key? key, required this.storeId,
   }) : super(key: key);
 
   @override
@@ -27,6 +28,7 @@ class FoodCategoryListView extends StatelessWidget {
           image: item.image!,
           description: item.description!,
           onTap: () => MagicRouter.navigateTo(OrderView(
+            storeId: storeId,
             itemId: item.id!,
             image: item.image!,
             // TODO: Price

@@ -16,33 +16,28 @@ class CartView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: BlocBuilder<OrderCubit, OrderState>(
-        builder: (context, state) {
-          final cubit = OrderCubit.get(context);
-          return Scaffold(
-            appBar: AppBar(title: Text("cart.appBar_title".tr())),
-            body: Center(
-              child: ListView(
-                children: [
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: foodCategoryList.length,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) => FoodCartCard(
-                        orderCount: cubit.orderCount,
-                        name: foodCategoryList[index].name,
-                        price: foodCategoryList[index].price,
-                        image: foodCategoryList[index].image,
-                        description: foodCategoryList[index].description,
-                        onTap: () {}),
-                  ),
-                  OrderDetailsCard(totalPrice: cubit.totalPrice),
-                  const ButtonsRow(),
-                ],
+      child: Scaffold(
+        appBar: AppBar(title: Text("cart.appBar_title".tr())),
+        body: Center(
+          child: ListView(
+            children: [
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: foodCategoryList.length,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) => FoodCartCard(
+                    orderCount: 20,
+                    name: foodCategoryList[index].name,
+                    price: foodCategoryList[index].price,
+                    image: foodCategoryList[index].image,
+                    description: foodCategoryList[index].description,
+                    onTap: () {}),
               ),
-            ),
-          );
-        },
+              OrderDetailsCard(totalPrice: 100),
+              ButtonsRow(),
+            ],
+          ),
+        ),
       ),
     );
   }
