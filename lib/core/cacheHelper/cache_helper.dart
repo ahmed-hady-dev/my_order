@@ -15,6 +15,12 @@ class CacheHelper {
     await _cacheUserModel(userModel);
   }
 
+  static Future<void> cacheUserModel({
+    required UserModel userModel,
+  }) async {
+    await _cacheUserModel(userModel);
+  }
+
   static Future<void> _cacheUserModel(UserModel userModel) async =>
       await _appBox.write('userModel', userModel.toJson());
 

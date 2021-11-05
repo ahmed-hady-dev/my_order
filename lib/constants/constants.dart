@@ -5,6 +5,7 @@ const String signUp = '/client/auth/signUp';
 const String login = '/client/auth/login';
 const String logout = '/client/auth/logout';
 const String update = '/client/update';
+const String userData = '/client/auth/me';
 const String updatePassword = '/client/update/password';
 const String updateImage = '/client/update/image';
 const String storeCategories = '/client/storeCategories';

@@ -9,7 +9,7 @@ import 'package:my_order/view/home/component/popular_brands_card_shimmer.dart';
 import 'package:my_order/view/home/component/special_offer_card.dart';
 import 'package:my_order/view/home/controller/home_cubit.dart';
 import 'package:my_order/view/home/widgets/section_header.dart';
-import 'package:my_order/widgets/no_result_widget.dart';
+import 'package:my_order/widgets/nothing_widget.dart';
 import 'component/buttons_shimmer.dart';
 import 'component/home_appbar.dart';
 import 'component/category_buttons_listview.dart';
@@ -28,8 +28,7 @@ class HomeView extends StatelessWidget {
           ..getPopularBrands()
           ..getPopularFood()
           ..getSpecialOffers(),
-        child: BlocConsumer<HomeCubit, HomeState>(
-          listener: (context, state) {},
+        child: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
             final cubit = HomeCubit.get(context);
             return Scaffold(
@@ -42,8 +41,11 @@ class HomeView extends StatelessWidget {
                 children: [
                   cubit.storeCategoriesModel == null
                       ? const ButtonsShimmer()
-                      : CategoryButtonsListView(
-                          storeCategoriesModel: cubit.storeCategoriesModel!),
+                      : cubit.storeCategoriesModel!.data!.isEmpty
+                          ? NothingWidget(color: Colors.grey.shade300)
+                          : CategoryButtonsListView(
+                              storeCategoriesModel:
+                                  cubit.storeCategoriesModel!),
                   // HomeCarousel(cubit: cubit),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -69,7 +71,7 @@ class HomeView extends StatelessWidget {
                   cubit.popularBrandsModel == null
                       ? const PopularBrandsCardShimmer()
                       : cubit.popularBrandsModel!.data!.isEmpty
-                          ? NoResultsWidget(text: "search.no_results".tr())
+                          ? NothingWidget(color: Colors.grey.shade300)
                           : PopularBrandNearYouListView(cubit: cubit),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -82,7 +84,9 @@ class HomeView extends StatelessWidget {
                   ),
                   cubit.specialOffersModel == null
                       ? const ItemCardShimmer()
-                      : SpecialOfferCard(cubit: cubit),
+                      : cubit.specialOffersModel!.data!.isEmpty
+                          ? NothingWidget(color: Colors.grey.shade300)
+                          : SpecialOfferCard(cubit: cubit),
                   const SizedBox(height: 20.0),
                 ],
               ),

@@ -47,7 +47,8 @@
     "view_more": "المزيد",
     "brands": "العلامات التجارية الشهيرة بالقرب منك",
     "special_offers": "عروض خاصه",
-    "delivery": "التوصيل :"
+    "delivery": "التوصيل :",
+    "nothing": "لا يوجد شيء لعرضه هنا!"
   },
   "food": {
     "all_stores": "جميع المتاجر",
@@ -160,7 +161,11 @@
     "first_name": "الإسم الأول",
     "last_name": "الإسم الأخير",
     "security_information": "معلومات الأمان",
-    "update": "تحديث"
+    "update": "تحديث",
+    "change_area": "تغيير المنطقة",
+    "your_area": "منطقتك : ",
+    "info_updated": "تم تحديث المعلومات بنجاح.",
+    "image_updated": "تم تحديث الصورة بنجاح."
   },
   "filter_result": {
     "search_bar": "بتدور علي إيه ؟"
@@ -211,5 +216,11 @@
     "password_update_success": "تم تحديث كلمة المرور بنجاح",
     "wrong_password": "كلمة المرور خاطئة",
     "some_error": "حدث خطأ ما"
+  },
+  "change_area": {
+    "appBar_title": "تغيير المنطقة",
+    "area": "المنطقة :",
+    "city": "المدينة :",
+    "area_updated": "تم تحديث المنطقة بنجاح."
   }
 }

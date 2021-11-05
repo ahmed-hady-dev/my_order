@@ -39,7 +39,7 @@ class DioHelper {
   }) async {
     dio!.options.headers = {
       "Accept": "application/json",
-      'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9jbGllbnRcL2F1dGhcL3NpZ25VcCIsImlhdCI6MTYzMzgwNTgyMCwibmJmIjoxNjMzODA1ODIwLCJqdGkiOiI3bEI2T0NGVWs1V0hSN0RNIiwic3ViIjoxLCJwcnYiOiI0MWVmYjdiYWQ3ZjZmNjMyZTI0MDViZDNhNzkzYjhhNmJkZWM2Nzc3In0.RM3Q_czSpwqPFzBpVIrscz4msqQecUOfqJ2p1Smy-KI',
+      'Authorization': 'Bearer ${CacheHelper.getUserToken}',
     };
     return await dio!.get(
       url,
@@ -51,7 +51,6 @@ class DioHelper {
   static Future<Response> postData({
     required String url,
     required dynamic data,
-    // required Map<String, dynamic> data,
     Map<String, dynamic>? query,
   }) async {
     dio!.options.headers = {

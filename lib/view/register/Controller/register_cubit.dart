@@ -156,7 +156,6 @@ class RegisterCubit extends Cubit<RegisterState> {
       if (userModel!.accessToken != null)
         CacheHelper.cacheUserInfo(
             token: userModel!.accessToken!.toString(), userModel: userModel!);
-
       emit(RegisterSuccessState(userModel: userModel!));
     } on DioError catch (e) {
       debugPrint(e.error.toString());

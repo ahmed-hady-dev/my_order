@@ -47,7 +47,8 @@
     "view_more": "View more",
     "brands": "Popular brands near you",
     "special_offers": "Special Offers",
-    "delivery": "Delivery :"
+    "delivery": "Delivery :",
+    "nothing": "Nothing to show here!"
   },
   "food": {
     "all_stores": "All stores",
@@ -160,7 +161,11 @@
     "first_name": "First name",
     "last_name": "Last name",
     "security_information": "Security information",
-    "update": "Update"
+    "update": "Update",
+    "change_area": "Change Area",
+    "your_area": "Your area : ",
+    "info_updated": "Info updated Successfully.",
+    "image_updated": "Image updated Successfully."
   },
   "filter_result": {
     "search_bar": "what are you looking for?"
@@ -211,5 +216,11 @@
     "password_update_success": "Password updated successfully",
     "wrong_password": "Wrong password",
     "some_error": "Some error happened"
+  },
+  "change_area": {
+    "appBar_title": "Change Area",
+    "area": "Area :",
+    "city": "City :",
+    "area_updated": "Area updated Successfully."
   }
 }

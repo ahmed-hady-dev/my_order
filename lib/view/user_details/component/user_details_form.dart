@@ -6,6 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/core/cacheHelper/cache_helper.dart';
 import 'package:my_order/view/user_details/controller/user_details_cubit.dart';
 import 'package:my_order/widgets/header_text.dart';
+import 'package:my_order/widgets/indicator_widget.dart';
+import 'package:my_order/widgets/main_button.dart';
 
 class UserDetailsForm extends StatelessWidget {
   const UserDetailsForm({Key? key}) : super(key: key);
@@ -105,45 +107,21 @@ class UserDetailsForm extends StatelessWidget {
                   controller: cubit.phoneController,
                   decoration: InputDecoration(
                       hintText: "user_details.phone_number".tr())),
-              // HeaderText(
-              //   text: "user_details.address".tr(),
-              // ),
-              // TextFormField(
-              //     keyboardType: TextInputType.text,
-              //     controller: cubit.addressController,
-              //     validator: (value) {
-              //       if (value!.isEmpty) {
-              //         return 'address must not be empty';
-              //       } else {
-              //         return null;
-              //       }
-              //     },
-              //     decoration: InputDecoration(
-              //         //TODO: add the user address form api here
-              //         hintText: '15, nour St',
-              //         suffixIcon: IconButton(
-              //             onPressed: () {},
-              //             icon: const FaIcon(
-              //               FontAwesomeIcons.mapMarkerAlt,
-              //               color: AppColors.blackColor,
-              //               size: 20,
-              //             )))),
-              // HeaderText(text: "user_details.password".tr()),
-              // TextFormField(
-              //   keyboardType: TextInputType.visiblePassword,
-              //   controller: cubit.passwordController,
-              //   obscureText: true,
-              //   decoration: InputDecoration(
-              //       hintText: '***********',
-              //       suffixIcon: IconButton(
-              //           onPressed: () {},
-              //           icon: const FaIcon(
-              //             FontAwesomeIcons.solidEdit,
-              //             color: AppColors.blackColor,
-              //             size: 20,
-              //           ))),
-              // ),
-              const SizedBox(height: 24.0)
+              const SizedBox(height: 12.0),
+              state is UserDetailsUpdateLoadingState
+                  ? const IndicatorWidget()
+                  : MainButton(
+                      text: "user_details.edit".tr(),
+                      onPressed: () async {
+                        if (cubit.formKey.currentState!.validate()) {
+                          await cubit.updateUser(
+                              firstName: cubit.firstNameController.text,
+                              lastName: cubit.lastNameController.text,
+                              phone: cubit.phoneController.text,
+                              email: cubit.emailController.text);
+                        }
+                      },
+                    ),
             ],
           ),
         );
