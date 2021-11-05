@@ -40,14 +40,18 @@ class _CartOrderCounterRowState extends State<CartOrderCounterRow> {
             iconSize: 20.0,
             constraints: const BoxConstraints(),
             onPressed: () {
-              counter--;
-              setState(() {});
-              CartCubit.of(context).updateCart(
-                  storeId: widget.storeId,
-                  quantity: counter,
-                  itemId: widget.item.id!,
-                  sizeId: widget.item.pivot!.itemSizeId!.id!,
-                  extraId: widget.item.pivot!.extras != null && widget.item.pivot!.extras!.isNotEmpty ? widget.item.pivot!.extras!.first.id! : null);
+              if(counter == 1){
+                print("remove");
+              }else{
+                counter--;
+                setState(() {});
+                CartCubit.of(context).updateCart(
+                    storeId: widget.storeId,
+                    quantity: counter,
+                    itemId: widget.item.id!,
+                    sizeId: widget.item.pivot!.itemSizeId!.id!,
+                    extraId: widget.item.pivot!.extras != null && widget.item.pivot!.extras!.isNotEmpty ? widget.item.pivot!.extras!.first.id! : null);
+              }
             },
             icon: FontAwesomeIcons.minusCircle),
         SizedBox(
