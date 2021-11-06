@@ -15,7 +15,6 @@ import 'package:my_order/view/home/controller/home_cubit.dart';
 import 'package:my_order/view/home/home_view.dart';
 import 'package:my_order/view/login/login_view.dart';
 import 'package:my_order/view/notifications/notifications_view.dart';
-import 'package:my_order/view/offers/offers_view.dart';
 import 'package:my_order/view/orders/orders_view.dart';
 import 'package:my_order/view/user_details/user_details_view.dart';
 import 'package:my_order/view/vouchers/vouchers_view.dart';
@@ -65,7 +64,8 @@ class DrawerBody extends StatelessWidget {
                 text: "drawer.offers".tr(),
                 onTap: () {
                   MagicRouter.pop();
-                  MagicRouter.navigateAndPopUntilFirstPage(const OffersView());
+
+                  // MagicRouter.navigateAndPopUntilFirstPage(const OffersView());
                 },
               )
             : const SizedBox(),

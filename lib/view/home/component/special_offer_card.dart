@@ -11,7 +11,10 @@ import 'package:my_order/widgets/stars_bar.dart';
 import '../../../core/router/router.dart';
 
 class SpecialOfferCard extends StatelessWidget {
-  const SpecialOfferCard({Key? key, required this.cubit}) : super(key: key);
+  const SpecialOfferCard({
+    Key? key,
+    required this.cubit,
+  }) : super(key: key);
   final HomeCubit cubit;
   @override
   Widget build(BuildContext context) {

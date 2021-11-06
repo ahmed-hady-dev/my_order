@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/view/food/model/store_model.dart';
 import 'package:my_order/view/reviews/widgets/rate_dialog.dart';
-import 'package:my_order/view/store/controller/restaurant_cubit.dart';
+import 'package:my_order/view/store/controller/store_cubit.dart';
 import 'package:my_order/widgets/loading_indicator.dart';
 
 import 'component/all_rev_tile.dart';
@@ -14,7 +14,7 @@ class ReviewsView extends StatelessWidget {
   const ReviewsView(
       {Key? key, required this.cubit, required this.storeModelData})
       : super(key: key);
-  final RestaurantCubit cubit;
+  final StoreCubit cubit;
   final StoreModelData storeModelData;
 
   @override

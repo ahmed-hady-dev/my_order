@@ -6,7 +6,7 @@ import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/food/model/store_model.dart';
 import 'package:my_order/view/restaurant_info/restaurant_info_view.dart';
 import 'package:my_order/view/reviews/reviews_view.dart';
-import 'package:my_order/view/store/controller/restaurant_cubit.dart';
+import 'package:my_order/view/store/controller/store_cubit.dart';
 import 'package:my_order/widgets/clickable_small_text.dart';
 import 'package:my_order/widgets/custom_vertical_divider.dart';
 import 'package:my_order/widgets/small_grey_text.dart';
@@ -14,7 +14,7 @@ import 'package:my_order/widgets/stars_bar.dart';
 import 'package:my_order/widgets/store_time.dart';
 
 class MainHeader extends StatelessWidget {
-  final RestaurantCubit cubit;
+  final StoreCubit cubit;
   final StoreModelData storeModelData;
   const MainHeader(
       {Key? key, required this.cubit, required this.storeModelData})

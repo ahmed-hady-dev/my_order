@@ -8,17 +8,19 @@ import 'package:my_order/constants/constants.dart';
 import 'package:my_order/core/dioHelper/dio_helper.dart';
 import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/store/model/items_model.dart';
+import 'package:my_order/view/store/model/store_offer_model.dart';
 import 'package:my_order/view/store/model/store_review_model.dart';
 
-part 'restaurant_state.dart';
+part 'store_state.dart';
 
-class RestaurantCubit extends Cubit<RestaurantState> {
-  RestaurantCubit() : super(RestaurantInitial());
-  static RestaurantCubit get(context) => BlocProvider.of(context);
+class StoreCubit extends Cubit<StoreState> {
+  StoreCubit() : super(RestaurantInitial());
+  static StoreCubit get(context) => BlocProvider.of(context);
 
 //===============================================================
   StoreItemsModel? storeItemsModel;
   StoreReviewModel? storeReviewModel;
+  StoreOfferModel? storeOfferModel;
 //===============================================================
   Future<void> getItems({required int storeId}) async {
     emit(RestaurantLoading());
@@ -26,6 +28,15 @@ class RestaurantCubit extends Cubit<RestaurantState> {
         url: "/client/itemCategories/store/$storeId");
     storeItemsModel = StoreItemsModel.fromJson(response.data);
     emit(RestaurantInitial());
+  }
+
+  //===============================================================
+
+  Future<void> addReview(int storeId, double rate, String comment) async {
+    final body = {'rate': rate, 'store_id': storeId, 'comment': comment};
+    await DioHelper.postData(
+        url: '/client/reviews', data: FormData.fromMap(body));
+    getReviewByStoreId(storeId: storeId);
   }
 
 //===============================================================
@@ -53,10 +64,27 @@ class RestaurantCubit extends Cubit<RestaurantState> {
     }
   }
 
-  Future<void> addReview(int storeId, double rate, String comment) async {
-    final body = {'rate': rate, 'store_id': storeId, 'comment': comment};
-    await DioHelper.postData(
-        url: '/client/reviews', data: FormData.fromMap(body));
-    getReviewByStoreId(storeId: storeId);
+//===============================================================
+  Future<void> getStoreOfferByStoreId({required int storeId}) async {
+    emit(GetStoreOfferLoading());
+    final response = await DioHelper.getData(
+      url: offerForStore + storeId.toString(),
+      query: {
+        'lang': MagicRouter.currentContext!.locale.languageCode == 'en'
+            ? 'en'
+            : 'ar'
+      },
+    );
+    try {
+      storeOfferModel = StoreOfferModel.fromJson(response.data);
+      emit(GetStoreOfferSuccess(storeOfferModel: storeOfferModel!));
+    } on DioError catch (e) {
+      debugPrint(e.error.toString());
+      emit(GetStoreOfferError());
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      emit(GetStoreOfferError());
+    }
   }
 }

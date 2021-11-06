@@ -18,6 +18,9 @@ class RestaurantName extends StatelessWidget {
           vertical: verticalPadding, horizontal: horizontalPadding),
       child: Text(
         name,
+        maxLines: 2,
+        softWrap: true,
+        overflow: TextOverflow.ellipsis,
         style: const TextStyle(
           fontSize: 16.0,
           fontWeight: FontWeight.bold,

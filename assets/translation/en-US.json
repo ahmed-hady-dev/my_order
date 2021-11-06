@@ -57,7 +57,7 @@
   "restaurant": {
     "info": "Info",
     "reviews": "Reviews",
-    "offer_of_the_restaurant": " Offer of the restaurant",
+    "offer_of_the_restaurant": " Offer of the store",
     "close_at": "Close at",
     "open_at": "Open at",
     "delivery": "Delivery fees :",
@@ -147,7 +147,8 @@
   },
   "offers": {
     "appBar_title": "Offers",
-    "more_details": "More details"
+    "more_details": "More details",
+    "no_offers": "sorry, No offers now!"
   },
   "orders": {
     "appBar_title": "Orders"

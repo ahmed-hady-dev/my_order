@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../../../core/router/router.dart';
-import '../../store/controller/restaurant_cubit.dart';
+import '../../store/controller/store_cubit.dart';
 import '../../../widgets/loading_indicator.dart';
 import '../../../widgets/main_button.dart';
 
-showRateDialog(int storeId, RestaurantCubit cubit) {
+showRateDialog(int storeId, StoreCubit cubit) {
   showGeneralDialog(
     context: MagicRouter.currentContext!,
     pageBuilder: (context, animation, secondaryAnimation) => _Dialog(
@@ -19,7 +19,7 @@ class _Dialog extends StatefulWidget {
   const _Dialog({Key? key, required this.storeId, required this.cubit})
       : super(key: key);
   final int storeId;
-  final RestaurantCubit cubit;
+  final StoreCubit cubit;
   @override
   State<_Dialog> createState() => _DialogState();
 }

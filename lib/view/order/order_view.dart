@@ -72,7 +72,7 @@ class OrderView extends StatelessWidget {
                       : ChoicesCard(
                           headerText: "order.extras".tr(),
                           isSubText: true,
-                          subText: "order.optional",
+                          subText: "order.optional".tr(),
                           isSize: false,
                           list: data.extras!,
                         ),

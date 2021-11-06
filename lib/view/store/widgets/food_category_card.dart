@@ -5,11 +5,9 @@ import 'package:flutter/material.dart';
 import '../../../constants/app_colors.dart';
 import '../../../widgets/description_text.dart';
 import '../../../widgets/restaurant_name.dart';
-import '../../../widgets/price_text.dart';
 
 class FoodCategoryCard extends StatelessWidget {
   final String name;
-  final double price;
   final String image;
   final String description;
   final VoidCallback onTap;
@@ -17,7 +15,6 @@ class FoodCategoryCard extends StatelessWidget {
   const FoodCategoryCard(
       {Key? key,
       required this.name,
-      required this.price,
       required this.image,
       required this.description,
       required this.onTap})
@@ -54,7 +51,7 @@ class FoodCategoryCard extends StatelessWidget {
                           topRight: Radius.circular(20.0),
                           bottomRight: Radius.circular(20.0)),
                   image: DecorationImage(
-                      image: AssetImage(image), fit: BoxFit.cover),
+                      image: NetworkImage(image), fit: BoxFit.cover),
                 ),
               ),
               Expanded(
@@ -68,17 +65,6 @@ class FoodCategoryCard extends StatelessWidget {
                         RestaurantName(name: name),
                         DescriptionText(description: description),
                       ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsetsDirectional.only(
-                          start: 8.0, end: 8.0),
-                      child: PriceText(
-                        price: "restaurant.price".tr() +
-                            "restaurant.egp".tr() +
-                            price.toString(),
-                        // price: 'Price : EGP $price',
-                        fontSize: 14.0,
-                      ),
                     ),
                   ],
                 ),

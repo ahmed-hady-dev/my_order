@@ -203,9 +203,8 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<ItemModel?> getItemById({required String itemId}) async {
     emit(GetItemLoading());
-    //TODO: change the getDataByToken to getData here
-    final response = await DioHelper.getDataByToken(
-      url: popularFoodItem + itemId,
+    final response = await DioHelper.getData(
+      url: item + itemId,
       query: {
         'lang': MagicRouter.currentContext!.locale.languageCode == 'en'
             ? 'en'

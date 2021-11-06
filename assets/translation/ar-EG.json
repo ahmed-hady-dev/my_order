@@ -57,7 +57,7 @@
   "restaurant": {
     "info": "معلومات",
     "reviews": "التقييمات",
-    "offer_of_the_restaurant": "عروض المطعم",
+    "offer_of_the_restaurant": "عروض المتجر",
     "close_at": "يغلق",
     "open_at": "يفتح",
     "delivery": "رسوم التوصيل :",
@@ -147,7 +147,8 @@
   },
   "offers": {
     "appBar_title": "العروض",
-    "more_details": "تفاصيل"
+    "more_details": "تفاصيل",
+    "no_offers": "عذرا ، لا توجد عروض الآن!"
   },
   "orders": {
     "appBar_title": "الطلبات"

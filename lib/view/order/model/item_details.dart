@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-ItemDetailsModel itemDetailsModelFromJson(String str) => ItemDetailsModel.fromJson(json.decode(str));
+ItemDetailsModel itemDetailsModelFromJson(String str) =>
+    ItemDetailsModel.fromJson(json.decode(str));
 
-String itemDetailsModelToJson(ItemDetailsModel data) => json.encode(data.toJson());
+String itemDetailsModelToJson(ItemDetailsModel data) =>
+    json.encode(data.toJson());
 
 class ItemDetailsModel {
   ItemDetailsModel({
@@ -19,17 +21,18 @@ class ItemDetailsModel {
   String? message;
   Data? data;
 
-  factory ItemDetailsModel.fromJson(Map<String, dynamic> json) => ItemDetailsModel(
-    status: json["status"],
-    message: json["message"],
-    data: Data.fromJson(json["data"]),
-  );
+  factory ItemDetailsModel.fromJson(Map<String, dynamic> json) =>
+      ItemDetailsModel(
+        status: json["status"],
+        message: json["message"],
+        data: Data.fromJson(json["data"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-    "data": data!.toJson(),
-  };
+        "status": status,
+        "message": message,
+        "data": data!.toJson(),
+      };
 }
 
 class Data {
@@ -54,26 +57,26 @@ class Data {
   ItemCategory? itemCategory;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    id: json["id"],
-    name: json["name"],
-    description: json["description"],
-    image: json["image"],
-    numOrders: json["num_orders"],
-    sizes: List<Extra>.from(json["sizes"].map((x) => Extra.fromJson(x))),
-    extras: List<Extra>.from(json["extras"].map((x) => Extra.fromJson(x))),
-    itemCategory: ItemCategory.fromJson(json["item_category"]),
-  );
+        id: json["id"],
+        name: json["name"],
+        description: json["description"],
+        image: json["image"],
+        numOrders: json["num_orders"],
+        sizes: List<Extra>.from(json["sizes"].map((x) => Extra.fromJson(x))),
+        extras: List<Extra>.from(json["extras"].map((x) => Extra.fromJson(x))),
+        itemCategory: ItemCategory.fromJson(json["item_category"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "description": description,
-    "image": image,
-    "num_orders": numOrders,
-    "sizes": List<dynamic>.from(sizes!.map((x) => x.toJson())),
-    "extras": List<dynamic>.from(extras!.map((x) => x.toJson())),
-    "item_category": itemCategory!.toJson(),
-  };
+        "id": id,
+        "name": name,
+        "description": description,
+        "image": image,
+        "num_orders": numOrders,
+        "sizes": List<dynamic>.from(sizes!.map((x) => x.toJson())),
+        "extras": List<dynamic>.from(extras!.map((x) => x.toJson())),
+        "item_category": itemCategory!.toJson(),
+      };
 }
 
 class Extra {
@@ -88,16 +91,16 @@ class Extra {
   int? price;
 
   factory Extra.fromJson(Map<String, dynamic> json) => Extra(
-    id: json["id"],
-    name: json["name"],
-    price: json["price"],
-  );
+        id: json["id"],
+        name: json["name"],
+        price: json["price"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "price": price,
-  };
+        "id": id,
+        "name": name,
+        "price": price,
+      };
 }
 
 class ItemCategory {
@@ -116,20 +119,20 @@ class ItemCategory {
   List<Item>? items;
 
   factory ItemCategory.fromJson(Map<String, dynamic> json) => ItemCategory(
-    id: json["id"],
-    name: json["name"],
-    image: json["image"],
-    store: Store.fromJson(json["store"]),
-    items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
-  );
+        id: json["id"],
+        name: json["name"],
+        image: json["image"],
+        store: Store.fromJson(json["store"]),
+        items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "image": image,
-    "store": store!.toJson(),
-    "items": List<dynamic>.from(items!.map((x) => x.toJson())),
-  };
+        "id": id,
+        "name": name,
+        "image": image,
+        "store": store!.toJson(),
+        "items": List<dynamic>.from(items!.map((x) => x.toJson())),
+      };
 }
 
 class Item {
@@ -148,20 +151,20 @@ class Item {
   int? numOrders;
 
   factory Item.fromJson(Map<String, dynamic> json) => Item(
-    id: json["id"],
-    name: json["name"],
-    description: json["description"],
-    image: json["image"],
-    numOrders: json["num_orders"],
-  );
+        id: json["id"],
+        name: json["name"],
+        description: json["description"],
+        image: json["image"],
+        numOrders: json["num_orders"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "description": description,
-    "image": image,
-    "num_orders": numOrders,
-  };
+        "id": id,
+        "name": name,
+        "description": description,
+        "image": image,
+        "num_orders": numOrders,
+      };
 }
 
 class Store {
@@ -194,34 +197,34 @@ class Store {
   Area? area;
 
   factory Store.fromJson(Map<String, dynamic> json) => Store(
-    id: json["id"],
-    name: json["name"],
-    description: json["description"],
-    image: json["image"],
-    rate: json["rate"],
-    reviewsNumber: json["reviews_number"],
-    openAt: json["open_at"],
-    closeAt: json["close_at"],
-    deliveryFees: json["delivery_fees"].toDouble(),
-    taxes: json["taxes"].toDouble(),
-    minOrder: json["min_order"],
-    area: Area.fromJson(json["area"]),
-  );
+        id: json["id"],
+        name: json["name"],
+        description: json["description"],
+        image: json["image"],
+        rate: json["rate"],
+        reviewsNumber: json["reviews_number"],
+        openAt: json["open_at"],
+        closeAt: json["close_at"],
+        deliveryFees: json["delivery_fees"].toDouble(),
+        taxes: json["taxes"].toDouble(),
+        minOrder: json["min_order"],
+        area: Area.fromJson(json["area"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "description": description,
-    "image": image,
-    "rate": rate,
-    "reviews_number": reviewsNumber,
-    "open_at": openAt,
-    "close_at": closeAt,
-    "delivery_fees": deliveryFees,
-    "taxes": taxes,
-    "min_order": minOrder,
-    "area": area!.toJson(),
-  };
+        "id": id,
+        "name": name,
+        "description": description,
+        "image": image,
+        "rate": rate,
+        "reviews_number": reviewsNumber,
+        "open_at": openAt,
+        "close_at": closeAt,
+        "delivery_fees": deliveryFees,
+        "taxes": taxes,
+        "min_order": minOrder,
+        "area": area!.toJson(),
+      };
 }
 
 class Area {
@@ -236,16 +239,16 @@ class Area {
   City? city;
 
   factory Area.fromJson(Map<String, dynamic> json) => Area(
-    id: json["id"],
-    name: json["name"],
-    city: City.fromJson(json["city"]),
-  );
+        id: json["id"],
+        name: json["name"],
+        city: City.fromJson(json["city"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "city": city!.toJson(),
-  };
+        "id": id,
+        "name": name,
+        "city": city!.toJson(),
+      };
 }
 
 class City {
@@ -258,12 +261,12 @@ class City {
   String? name;
 
   factory City.fromJson(Map<String, dynamic> json) => City(
-    id: json["id"],
-    name: json["name"],
-  );
+        id: json["id"],
+        name: json["name"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-  };
+        "id": id,
+        "name": name,
+      };
 }

@@ -17,6 +17,9 @@ class PriceText extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 4.0),
       child: Text(
         price,
+        maxLines: 2,
+        softWrap: true,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(
           fontSize: fontSize,
           fontWeight: fontWeight,

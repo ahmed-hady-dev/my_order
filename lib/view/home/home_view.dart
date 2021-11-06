@@ -28,7 +28,25 @@ class HomeView extends StatelessWidget {
           ..getPopularBrands()
           ..getPopularFood()
           ..getSpecialOffers(),
-        child: BlocBuilder<HomeCubit, HomeState>(
+        child: BlocConsumer<HomeCubit, HomeState>(
+          listener: (context, state) {
+            if (state is GetItemError ||
+                state is GetStoreCategoriesError ||
+                state is GetPopularBrandsError ||
+                state is GetPopularFoodError ||
+                state is LogoutErrorState ||
+                state is GetStoreOfCategoryError ||
+                state is GetStoreError ||
+                state is GetStoreSubCategoriesByIdError ||
+                state is GetSpecialOffersError) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("change_password.some_error".tr()),
+                  backgroundColor: Colors.red,
+                ),
+              );
+            }
+          },
           builder: (context, state) {
             final cubit = HomeCubit.get(context);
             return Scaffold(

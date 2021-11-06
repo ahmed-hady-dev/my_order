@@ -7,7 +7,7 @@ import 'component/food_category_tab_bar.dart';
 import 'component/food_image.dart';
 import 'component/main_header.dart';
 import 'component/offer_button.dart';
-import 'controller/restaurant_cubit.dart';
+import 'controller/store_cubit.dart';
 
 class StoreView extends StatefulWidget {
   final StoreModelData storeModelData;
@@ -18,7 +18,7 @@ class StoreView extends StatefulWidget {
 }
 
 class _StoreViewState extends State<StoreView> {
-  final cubit = RestaurantCubit();
+  final cubit = StoreCubit();
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +26,9 @@ class _StoreViewState extends State<StoreView> {
       child: BlocProvider(
         create: (context) => cubit
           ..getItems(storeId: widget.storeModelData.id!)
-          ..getReviewByStoreId(storeId: widget.storeModelData.id!),
-        child: BlocBuilder<RestaurantCubit, RestaurantState>(
+          ..getReviewByStoreId(storeId: widget.storeModelData.id!)
+          ..getStoreOfferByStoreId(storeId: widget.storeModelData.id!),
+        child: BlocBuilder<StoreCubit, StoreState>(
           builder: (context, state) {
             if (cubit.storeItemsModel == null) {
               return const Scaffold(
@@ -48,7 +49,8 @@ class _StoreViewState extends State<StoreView> {
                     MainHeader(
                         cubit: cubit, storeModelData: widget.storeModelData),
                     const SizedBox(height: 20.0),
-                    const OfferButton(),
+                    OfferButton(
+                        cubit: cubit, storeId: widget.storeModelData.id!),
                     FoodCategoryTabBar(list: data),
                     Flexible(
                       child: TabBarView(
