@@ -3,6 +3,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:my_order/core/router/router.dart';
+import 'package:my_order/view/food/model/store_model.dart';
 import 'package:my_order/view/restaurant_info/restaurant_info_view.dart';
 import 'package:my_order/view/reviews/reviews_view.dart';
 import 'package:my_order/view/store/controller/restaurant_cubit.dart';
@@ -13,33 +14,16 @@ import 'package:my_order/widgets/stars_bar.dart';
 import 'package:my_order/widgets/store_time.dart';
 
 class MainHeader extends StatelessWidget {
-  const MainHeader(
-      {Key? key,
-      required this.name,
-      required this.rate,
-      required this.description,
-      required this.openAt,
-      required this.closeAt,
-      required this.deliveryFees,
-      required this.storeId,
-      required this.reviewsNumber,
-      required this.cubit})
-      : super(key: key);
-
-  final String name;
-  final double rate;
-  final String description;
-  final double deliveryFees;
-  final String openAt;
-  final String closeAt;
-  final int storeId;
-  final int reviewsNumber;
   final RestaurantCubit cubit;
+  final StoreModelData storeModelData;
+  const MainHeader(
+      {Key? key, required this.cubit, required this.storeModelData})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    String open = "2020-07-20T$openAt";
-    String close = "2020-07-20T$closeAt";
+    String open = "2020-07-20T${storeModelData.openAt}";
+    String close = "2020-07-20T${storeModelData.closeAt}";
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
@@ -53,14 +37,14 @@ class MainHeader extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    name,
+                    storeModelData.name!,
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 20.0),
                   ),
                   const SizedBox(width: 4.0),
                 ],
               ),
-              StarsBar(stars: rate),
+              StarsBar(stars: double.parse(storeModelData.rate!)),
             ],
           ),
           const SizedBox(height: 8.0),
@@ -68,7 +52,7 @@ class MainHeader extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Flexible(
-                child: Text(description,
+                child: Text(storeModelData.description!,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(fontSize: 16.0)),
               ),
@@ -76,7 +60,7 @@ class MainHeader extends StatelessWidget {
               Flexible(
                 child: SmallGreyText(
                   text: "restaurant.delivery".tr() +
-                      deliveryFees.toString() +
+                      storeModelData.deliveryFees!.toString() +
                       ' ' +
                       "restaurant.egp".tr(),
                   fontSize: 10.0,
@@ -98,15 +82,14 @@ class MainHeader extends StatelessWidget {
               const Spacer(),
               ClickableSmallText(
                   text: "restaurant.info".tr(),
-                  onTap: () =>
-                      MagicRouter.navigateTo(const RestaurantInfoView())),
+                  onTap: () => MagicRouter.navigateTo(RestaurantInfoView(
+                        storeModelData: storeModelData,
+                      ))),
               const CustomVerticalDivider(),
               ClickableSmallText(
                   text: "restaurant.reviews".tr(),
                   onTap: () => MagicRouter.navigateTo(ReviewsView(
-                    storeId: storeId,
-                        rate: rate,
-                        reviewsNumber: reviewsNumber,
+                        storeModelData: storeModelData,
                         cubit: cubit,
                       ))),
             ],

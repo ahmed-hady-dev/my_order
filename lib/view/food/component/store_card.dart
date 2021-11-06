@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:my_order/widgets/store_time.dart';
+import '../../../widgets/store_time.dart';
 import '../../../widgets/stars_bar.dart';
 
 class StoreCard extends StatelessWidget {

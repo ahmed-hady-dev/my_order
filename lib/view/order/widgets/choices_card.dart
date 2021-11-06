@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_order/view/order/controller/order_cubit.dart';
-import 'package:my_order/view/order/model/item_details.dart';
+import '../controller/order_cubit.dart';
+import '../model/item_details.dart';
 import '../../home/widgets/section_header.dart';
 import '../../../widgets/custom_shape_radio_option.dart';
 

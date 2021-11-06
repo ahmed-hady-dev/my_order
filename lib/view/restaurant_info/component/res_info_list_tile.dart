@@ -15,33 +15,38 @@ class ResInfoListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              FaIcon(icon, color: Colors.black, size: 20),
-              const SizedBox(width: 8),
-              Text(
-                iconText,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontSize: 16, color: Colors.black),
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  FaIcon(icon, color: Colors.black, size: 20),
+                  const SizedBox(width: 8),
+                  Text(
+                    iconText,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontSize: 16, color: Colors.black),
+                  ),
+                  const SizedBox(width: 8),
+                ],
               ),
-              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  trailingText,
+                  textAlign: TextAlign.end,
+                  style: const TextStyle(fontSize: 16, color: Colors.black54),
+                ),
+              )
             ],
           ),
-          Expanded(
-            child: Text(
-              trailingText,
-              textAlign: TextAlign.end,
-              style: const TextStyle(fontSize: 16, color: Colors.black54),
-            ),
-          )
-        ],
-      ),
+        ),
+        const Divider()
+      ],
     );
   }
 }

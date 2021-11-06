@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:my_order/core/router/router.dart';
-import 'package:my_order/view/store/controller/restaurant_cubit.dart';
-import 'package:my_order/widgets/loading_indicator.dart';
-import 'package:my_order/widgets/main_button.dart';
+import '../../../core/router/router.dart';
+import '../../store/controller/restaurant_cubit.dart';
+import '../../../widgets/loading_indicator.dart';
+import '../../../widgets/main_button.dart';
 
 showRateDialog(int storeId, RestaurantCubit cubit) {
   showGeneralDialog(

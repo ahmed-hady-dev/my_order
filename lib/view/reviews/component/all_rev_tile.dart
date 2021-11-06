@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_order/view/store/model/store_review_model.dart';
+import '../../store/model/store_review_model.dart';
 
 import '../component/all_rev_card.dart';
 

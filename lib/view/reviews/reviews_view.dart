@@ -2,6 +2,7 @@
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_order/view/food/model/store_model.dart';
 import 'package:my_order/view/reviews/widgets/rate_dialog.dart';
 import 'package:my_order/view/store/controller/restaurant_cubit.dart';
 import 'package:my_order/widgets/loading_indicator.dart';
@@ -11,16 +12,10 @@ import 'component/stars_review_row.dart';
 
 class ReviewsView extends StatelessWidget {
   const ReviewsView(
-      {Key? key,
-      required this.storeId,
-      required this.rate,
-      required this.reviewsNumber,
-      required this.cubit})
+      {Key? key, required this.cubit, required this.storeModelData})
       : super(key: key);
-  final double rate;
-  final int storeId;
-  final int reviewsNumber;
   final RestaurantCubit cubit;
+  final StoreModelData storeModelData;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +28,7 @@ class ReviewsView extends StatelessWidget {
             actions: [
               IconButton(
                   onPressed: () {
-                    showRateDialog(storeId, cubit);
+                    showRateDialog(storeModelData.id!, cubit);
                   },
                   icon: const Icon(Icons.rate_review)),
             ],
@@ -49,9 +44,9 @@ class ReviewsView extends StatelessWidget {
                       child: Column(
                         children: [
                           StarsReviewRow(
-                              stars: rate,
+                              stars: double.parse(storeModelData.rate!),
                               text: "reviews.based".tr() +
-                                  reviewsNumber.toString() +
+                                  storeModelData.reviewsNumber!.toString() +
                                   ' ' +
                                   "reviews.review".tr()),
                           // RevRow(

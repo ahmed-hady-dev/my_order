@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_order/core/dioHelper/dio_helper.dart';
-import 'package:my_order/view/cart/model/cart.dart';
-import 'package:my_order/view/cart/states.dart';
+import '../../core/dioHelper/dio_helper.dart';
+import 'model/cart.dart';
+import 'states.dart';
 
 class CartCubit extends Cubit<CartStates> {
   CartCubit() : super(CartInit());

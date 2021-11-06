@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_order/widgets/loading_indicator.dart';
-
+import '../food/model/store_model.dart';
+import '../../widgets/loading_indicator.dart';
 import 'component/food_category_listview.dart';
 import 'component/food_category_tab_bar.dart';
 import 'component/food_image.dart';
@@ -10,27 +10,8 @@ import 'component/offer_button.dart';
 import 'controller/restaurant_cubit.dart';
 
 class StoreView extends StatefulWidget {
-  final String image;
-  final String name;
-  final int storeId;
-  final String description;
-  final double rate;
-  final double deliveryFees;
-  final String openAt;
-  final String closeAt;
-  final int reviewsNumber;
-  const StoreView(
-      {Key? key,
-      required this.name,
-      required this.image,
-      required this.rate,
-      required this.description,
-      required this.openAt,
-      required this.closeAt,
-      required this.deliveryFees,
-      required this.storeId,
-      required this.reviewsNumber})
-      : super(key: key);
+  final StoreModelData storeModelData;
+  const StoreView({Key? key, required this.storeModelData}) : super(key: key);
 
   @override
   State<StoreView> createState() => _StoreViewState();
@@ -44,8 +25,8 @@ class _StoreViewState extends State<StoreView> {
     return SafeArea(
       child: BlocProvider(
         create: (context) => cubit
-          ..getItems(widget.storeId)
-          ..getReviewByStoreId(storeId: widget.storeId),
+          ..getItems(storeId: widget.storeModelData.id!)
+          ..getReviewByStoreId(storeId: widget.storeModelData.id!),
         child: BlocBuilder<RestaurantCubit, RestaurantState>(
           builder: (context, state) {
             if (cubit.storeItemsModel == null) {
@@ -62,18 +43,10 @@ class _StoreViewState extends State<StoreView> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    FoodImage(image: widget.image),
+                    FoodImage(image: widget.storeModelData.image!),
                     const SizedBox(height: 24.0),
                     MainHeader(
-                        cubit: cubit,
-                        reviewsNumber: widget.reviewsNumber,
-                        storeId: widget.storeId,
-                        name: widget.name,
-                        rate: widget.rate,
-                        description: widget.description,
-                        openAt: widget.openAt,
-                        closeAt: widget.closeAt,
-                        deliveryFees: widget.deliveryFees),
+                        cubit: cubit, storeModelData: widget.storeModelData),
                     const SizedBox(height: 20.0),
                     const OfferButton(),
                     FoodCategoryTabBar(list: data),
@@ -81,7 +54,8 @@ class _StoreViewState extends State<StoreView> {
                       child: TabBarView(
                         children: data
                             .map((e) => FoodCategoryListView(
-                                storeId: widget.storeId, items: e.items!))
+                                storeId: widget.storeModelData.id!,
+                                items: e.items!))
                             .toList(),
                       ),
                     ),

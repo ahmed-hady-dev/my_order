@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:my_order/core/dioHelper/dio_helper.dart';
-import 'package:my_order/view/order/model/item_details.dart';
+import '../../../core/dioHelper/dio_helper.dart';
+import '../model/item_details.dart';
 
 part 'order_state.dart';
 

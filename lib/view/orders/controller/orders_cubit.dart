@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:my_order/core/dioHelper/dio_helper.dart';
-import 'package:my_order/view/orders/model/orders_model.dart';
+import '../../../core/dioHelper/dio_helper.dart';
+import '../model/orders_model.dart';
 
 part 'orders_state.dart';
 

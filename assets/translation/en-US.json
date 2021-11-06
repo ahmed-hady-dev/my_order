@@ -130,7 +130,9 @@
     "delivery_fee": "Delivery fee",
     "preorder": "Pre-order",
     "payment_options": "Payment options",
-    "opining_hours": "Opening hours"
+    "opining_hours": "Opening hours",
+    "rate": "Ratings",
+    "taxes": "Taxes"
   },
   "reviews": {
     "appBar_title": "Reviews",

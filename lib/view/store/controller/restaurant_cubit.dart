@@ -20,7 +20,7 @@ class RestaurantCubit extends Cubit<RestaurantState> {
   StoreItemsModel? storeItemsModel;
   StoreReviewModel? storeReviewModel;
 //===============================================================
-  Future<void> getItems(int storeId) async {
+  Future<void> getItems({required int storeId}) async {
     emit(RestaurantLoading());
     final response = await DioHelper.getDataByToken(
         url: "/client/itemCategories/store/$storeId");
@@ -54,13 +54,9 @@ class RestaurantCubit extends Cubit<RestaurantState> {
   }
 
   Future<void> addReview(int storeId, double rate, String comment) async {
-    final body = {
-      'rate': rate,
-      'store_id': storeId,
-      'comment': comment
-    };
-    await DioHelper.postData(url: '/client/reviews', data: FormData.fromMap(body));
+    final body = {'rate': rate, 'store_id': storeId, 'comment': comment};
+    await DioHelper.postData(
+        url: '/client/reviews', data: FormData.fromMap(body));
     getReviewByStoreId(storeId: storeId);
   }
-
 }

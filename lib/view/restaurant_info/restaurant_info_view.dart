@@ -1,59 +1,62 @@
 // ignore_for_file: implementation_imports
-import 'package:easy_localization/src/public_ext.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'component/payment_row.dart';
+import 'package:my_order/view/food/model/store_model.dart';
 import 'component/rating_row.dart';
 import 'component/res_info_list_tile.dart';
 
 class RestaurantInfoView extends StatelessWidget {
-  const RestaurantInfoView({Key? key}) : super(key: key);
+  const RestaurantInfoView({Key? key, required this.storeModelData})
+      : super(key: key);
+  final StoreModelData storeModelData;
 
   @override
   Widget build(BuildContext context) {
+    String open = "2020-07-20T${storeModelData.openAt}";
+    String close = "2020-07-20T${storeModelData.closeAt}";
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(title: Text("restaurant_info.appBar_title".tr())),
         body: ListView(
           children: [
-            const RatingRow(
-              ratingText: "2100 ratings",
-              stars: 5,
+            RatingRow(
+              ratingText: storeModelData.reviewsNumber.toString() +
+                  ' ' +
+                  "restaurant_info.rate".tr(),
+              stars: double.parse(storeModelData.rate!),
             ),
-            const Divider(),
             ResInfoListTile(
               icon: Icons.location_pin,
               iconText: "restaurant_info.restaurant_area".tr(),
-              trailingText: "Masaken El shennawy",
+              trailingText: storeModelData.area!.name!,
             ),
-            const Divider(),
             ResInfoListTile(
               icon: FontAwesomeIcons.clock,
               iconText: "restaurant_info.opining_hours".tr(),
-              trailingText: "9:00Am - 2:30AM",
+              trailingText: DateFormat.jm().format(DateTime.parse(open)) +
+                  ' - ' +
+                  DateFormat.jm().format(DateTime.parse(close)),
             ),
-            const Divider(),
             ResInfoListTile(
               icon: FontAwesomeIcons.wallet,
               iconText: "restaurant_info.minimum_order".tr(),
-              trailingText: "EGP 15.00",
+              trailingText: storeModelData.minOrder.toString() +
+                  ' ' +
+                  "restaurant.egp".tr(),
             ),
-            const Divider(),
             ResInfoListTile(
               icon: Icons.featured_play_list,
               iconText: "restaurant_info.delivery_fee".tr(),
-              trailingText: "EGP 4.99",
+              trailingText: storeModelData.deliveryFees.toString() +
+                  ' ' +
+                  "restaurant.egp".tr(),
             ),
-            const Divider(),
             ResInfoListTile(
-              icon: Icons.info,
-              iconText: "restaurant_info.preorder".tr(),
-              trailingText: "No",
-            ),
-            const Divider(),
-            PaymentRow(
-              text: "restaurant_info.payment_options".tr(),
+              icon: Icons.paid_rounded,
+              iconText: "restaurant_info.taxes".tr(),
+              trailingText:
+                  storeModelData.taxes.toString() + ' ' + "restaurant.egp".tr(),
             ),
           ],
         ),

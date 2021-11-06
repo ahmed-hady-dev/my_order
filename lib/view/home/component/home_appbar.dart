@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_order/core/router/router.dart';
-import 'package:my_order/view/home/controller/home_cubit.dart';
-import 'package:my_order/view/search/search_view.dart';
-import 'package:my_order/widgets/drawer_icon.dart';
+import '../../../core/router/router.dart';
+import '../controller/home_cubit.dart';
+import '../../search/search_view.dart';
+import '../../../widgets/drawer_icon.dart';
 
 import 'home_appbar_title.dart';
 

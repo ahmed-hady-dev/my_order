@@ -130,7 +130,9 @@
     "delivery_fee": "تكلفة التوصيل",
     "preorder": "الحجز المسبق",
     "payment_options": "طرق الدفع",
-    "opining_hours": "ساعات العمل"
+    "opining_hours": "ساعات العمل",
+    "rate": "تقييم",
+    "taxes": "الضريبة"
   },
   "reviews": {
     "appBar_title": "التقييمات",

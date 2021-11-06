@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_order/view/home/model/store_categories_model.dart';
+import '../model/store_categories_model.dart';
 import '../../../core/router/router.dart';
 import '../../food/food_view.dart';
 import '../controller/home_cubit.dart';

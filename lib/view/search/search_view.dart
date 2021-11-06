@@ -76,28 +76,8 @@ class SearchView extends StatelessWidget {
                                                   .toString())
                                           .then((storeModel) {
                                         MagicRouter.pop();
-                                        MagicRouter.navigateTo(
-                                          StoreView(
-                                            reviewsNumber: storeModel!
-                                                .data!.reviewsNumber!,
-                                            storeId: storeModel.data!.id!,
-                                            name: storeModel.data!.name
-                                                .toString(),
-                                            image: storeModel.data!.image
-                                                .toString(),
-                                            rate: double.tryParse(
-                                                storeModel.data!.rate!)!,
-                                            description: storeModel
-                                                .data!.description
-                                                .toString(),
-                                            openAt: storeModel.data!.openAt
-                                                .toString(),
-                                            closeAt: storeModel.data!.closeAt
-                                                .toString(),
-                                            deliveryFees:
-                                                storeModel.data!.deliveryFees!,
-                                          ),
-                                        );
+                                        MagicRouter.navigateTo(StoreView(
+                                            storeModelData: storeModel!.data!));
                                       });
                                     },
                                     child: StoreCard(

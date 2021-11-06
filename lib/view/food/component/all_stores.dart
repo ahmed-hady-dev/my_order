@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_order/core/router/router.dart';
-import 'package:my_order/view/home/controller/home_cubit.dart';
-import 'package:my_order/view/store/store_view.dart';
-import 'package:my_order/widgets/loading_dialog.dart';
+import '../../../core/router/router.dart';
+import '../../home/controller/home_cubit.dart';
+import '../../store/store_view.dart';
+import '../../../widgets/loading_dialog.dart';
 
 import 'store_card.dart';
 
@@ -29,17 +29,7 @@ class AllStores extends StatelessWidget {
                 (storeModel) {
                   MagicRouter.pop();
                   MagicRouter.navigateTo(
-                    StoreView(
-                      reviewsNumber: storeModel!.data!.reviewsNumber!,
-                      storeId: storeModel.data!.id!,
-                      name: storeModel.data!.name.toString(),
-                      image: storeModel.data!.image.toString(),
-                      rate: double.tryParse(storeModel.data!.rate!)!,
-                      description: storeModel.data!.description.toString(),
-                      openAt: storeModel.data!.openAt.toString(),
-                      closeAt: storeModel.data!.closeAt.toString(),
-                      deliveryFees: storeModel.data!.deliveryFees!,
-                    ),
+                    StoreView(storeModelData: storeModel!.data!),
                   );
                 },
               );

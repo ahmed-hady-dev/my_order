@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:my_order/view/cart/cubit.dart';
-import 'package:my_order/view/cart/model/cart.dart';
+import '../cubit.dart';
+import '../model/cart.dart';
 
 import '../../order/widgets/change_order_button.dart';
 

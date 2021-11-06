@@ -1,5 +1,5 @@
-import 'package:my_order/view/register/model/area_of_city_model.dart';
-import 'package:my_order/view/register/model/city_model.dart';
+import '../model/area_of_city_model.dart';
+import '../model/city_model.dart';
 
 import '../../login/model/user_model.dart';
 

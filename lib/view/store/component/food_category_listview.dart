@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_order/view/store/model/items_model.dart';
+import '../model/items_model.dart';
 import '../../../core/router/router.dart';
 import '../../order/order_view.dart';
 import '../widgets/food_category_card.dart';
