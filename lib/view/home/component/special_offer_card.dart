@@ -17,7 +17,7 @@ class SpecialOfferCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final item = cubit.specialOffersModel!.data!;
     return SizedBox(
-      height: 190.0,
+      height: 194.0,
       child: ListView.builder(
         addAutomaticKeepAlives: false,
         addRepaintBoundaries: false,
@@ -57,7 +57,7 @@ class SpecialOfferCard extends StatelessWidget {
                 children: <Widget>[
                   //image container
                   Container(
-                    width: 200,
+                    width: 202,
                     height: 132.0,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12.0),

@@ -4,9 +4,10 @@ import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/core/cacheHelper/cache_helper.dart';
+import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/user_details/controller/user_details_cubit.dart';
 import 'package:my_order/widgets/header_text.dart';
-import 'package:my_order/widgets/indicator_widget.dart';
+import 'package:my_order/widgets/loading_dialog.dart';
 import 'package:my_order/widgets/main_button.dart';
 
 class UserDetailsForm extends StatelessWidget {
@@ -108,20 +109,21 @@ class UserDetailsForm extends StatelessWidget {
                   decoration: InputDecoration(
                       hintText: "user_details.phone_number".tr())),
               const SizedBox(height: 12.0),
-              state is UserDetailsUpdateLoadingState
-                  ? const IndicatorWidget()
-                  : MainButton(
-                      text: "user_details.edit".tr(),
-                      onPressed: () async {
-                        if (cubit.formKey.currentState!.validate()) {
-                          await cubit.updateUser(
-                              firstName: cubit.firstNameController.text,
-                              lastName: cubit.lastNameController.text,
-                              phone: cubit.phoneController.text,
-                              email: cubit.emailController.text);
-                        }
-                      },
-                    ),
+              MainButton(
+                text: "user_details.edit".tr(),
+                onPressed: () async {
+                  if (cubit.formKey.currentState!.validate()) {
+                    loadingDialog(context);
+                    await cubit
+                        .updateUser(
+                            firstName: cubit.firstNameController.text,
+                            lastName: cubit.lastNameController.text,
+                            phone: cubit.phoneController.text,
+                            email: cubit.emailController.text)
+                        .then((value) => MagicRouter.pop());
+                  }
+                },
+              )
             ],
           ),
         );

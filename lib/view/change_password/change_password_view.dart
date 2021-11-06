@@ -24,12 +24,20 @@ class ChangePasswordView extends StatelessWidget {
         listener: (context, state) {
           if (state is UserPasswordUpdateSuccessState) {
             if (state.updatePasswordModel.status! == 1) {
-              Fluttertoast.showToast(
-                  msg: "change_password.password_update_success".tr());
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("change_password.password_update_success".tr()),
+                  backgroundColor: Colors.green,
+                ),
+              );
               MagicRouter.pop();
             } else if (state.updatePasswordModel.status! == 0) {
-              Fluttertoast.showToast(
-                  msg: "change_password.wrong_password".tr());
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.updatePasswordModel.message.toString()),
+                  backgroundColor: Colors.red,
+                ),
+              );
             } else {
               Fluttertoast.showToast(msg: "change_password.some_error".tr());
             }

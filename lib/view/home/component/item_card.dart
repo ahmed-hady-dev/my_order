@@ -21,7 +21,7 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final item = cubit.popularFoodModel!.data!;
     return SizedBox(
-      height: 190.0,
+      height: 204.0,
       child: ListView.builder(
         addAutomaticKeepAlives: false,
         addRepaintBoundaries: false,
