@@ -14,7 +14,7 @@ import 'package:my_order/view/register/components/area_of_city_drop_down_button.
 import 'package:my_order/view/register/components/city_drop_down_button.dart';
 import 'package:my_order/widgets/confirm_password_text_field.dart';
 import 'package:my_order/widgets/email_text_field.dart';
-import 'package:my_order/widgets/indicator_widget.dart';
+import 'package:my_order/widgets/loading_widget.dart';
 import 'package:my_order/widgets/main_button.dart';
 import 'package:my_order/widgets/first_name_text_field.dart';
 import 'package:my_order/widgets/password_text_field.dart';
@@ -168,7 +168,7 @@ class RegisterView extends StatelessWidget {
                     ),
                     const SizedBox(height: 24.0),
                     state is RegisterLoadingState
-                        ? const IndicatorWidget()
+                        ? const LoadingWidget()
                         : MainButton(
                             text: "login.create_account".tr(),
                             onPressed: () {

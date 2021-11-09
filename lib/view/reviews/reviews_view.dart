@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/view/food/model/store_model.dart';
 import 'package:my_order/view/reviews/widgets/rate_dialog.dart';
 import 'package:my_order/view/store/controller/store_cubit.dart';
-import 'package:my_order/widgets/loading_indicator.dart';
+import 'package:my_order/widgets/loading_widget.dart';
 
 import 'component/all_rev_tile.dart';
 import 'component/stars_review_row.dart';
@@ -34,7 +34,7 @@ class ReviewsView extends StatelessWidget {
             ],
           ),
           body: cubit.storeReviewModel == null
-              ? const LoadingIndicator()
+              ? const LoadingWidget()
               : ListView(
                   shrinkWrap: true,
                   children: [

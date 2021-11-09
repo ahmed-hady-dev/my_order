@@ -25,7 +25,7 @@ class OffersView extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(title: Text("offers.appBar_title".tr())),
             body: storeOfferModel.data!.isEmpty
-                ? const NoOffers()
+                ? NoData(text: "offers.no_offers".tr())
                 : ListView.builder(
                     itemCount: storeOfferModel.data!.length,
                     itemBuilder: (context, index) => OffersCard(

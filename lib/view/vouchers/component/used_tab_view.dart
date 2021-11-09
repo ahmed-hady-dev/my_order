@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../controller/voucher_cubit.dart';
-import '../../../widgets/indicator_widget.dart';
+import '../../../widgets/loading_widget.dart';
 import '../widgets/voucher_card.dart';
 import 'no_voucher_widget.dart';
 
@@ -16,7 +16,7 @@ class UsedTabView extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: cubit.usedVoucherModel == null
-              ? const Center(child: IndicatorWidget())
+              ? const Center(child: LoadingWidget())
               : cubit.usedVoucherModel!.data!.isEmpty
                   ? const NoVoucherWidget()
                   : ListView.separated(

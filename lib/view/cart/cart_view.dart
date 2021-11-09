@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/view/cart/states.dart';
 import 'package:my_order/view/cart/widgets/food_cart_card.dart';
-import 'package:my_order/widgets/loading_indicator.dart';
+import 'package:my_order/widgets/loading_widget.dart';
 
 import 'component/buttons_row.dart';
 import 'component/order_details_card.dart';
@@ -29,8 +29,9 @@ class CartView extends StatelessWidget {
           body: Center(
             child: BlocBuilder<CartCubit, CartStates>(
               builder: (context, state) {
-                if (state is CartLoading) return const LoadingIndicator();
+                if (state is CartLoading) return const LoadingWidget();
                 final data = CartCubit.of(context).cartModel!.data!;
+                debugPrint(data.toJson().toString());
                 return ListView(
                   children: [
                     ListView.builder(

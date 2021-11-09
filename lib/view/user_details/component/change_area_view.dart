@@ -10,7 +10,7 @@ import 'package:my_order/view/register/components/shimmer_drop_down_button.dart'
 import 'package:my_order/view/splash/splash_view.dart';
 import 'package:my_order/view/user_details/controller/user_details_cubit.dart';
 import 'package:my_order/widgets/header_text.dart';
-import 'package:my_order/widgets/indicator_widget.dart';
+import 'package:my_order/widgets/loading_widget.dart';
 import 'package:my_order/widgets/main_button.dart';
 
 class ChangeAreaView extends StatelessWidget {
@@ -73,7 +73,7 @@ class ChangeAreaView extends StatelessWidget {
                           ),
                 const SizedBox(height: 22.0),
                 state is UpdateUserAreaLoading
-                    ? const IndicatorWidget()
+                    ? const LoadingWidget()
                     : MainButton(
                         text: "user_details.edit".tr(),
                         onPressed: () async {

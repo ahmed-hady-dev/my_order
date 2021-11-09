@@ -151,7 +151,13 @@
     "no_offers": "عذرا ، لا توجد عروض الآن!"
   },
   "orders": {
-    "appBar_title": "الطلبات"
+    "appBar_title": "الطلبات",
+    "recent": "الطلبات الأخيرة",
+    "old": "الطلبات القديمة",
+    "total": "المجموع : ",
+    "payment": "الدفع : ",
+    "state": "الحالة : ",
+    "no_orders": "لا توجد طلبات هنا"
   },
   "user_details": {
     "appBar_title": "تفاصيل المستخدم",

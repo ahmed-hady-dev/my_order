@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_order/widgets/loading_widget.dart';
 import '../food/model/store_model.dart';
-import '../../widgets/loading_indicator.dart';
 import 'component/food_category_listview.dart';
 import 'component/food_category_tab_bar.dart';
 import 'component/food_image.dart';
@@ -32,7 +32,7 @@ class _StoreViewState extends State<StoreView> {
           builder: (context, state) {
             if (cubit.storeItemsModel == null) {
               return const Scaffold(
-                body: LoadingIndicator(),
+                body: LoadingWidget(),
               );
             }
             final data = cubit.storeItemsModel!.data!;

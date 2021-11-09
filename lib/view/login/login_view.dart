@@ -9,7 +9,7 @@ import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/home/home_view.dart';
 import 'package:my_order/view/login/controller/login_cubit.dart';
 import 'package:my_order/widgets/email_text_field.dart';
-import 'package:my_order/widgets/indicator_widget.dart';
+import 'package:my_order/widgets/loading_widget.dart';
 import 'package:my_order/widgets/main_button.dart';
 import 'package:my_order/widgets/password_text_field.dart';
 
@@ -70,7 +70,7 @@ class LoginView extends StatelessWidget {
                     const TextButtonRow(),
                     const SizedBox(height: 32.0),
                     state is LoginLoadingState
-                        ? const IndicatorWidget()
+                        ? const LoadingWidget()
                         : MainButton(
                             text: "login.login".tr(),
                             onPressed: () async {

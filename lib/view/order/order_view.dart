@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/cart/cart_view.dart';
-import 'package:my_order/widgets/loading_indicator.dart';
+import 'package:my_order/widgets/loading_widget.dart';
 import 'component/order_main_header.dart';
 import 'widgets/choices_card.dart';
 import '../store/component/food_image.dart';
@@ -38,7 +38,7 @@ class OrderView extends StatelessWidget {
           builder: (context, state) {
             final cubit = OrderCubit.get(context);
             if (state is OrderLoading) {
-              return const Scaffold(body: LoadingIndicator());
+              return const Scaffold(body: LoadingWidget());
             }
             final data = cubit.itemDetailsModel!.data!;
             return Scaffold(

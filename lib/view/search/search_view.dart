@@ -7,7 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/food/component/store_card.dart';
 import 'package:my_order/view/store/store_view.dart';
-import 'package:my_order/widgets/indicator_widget.dart';
+import 'package:my_order/widgets/loading_widget.dart';
 import 'package:my_order/widgets/loading_dialog.dart';
 import 'package:my_order/widgets/no_result_widget.dart';
 
@@ -55,7 +55,7 @@ class SearchView extends StatelessWidget {
                   ],
                 ),
                 state is SearchLoadingState
-                    ? const Expanded(child: IndicatorWidget())
+                    ? const Expanded(child: LoadingWidget())
                     : cubit.searchModel != null
                         ? cubit.searchModel!.data!.isEmpty
                             ? NoResultsWidget(text: "search.no_results".tr())

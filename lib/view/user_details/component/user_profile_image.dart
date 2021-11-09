@@ -7,7 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_order/constants/app_colors.dart';
 import 'package:my_order/core/cacheHelper/cache_helper.dart';
 import 'package:my_order/view/user_details/controller/user_details_cubit.dart';
-import 'package:my_order/widgets/indicator_widget.dart';
+import 'package:my_order/widgets/loading_widget.dart';
 
 class UserProfileImage extends StatelessWidget {
   const UserProfileImage({
@@ -78,7 +78,7 @@ class UserProfileImage extends StatelessWidget {
                     right: 0,
                     bottom: 0,
                     child: Center(
-                      child: IndicatorWidget(radius: 18),
+                      child: LoadingWidget(radius: 18),
                     ),
                   )
                 : const SizedBox(),

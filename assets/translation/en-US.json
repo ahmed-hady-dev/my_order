@@ -151,7 +151,13 @@
     "no_offers": "sorry, No offers now!"
   },
   "orders": {
-    "appBar_title": "Orders"
+    "appBar_title": "Orders",
+    "recent": "Recent orders",
+    "old": "Old orders",
+    "total": "Total : ",
+    "payment": "Payment : ",
+    "state": "State : ",
+    "no_orders": "No orders here"
   },
   "user_details": {
     "appBar_title": "User Details",
