@@ -47,6 +47,7 @@ class FoodCartCard extends StatelessWidget {
             children: <Widget>[
               Container(
                 height: 84.0,
+                // width: ,
                 width: 120.0,
                 margin: context.locale.languageCode == 'en'
                     ? const EdgeInsets.only(right: 6.0)
@@ -85,8 +86,7 @@ class FoodCartCard extends StatelessWidget {
                         const SizedBox(height: 8.0)
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    Expanded(
                       child: PriceText(
                           price: 'Price : EGP $price', fontSize: 12.0),
                     ),

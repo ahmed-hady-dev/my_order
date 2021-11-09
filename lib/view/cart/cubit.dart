@@ -16,6 +16,7 @@ class CartCubit extends Cubit<CartStates> {
     emit(CartLoading());
     final response =
         await DioHelper.getDataByToken(url: "/client/orders/displayCart");
+    print(response.data);
     cartModel = CartModel.fromJson(response.data);
     emit(CartInit());
   }

@@ -53,8 +53,8 @@ class Data {
   int? id;
   int? subTotal;
   int? taxes;
-  int? deliveryFees;
-  int? total;
+  double? deliveryFees;
+  double? total;
   String? state;
   dynamic cancellationReason;
   String? payment;
@@ -68,7 +68,7 @@ class Data {
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     id: json["id"],
     subTotal: json["subTotal"],
-    taxes: json["taxes"],
+    // taxes: json["taxes"],
     deliveryFees: json["delivery_fees"],
     total: json["total"],
     state: json["state"],
@@ -211,8 +211,8 @@ class Store {
   int? reviewsNumber;
   String? openAt;
   String? closeAt;
-  int? deliveryFees;
-  int? taxes;
+  double? deliveryFees;
+  double? taxes;
   int? minOrder;
 
   factory Store.fromJson(Map<String, dynamic> json) => Store(
