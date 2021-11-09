@@ -203,7 +203,8 @@
     "special_services": "خدمات خاصة :",
     "total": "المبلغ الكلي",
     "checkout_button_title": "الدفع",
-    "add_item_button_title": "إضافة المزيد"
+    "add_item_button_title": "إضافة المزيد",
+    "no_orders": "لا توجد طلبات في عربة التسوق."
   },
   "validation": {
     "first_name": "لا يجب أن يكون الاسم الاول فارغ",
