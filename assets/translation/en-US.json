@@ -151,7 +151,13 @@
     "no_offers": "sorry, No offers now!"
   },
   "orders": {
-    "appBar_title": "Orders"
+    "appBar_title": "Orders",
+    "recent": "Recent orders",
+    "old": "Old orders",
+    "total": "Total : ",
+    "payment": "Payment : ",
+    "state": "State : ",
+    "no_orders": "No orders here"
   },
   "user_details": {
     "appBar_title": "User Details",
@@ -197,7 +203,8 @@
     "special_services": "special services:",
     "total": "Total",
     "checkout_button_title": "Check out",
-    "add_item_button_title": "Add Item"
+    "add_item_button_title": "Add Item",
+    "no_orders": "No orders in cart."
   },
   "validation": {
     "first_name": "first name must not be empty",

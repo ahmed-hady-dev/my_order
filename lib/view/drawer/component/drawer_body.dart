@@ -58,17 +58,17 @@ class DrawerBody extends StatelessWidget {
                 },
               )
             : const SizedBox(),
-        CacheHelper.isLogged
-            ? DrawerItem(
-                icon: Icons.local_offer_rounded,
-                text: "drawer.offers".tr(),
-                onTap: () {
-                  MagicRouter.pop();
-
-                  // MagicRouter.navigateAndPopUntilFirstPage(const OffersView());
-                },
-              )
-            : const SizedBox(),
+        // CacheHelper.isLogged
+        //     ? DrawerItem(
+        //         icon: Icons.local_offer_rounded,
+        //         text: "drawer.offers".tr(),
+        //         onTap: () {
+        //           MagicRouter.pop();
+        //
+        //           MagicRouter.navigateAndPopUntilFirstPage(OffersView());
+        //         },
+        //       )
+        //     : const SizedBox(),
         CacheHelper.isLogged
             ? DrawerItem(
                 icon: Icons.notifications,

@@ -1,11 +1,8 @@
-// ignore_for_file: implementation_imports
-
-import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 
-class NoOffers extends StatelessWidget {
-  const NoOffers({Key? key}) : super(key: key);
-
+class NoData extends StatelessWidget {
+  const NoData({Key? key, required this.text}) : super(key: key);
+  final String text;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -17,7 +14,7 @@ class NoOffers extends StatelessWidget {
             const Icon(Icons.error_outline_rounded, size: 52.0),
             const SizedBox(height: 8.0),
             Text(
-              "offers.no_offers".tr(),
+              text,
               style: Theme.of(context).textTheme.headline5,
             )
           ],

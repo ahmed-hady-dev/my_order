@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:my_order/widgets/loading_widget.dart';
 import '../../../core/router/router.dart';
 import '../../store/controller/store_cubit.dart';
-import '../../../widgets/loading_indicator.dart';
 import '../../../widgets/main_button.dart';
 
 showRateDialog(int storeId, StoreCubit cubit) {
@@ -66,7 +66,7 @@ class _DialogState extends State<_Dialog> {
               },
             ),
             isLoading
-                ? const LoadingIndicator()
+                ? const LoadingWidget()
                 : MainButton(
                     text: "Rate",
                     onPressed: rate,

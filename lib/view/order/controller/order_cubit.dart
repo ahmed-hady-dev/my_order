@@ -43,6 +43,7 @@ class OrderCubit extends Cubit<OrderState> {
     };
     final response = await DioHelper.postData(
         url: "/client/orders/addToCart", data: FormData.fromMap(body));
+    // debugPrint(response.data);
     Fluttertoast.showToast(msg: response.data['message']);
     emit(OrderInitial());
   }

@@ -275,55 +275,6 @@ class ItemModelDataSizes {
 }
 
 class ItemModelData {
-/*
-{
-  "id": 3,
-  "name": "Margreta",
-  "description": "pizza",
-  "image": "http://www.inoutdesigners.com/talabat/public/upload/item/1635277552download (1).jpeg",
-  "num_orders": 0,
-  "sizes": [
-    {
-      "id": 2,
-      "name": "44",
-      "price": 44
-    }
-  ],
-  "extras": [
-    {
-      "id": 1,
-      "name": "Onion",
-      "price": 10
-    }
-  ],
-  "item_category": {
-    "id": 2,
-    "name": "pizza2",
-    "image": "http://via.placeholder.com/200x200?text=No+Image",
-    "store": {
-      "id": 1,
-      "name": "Pizza Burger",
-      "description": "pizza",
-      "image": "http://www.inoutdesigners.com/talabat/public/upload/store/1635185415download (1).jpeg",
-      "rate": "0.00",
-      "reviews_number": 0,
-      "open_at": "08:00:00",
-      "close_at": "14:03:00",
-      "delivery_fees": 10,
-      "taxes": 0,
-      "area": {
-        "id": 2,
-        "name": "Mashhama",
-        "city": {
-          "id": 2,
-          "name": "Mahala"
-        }
-      }
-    }
-  }
-}
-*/
-
   int? id;
   String? name;
   String? description;

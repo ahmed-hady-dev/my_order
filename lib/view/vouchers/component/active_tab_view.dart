@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/view/vouchers/controller/voucher_cubit.dart';
 import 'package:my_order/view/vouchers/widgets/voucher_card.dart';
-import 'package:my_order/widgets/indicator_widget.dart';
+import 'package:my_order/widgets/loading_widget.dart';
 
 import 'no_voucher_widget.dart';
 
@@ -19,7 +19,7 @@ class ActiveTabView extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: cubit.activeVoucherModel == null
-              ? const Center(child: IndicatorWidget())
+              ? const Center(child: LoadingWidget())
               : cubit.activeVoucherModel!.data!.isEmpty
                   ? const NoVoucherWidget()
                   : ListView.separated(

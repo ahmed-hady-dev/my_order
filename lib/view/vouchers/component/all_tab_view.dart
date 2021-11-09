@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'no_voucher_widget.dart';
 import '../controller/voucher_cubit.dart';
 import '../widgets/voucher_card.dart';
-import '../../../widgets/indicator_widget.dart';
+import '../../../widgets/loading_widget.dart';
 
 class AllTabView extends StatelessWidget {
   const AllTabView({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class AllTabView extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: cubit.allVoucherModel == null
-              ? const Center(child: IndicatorWidget())
+              ? const Center(child: LoadingWidget())
               : cubit.allVoucherModel!.data!.isEmpty
                   ? const NoVoucherWidget()
                   : ListView.separated(

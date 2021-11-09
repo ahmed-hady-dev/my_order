@@ -46,6 +46,7 @@ class PopularBrandNearYouListView extends StatelessWidget {
                     height: 100.0,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12.0),
+                      color: Colors.grey,
                       image: DecorationImage(
                         image: NetworkImage(stores[index]!.image.toString()),
                         fit: BoxFit.cover,

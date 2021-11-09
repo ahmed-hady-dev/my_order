@@ -3,7 +3,7 @@
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:my_order/view/order/controller/order_cubit.dart';
-import 'package:my_order/widgets/loading_indicator.dart';
+import 'package:my_order/widgets/loading_widget.dart';
 import 'package:my_order/widgets/main_button.dart';
 
 class AddToCartButton extends StatelessWidget {
@@ -18,7 +18,7 @@ class AddToCartButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
       child: isLoading
-          ? const LoadingIndicator()
+          ? const LoadingWidget()
           : MainButton(
               text: "order.cart_button_title".tr(),
               onPressed: cubit.addToCart,

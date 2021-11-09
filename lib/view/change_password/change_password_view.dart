@@ -9,7 +9,7 @@ import 'package:my_order/view/change_password/component/old_password_text_field.
 import 'package:my_order/view/user_details/controller/user_details_cubit.dart';
 import 'package:my_order/widgets/confirm_password_text_field.dart';
 import 'package:my_order/widgets/header_text.dart';
-import 'package:my_order/widgets/indicator_widget.dart';
+import 'package:my_order/widgets/loading_widget.dart';
 import 'package:my_order/widgets/main_button.dart';
 
 import 'component/new_password_text_field.dart';
@@ -98,7 +98,7 @@ class ChangePasswordView extends StatelessWidget {
                     )),
                 const SizedBox(height: 24.0),
                 state is UserPasswordUpdateLoadingState
-                    ? const IndicatorWidget()
+                    ? const LoadingWidget()
                     : MainButton(
                         text: "change_password.change_password".tr(),
                         onPressed: () {
