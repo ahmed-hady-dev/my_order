@@ -14,6 +14,7 @@ import 'package:my_order/view/home/model/item_model.dart';
 import 'package:my_order/view/home/model/logout_model.dart';
 import 'package:my_order/view/home/model/popular_brands_model.dart';
 import 'package:my_order/view/home/model/popular_food_model.dart';
+import 'package:my_order/view/home/model/slides_model.dart';
 import 'package:my_order/view/home/model/special_offers_model.dart';
 import 'package:my_order/view/home/model/store_categories_model.dart';
 import 'package:my_order/view/home/model/store_sub_categories_model.dart';
@@ -33,6 +34,7 @@ class HomeCubit extends Cubit<HomeState> {
   SpecialOffersModel? specialOffersModel;
   ItemModel? itemModel;
   LogoutModel? logoutModel;
+  SlidesModel? slidesModel;
   int carouselIndex = 0;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 //===============================================================
@@ -41,11 +43,30 @@ class HomeCubit extends Cubit<HomeState> {
     emit(ChangeCarouselIndex());
   }
 
-  List carouselImage = [
-    'assets/images/carousel.png',
-    'assets/images/carousel.png',
-    'assets/images/carousel.png',
-  ];
+//===============================================================
+  Future<void> getSlides() async {
+    emit(GetSlidesLoading());
+    final response = await DioHelper.getData(
+      url: slides,
+      query: {
+        'lang': MagicRouter.currentContext!.locale.languageCode == 'en'
+            ? 'en'
+            : 'ar'
+      },
+    );
+    try {
+      slidesModel = SlidesModel.fromJson(response.data);
+      emit(GetSlidesSuccess(slidesModel: slidesModel!));
+    } on DioError catch (e) {
+      debugPrint(e.error.toString());
+      emit(GetSlidesError());
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      emit((GetSlidesError()));
+    }
+  }
+
 //===============================================================
   Future<void> getStoreCategories() async {
     emit(GetStoreCategoriesLoading());

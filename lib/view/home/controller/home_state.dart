@@ -8,6 +8,17 @@ class HomeInitial extends HomeState {}
 class ChangeCarouselIndex extends HomeState {}
 //===============================================================
 
+class GetSlidesLoading extends HomeState {}
+
+class GetSlidesSuccess extends HomeState {
+  final SlidesModel slidesModel;
+
+  GetSlidesSuccess({required this.slidesModel});
+}
+
+class GetSlidesError extends HomeState {}
+//===============================================================
+
 class GetStoreCategoriesLoading extends HomeState {}
 
 class GetStoreCategoriesSuccess extends HomeState {

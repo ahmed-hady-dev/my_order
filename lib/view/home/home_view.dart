@@ -13,6 +13,7 @@ import 'package:my_order/widgets/nothing_widget.dart';
 import 'component/buttons_shimmer.dart';
 import 'component/home_appbar.dart';
 import 'component/category_buttons_listview.dart';
+import 'component/home_carousel.dart';
 import 'component/item_card.dart';
 import 'component/popular_brand_near_you_list_view.dart';
 
@@ -24,6 +25,7 @@ class HomeView extends StatelessWidget {
     return SafeArea(
       child: BlocProvider(
         create: (context) => HomeCubit()
+          ..getSlides()
           ..getStoreCategories()
           ..getPopularBrands()
           ..getPopularFood()
@@ -64,7 +66,9 @@ class HomeView extends StatelessWidget {
                           : CategoryButtonsListView(
                               storeCategoriesModel:
                                   cubit.storeCategoriesModel!),
-                  // HomeCarousel(cubit: cubit),
+                  cubit.slidesModel == null
+                      ? const SliderShimmer()
+                      : HomeCarousel(cubit: cubit),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: SectionHeader(

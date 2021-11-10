@@ -14,19 +14,18 @@ class HomeCarousel extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CarouselSlider(
-          items: cubit.carouselImage.map((i) {
+          items: cubit.slidesModel!.data!.map((i) {
             return Builder(
               builder: (BuildContext context) {
                 return Container(
-                  padding: const EdgeInsets.symmetric(
+                  margin: const EdgeInsets.symmetric(
                       horizontal: 16.0, vertical: 8.0),
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
+                    color: Colors.grey.shade300,
                     borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Image.asset(
-                    i.toString(),
-                    fit: BoxFit.cover,
+                    image: DecorationImage(
+                        image: NetworkImage(i.toString()), fit: BoxFit.cover),
                   ),
                 );
               },
@@ -49,7 +48,7 @@ class HomeCarousel extends StatelessWidget {
           ),
         ),
         DotsIndicator(
-          dotsCount: cubit.carouselImage.length,
+          dotsCount: cubit.slidesModel!.data!.length,
           position: cubit.carouselIndex.toDouble(),
           decorator: DotsDecorator(
             color: AppColors.redColor.withOpacity(0.5),

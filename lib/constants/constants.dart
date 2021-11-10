@@ -1,6 +1,7 @@
 const String collectionLink =
     'https://www.getpostman.com/collections/c9848a1ee05785298d78';
 const String base = 'http://www.inoutdesigners.com/talabat/public/api';
+const String slides = '/slides';
 const String signUp = '/client/auth/signUp';
 const String login = '/client/auth/login';
 const String logout = '/client/auth/logout';

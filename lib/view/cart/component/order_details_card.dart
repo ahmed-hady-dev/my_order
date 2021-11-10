@@ -11,7 +11,8 @@ import 'order_details_header.dart';
 class OrderDetailsCard extends StatelessWidget {
   const OrderDetailsCard({
     Key? key,
-    required this.totalPrice,required this.deliveryFee,
+    required this.totalPrice,
+    required this.deliveryFee,
   }) : super(key: key);
   final double totalPrice;
   final double deliveryFee;
@@ -31,10 +32,6 @@ class OrderDetailsCard extends StatelessWidget {
         children: [
           const OrderDetailsHeader(),
           const SizedBox(height: 0.0),
-          // OrderDetailsRow(
-          //   title: "cart.special_services".tr(),
-          //   price: 10,
-          // ),
           OrderDetailsRow(
             title: "cart.delivery_price".tr(),
             price: deliveryFee,
