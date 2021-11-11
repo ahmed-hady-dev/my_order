@@ -5,7 +5,7 @@ import 'package:my_order/view/order/controller/order_cubit.dart';
 import '../constants/app_colors.dart';
 
 class CustomShapeRadioOption<T> extends StatelessWidget {
-  final int price;
+  final double price;
   int? groupValue;
   final String title;
   final int id;

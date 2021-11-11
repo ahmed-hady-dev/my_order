@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../controller/order_cubit.dart';
-import '../model/item_details.dart';
 import '../../home/widgets/section_header.dart';
 import '../../../widgets/custom_shape_radio_option.dart';
 
@@ -8,7 +7,7 @@ class ChoicesCard extends StatefulWidget {
   final String headerText;
   final String subText;
   final bool isSubText;
-  final List<Extra> list;
+  final List? list;
   final bool isSize;
   const ChoicesCard({
     Key? key,
@@ -53,18 +52,18 @@ class _ChoicesCardState extends State<ChoicesCard> {
             border: Border.all(color: Colors.grey),
           ),
           child: ListView.builder(
-            itemCount: widget.list.length,
+            itemCount: widget.list!.length,
             padding: EdgeInsets.zero,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) => CustomShapeRadioOption<int>(
-              id: widget.list[index].id!,
+              id: widget.list![index]!.id!,
               isSize: widget.isSize,
-              price: widget.list[index].price!,
+              price: widget.list![index]!.price!,
               groupValue: groupValue,
               onChanged: (v) => OrderCubit.get(context)
-                  .valueChangedHandler(widget.isSize, widget.list[index].id!),
-              title: widget.list[index].name!,
+                  .valueChangedHandler(widget.isSize, widget.list![index]!.id!),
+              title: widget.list![index]!.name!,
             ),
           ),
         ),

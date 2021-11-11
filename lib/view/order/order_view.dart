@@ -37,17 +37,12 @@ class OrderView extends StatelessWidget {
         child: BlocBuilder<OrderCubit, OrderState>(
           builder: (context, state) {
             final cubit = OrderCubit.get(context);
-            if (state is OrderLoading) {
+            if (cubit.itemDetailsModel == null) {
               return const Scaffold(body: LoadingWidget());
             }
-            if (cubit.itemDetailsModel!.data!.sizes!.isEmpty) {
-              return const Scaffold(body: NoData(text: 'sizes is empty'));
+            if (state is GetDetailsError) {
+              return const Scaffold(body: NoData(text: 'some error'));
             }
-            if (cubit.itemDetailsModel!.data == null) {
-              return const Scaffold(body: NoData(text: 'data is null'));
-            }
-            final data = cubit.itemDetailsModel!.data!;
-            debugPrint(data.toJson().toString());
             return Scaffold(
               appBar: AppBar(
                 actions: [
@@ -58,58 +53,38 @@ class OrderView extends StatelessWidget {
                       icon: const Icon(Icons.shopping_basket_outlined)),
                 ],
               ),
-              body: ListView(
-                children: <Widget>[
-                  FoodImage(image: image),
-                  const SizedBox(height: 24.0),
-                  OrderMainHeader(
-                    name: name,
-                    description: description,
-                    orderCount: cubit.orderCount,
-                  ),
-                  ChoicesCard(
-                    headerText: "order.choose_size".tr(),
-                    isSubText: false,
-                    list: data.sizes!,
-                    isSize: true,
-                  ),
-                  const SizedBox(height: 12.0),
-                  data.extras!.isEmpty
-                      ? const SizedBox()
-                      : ChoicesCard(
-                          headerText: "order.extras".tr(),
-                          isSubText: true,
-                          subText: "order.optional".tr(),
-                          isSize: false,
-                          list: data.extras!,
+              body: cubit.itemDetailsModel!.data == null
+                  ? const NoData(text: 'data is null')
+                  : ListView(
+                      children: <Widget>[
+                        FoodImage(image: image),
+                        const SizedBox(height: 24.0),
+                        OrderMainHeader(
+                          name: name,
+                          description: description,
+                          orderCount: cubit.orderCount,
                         ),
-                  // const SizedBox(height: 12.0),
-                  // SectionHeader(
-                  //   headerText: "order.add_notes".tr(),
-                  //   buttonText: '',
-                  //   showButton: false,
-                  //   onPressed: () {},
-                  // ),
-                  // Container(
-                  //   height: 66.0,
-                  //   margin: const EdgeInsets.symmetric(
-                  //       vertical: 8.0, horizontal: 16.0),
-                  //   child: TextField(
-                  //     autofocus: false,
-                  //     onChanged: (v)=> cubit.notes = v,
-                  //     expands: true,
-                  //     maxLines: null,
-                  //     keyboardType: TextInputType.multiline,
-                  //     decoration: InputDecoration(
-                  //       border: InputBorder.none,
-                  //       isCollapsed: true,
-                  //       hintText: "order.write".tr(),
-                  //     ),
-                  //   ),
-                  // ),
-                  AddToCartButton(storeId: storeId, itemId: itemId),
-                ],
-              ),
+                        cubit.itemDetailsModel!.data!.sizes!.isEmpty
+                            ? const SizedBox()
+                            : ChoicesCard(
+                                headerText: "order.choose_size".tr(),
+                                isSubText: false,
+                                list: cubit.itemDetailsModel!.data!.sizes,
+                                isSize: true,
+                              ),
+                        const SizedBox(height: 12.0),
+                        cubit.itemDetailsModel!.data!.extras!.isEmpty
+                            ? const SizedBox()
+                            : ChoicesCard(
+                                headerText: "order.extras".tr(),
+                                isSubText: true,
+                                subText: "order.optional".tr(),
+                                isSize: false,
+                                list: cubit.itemDetailsModel!.data!.extras!,
+                              ),
+                        AddToCartButton(storeId: storeId, itemId: itemId),
+                      ],
+                    ),
             );
           },
         ),

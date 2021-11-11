@@ -23,14 +23,13 @@ class CartView extends StatelessWidget {
           appBar: AppBar(
             title: Text("cart.appBar_title".tr()),
             actions: [
-              Builder(
-                builder: (context) {
-                  return IconButton(
-                      onPressed: () {
-                        CartCubit.of(context).clearCart();
-                      }, icon: const Icon(Icons.delete_forever));
-                }
-              ),
+              Builder(builder: (context) {
+                return IconButton(
+                    onPressed: () {
+                      CartCubit.of(context).clearCart();
+                    },
+                    icon: const Icon(Icons.delete_forever));
+              }),
             ],
           ),
           body: Center(
@@ -58,15 +57,13 @@ class CartView extends StatelessWidget {
                           price: item.pivot!.itemSizeId!.price!.toDouble(),
                           image: item.image!,
                           description: item.description!,
-                          onTap: () {
-
-                          },
+                          onTap: () {},
                         );
                       },
                     ),
                     OrderDetailsCard(
                       totalPrice: data.total!.toDouble(),
-                      deliveryFee: data.deliveryFees!.toDouble(),
+                      deliveryFee: data.deliveryFees!,
                     ),
                     const ButtonsRow(),
                   ],

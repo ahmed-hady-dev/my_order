@@ -2,10 +2,8 @@
 
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/view/home/controller/home_cubit.dart';
 import 'package:my_order/view/home/model/special_offers_model.dart';
-import 'package:my_order/view/order/controller/order_cubit.dart';
 import 'package:my_order/view/order/order_view.dart';
 import 'package:my_order/widgets/loading_dialog.dart';
 import 'package:my_order/widgets/stars_bar.dart';
@@ -37,28 +35,14 @@ class SpecialOfferCard extends StatelessWidget {
                   .getItemById(itemId: item[index]!.id.toString())
                   .then(
                 (itemModel) {
-                  debugPrint(item[index]!.id.toString());
-                  debugPrint(item[index]!.name.toString());
-                  debugPrint(itemModel!.toJson().toString());
                   MagicRouter.pop();
                   MagicRouter.navigateTo(
-                    BlocProvider.value(
-                      value: OrderCubit(),
-                      child: OrderView(
-                        //TODO:   ظبط العجوه اللي هنا دي لما حسام يظبطها و انت بتتعامل مع
-                        // /client/items/ => itemModel.data!.id!
-                        // /client/offers/area
-                        image: itemModel.data!.image!.toString(),
-                        name: itemModel.data!.name!.toString(),
-                        description: itemModel.data!.description!.toString(),
-                        itemId: itemModel.data!.id!,
-                        storeId: itemModel.data!.itemCategory!.store!.id!,
-                        // image: item[index]!.image!.toString(),
-                        // name: item[index]!.name!.toString(),
-                        // description: item[index]!.description!.toString(),
-                        // itemId: item[index]!.id!,
-                        // storeId: item[index]!.store!.id!,
-                      ),
+                    OrderView(
+                      image: item[index]!.image!.toString(),
+                      name: item[index]!.name!.toString(),
+                      description: item[index]!.description!.toString(),
+                      itemId: item[index]!.id!,
+                      storeId: item[index]!.store!.id!,
                     ),
                   );
                 },
@@ -120,21 +104,6 @@ class SpecialOfferCard extends StatelessWidget {
                               stars: double.parse(item[index]!.store!.rate!)),
                         ],
                       ),
-                      // const SizedBox(width: 60),
-                      // Row(
-                      //   children: [
-                      //     const FaIcon(
-                      //       FontAwesomeIcons.clock,
-                      //       size: 12.0,
-                      //     ),
-                      //     const SizedBox(width: 4.0),
-                      //     Text(
-                      //       foodCardModel[index].time,
-                      //       style: const TextStyle(
-                      //           fontSize: 8.0, fontWeight: FontWeight.normal),
-                      //     ),
-                      //   ],
-                      // ),
                     ],
                   ),
                 ],

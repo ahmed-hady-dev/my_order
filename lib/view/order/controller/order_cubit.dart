@@ -1,7 +1,11 @@
+// ignore_for_file: implementation_imports
+
 import 'package:dio/dio.dart';
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:my_order/core/router/router.dart';
 import '../../../core/dioHelper/dio_helper.dart';
 import '../model/item_details.dart';
 
@@ -19,11 +23,26 @@ class OrderCubit extends Cubit<OrderState> {
   //===============================================================
 
   Future<void> getDetails({required int itemId}) async {
-    emit(OrderLoading());
-    final response =
-        await DioHelper.getDataByToken(url: "/client/items/$itemId");
-    itemDetailsModel = ItemDetailsModel.fromJson(response.data);
-    emit(OrderInitial());
+    emit(GetDetailsLoading());
+    final response = await DioHelper.getDataByToken(
+      url: "/client/items/$itemId",
+      query: {
+        'lang': MagicRouter.currentContext!.locale.languageCode == 'en'
+            ? 'en'
+            : 'ar'
+      },
+    );
+    try {
+      itemDetailsModel = ItemDetailsModel.fromJson(response.data);
+      emit(GetDetailsSuccess());
+    } on DioError catch (e) {
+      debugPrint(e.error.toString());
+      emit(GetDetailsError());
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
+      emit(GetDetailsError());
+    }
   }
 
   Future<void> addToCart({
