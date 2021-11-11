@@ -16,9 +16,11 @@ class CartCubit extends Cubit<CartStates> {
     emit(CartLoading());
     final response =
         await DioHelper.getDataByToken(url: "/client/orders/displayCart");
+    print(response.data);
     if(response.data['data'] != null){
       cartModel = CartModel.fromJson(response.data);
     }
+
     emit(CartInit());
   }
 
@@ -49,14 +51,15 @@ class CartCubit extends Cubit<CartStates> {
       required int sizeId,
       required int? extraId}) async {
     final body = {
-      'order[0][item_id]': itemId,
-      'order[0][quantity]': quantity,
+      'order[item_id]': itemId,
       'store_id': storeId,
-      'order[0][item_size_id]': sizeId,
-      if (extraId != null) 'order[0][extras][]': extraId
+      'order[item_size_id]': sizeId,
+      if (extraId != null) 'order[extras][]': extraId
     };
-    await DioHelper.postData(
+    print(body);
+    final r = await DioHelper.postData(
         url: "/client/orders/removeFromCart", data: FormData.fromMap(body));
+    print(r);
     cartModel!.data!.items!.removeWhere((element) => element.id == itemId);
     emit(CartInit());
   }
