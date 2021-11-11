@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/cart/cart_view.dart';
+import 'package:my_order/view/offers/component/no_offers.dart';
 import 'package:my_order/widgets/loading_widget.dart';
 import 'component/order_main_header.dart';
 import 'widgets/choices_card.dart';
@@ -31,8 +32,7 @@ class OrderView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          OrderCubit(storeId: storeId, itemId: itemId)..getDetails(),
+      create: (context) => OrderCubit()..getDetails(itemId: itemId),
       child: SafeArea(
         child: BlocBuilder<OrderCubit, OrderState>(
           builder: (context, state) {
@@ -40,7 +40,14 @@ class OrderView extends StatelessWidget {
             if (state is OrderLoading) {
               return const Scaffold(body: LoadingWidget());
             }
+            if (cubit.itemDetailsModel!.data!.sizes!.isEmpty) {
+              return const Scaffold(body: NoData(text: 'sizes is empty'));
+            }
+            if (cubit.itemDetailsModel!.data == null) {
+              return const Scaffold(body: NoData(text: 'data is null'));
+            }
             final data = cubit.itemDetailsModel!.data!;
+            debugPrint(data.toJson().toString());
             return Scaffold(
               appBar: AppBar(
                 actions: [
@@ -100,7 +107,7 @@ class OrderView extends StatelessWidget {
                   //     ),
                   //   ),
                   // ),
-                  const AddToCartButton(),
+                  AddToCartButton(storeId: storeId, itemId: itemId),
                 ],
               ),
             );

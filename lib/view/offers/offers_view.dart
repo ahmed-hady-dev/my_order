@@ -32,6 +32,9 @@ class OffersView extends StatelessWidget {
                       storeOfferModelData: storeOfferModel.data![index]!,
                       onTap: () {
                         loadingDialog(context);
+                        debugPrint(storeOfferModel.data![index]!.id.toString());
+                        debugPrint(
+                            storeOfferModel.data![index]!.name.toString());
                         StoreCubit().getItems(storeId: storeId!).then((value) {
                           MagicRouter.pop();
                           MagicRouter.navigateTo(
@@ -39,9 +42,9 @@ class OffersView extends StatelessWidget {
                               storeId: storeId!,
                               itemId: storeOfferModel.data![index]!.id!,
                               image: storeOfferModel.data![index]!.image!,
-                              name: storeOfferModel.data![index]!.nameAr!,
+                              name: storeOfferModel.data![index]!.name!,
                               description:
-                                  storeOfferModel.data![index]!.descriptionAr!,
+                                  storeOfferModel.data![index]!.description!,
                             ),
                           );
                         });

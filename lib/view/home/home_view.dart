@@ -108,7 +108,8 @@ class HomeView extends StatelessWidget {
                       ? const ItemCardShimmer()
                       : cubit.specialOffersModel!.data!.isEmpty
                           ? NothingWidget(color: Colors.grey.shade300)
-                          : SpecialOfferCard(cubit: cubit),
+                          : SpecialOfferCard(
+                              specialOffersModel: cubit.specialOffersModel!),
                   const SizedBox(height: 20.0),
                 ],
               ),
@@ -119,9 +120,3 @@ class HomeView extends StatelessWidget {
     );
   }
 }
-
-// the bottom carousel
-// Padding(
-//   padding: const EdgeInsets.symmetric(vertical: 16.0),
-//   child: HomeCarousel(cubit: cubit),
-// ),

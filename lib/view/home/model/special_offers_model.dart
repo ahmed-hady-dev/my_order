@@ -4,12 +4,12 @@ class SpecialOffersModelDataStore {
   String? description;
   String? image;
   String? rate;
-  int? reviewsNumber;
+  double? reviewsNumber;
   String? openAt;
   String? closeAt;
   double? deliveryFees;
   double? taxes;
-  int? minOrder;
+  double? minOrder;
 
   SpecialOffersModelDataStore({
     this.id,
@@ -30,12 +30,12 @@ class SpecialOffersModelDataStore {
     description = json['description']?.toString();
     image = json['image']?.toString();
     rate = json['rate']?.toString();
-    reviewsNumber = json['reviews_number']?.toInt();
+    reviewsNumber = json['reviews_number']?.toDouble();
     openAt = json['open_at']?.toString();
     closeAt = json['close_at']?.toString();
     deliveryFees = json['delivery_fees']?.toDouble();
     taxes = json['taxes']?.toDouble();
-    minOrder = json['min_order']?.toInt();
+    minOrder = json['min_order']?.toDouble();
   }
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
@@ -56,8 +56,8 @@ class SpecialOffersModelDataStore {
 
 class SpecialOffersModelData {
   int? id;
-  String? nameAr;
-  String? descriptionAr;
+  String? name;
+  String? description;
   String? image;
   double? price;
   int? numOrders;
@@ -67,8 +67,8 @@ class SpecialOffersModelData {
 
   SpecialOffersModelData({
     this.id,
-    this.nameAr,
-    this.descriptionAr,
+    this.name,
+    this.description,
     this.image,
     this.price,
     this.numOrders,
@@ -78,8 +78,8 @@ class SpecialOffersModelData {
   });
   SpecialOffersModelData.fromJson(Map<String, dynamic> json) {
     id = json['id']?.toInt();
-    nameAr = json['name_ar']?.toString();
-    descriptionAr = json['description_ar']?.toString();
+    name = json['name']?.toString();
+    description = json['description']?.toString();
     image = json['image']?.toString();
     price = json['price']?.toDouble();
     numOrders = json['num_orders']?.toInt();
@@ -92,8 +92,8 @@ class SpecialOffersModelData {
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
     data['id'] = id;
-    data['name_ar'] = nameAr;
-    data['description_ar'] = descriptionAr;
+    data['name'] = name;
+    data['description'] = description;
     data['image'] = image;
     data['price'] = price;
     data['num_orders'] = numOrders;

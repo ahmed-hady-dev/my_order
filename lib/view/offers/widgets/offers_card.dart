@@ -59,7 +59,7 @@ class OffersCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          RestaurantName(name: storeOfferModelData.nameAr!),
+                          RestaurantName(name: storeOfferModelData.name!),
                           PriceText(
                             price: "restaurant.price".tr() +
                                 "${storeOfferModelData.price!.toInt()} " +

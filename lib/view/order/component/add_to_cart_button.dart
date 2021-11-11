@@ -9,7 +9,11 @@ import 'package:my_order/widgets/main_button.dart';
 class AddToCartButton extends StatelessWidget {
   const AddToCartButton({
     Key? key,
+    required this.storeId,
+    required this.itemId,
   }) : super(key: key);
+  final int storeId;
+  final int itemId;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +25,8 @@ class AddToCartButton extends StatelessWidget {
           ? const LoadingWidget()
           : MainButton(
               text: "order.cart_button_title".tr(),
-              onPressed: cubit.addToCart,
+              onPressed: () =>
+                  cubit.addToCart(storeId: storeId, itemId: itemId),
             ),
     );
   }

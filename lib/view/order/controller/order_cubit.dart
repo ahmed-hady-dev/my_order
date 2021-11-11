@@ -8,22 +8,17 @@ import '../model/item_details.dart';
 part 'order_state.dart';
 
 class OrderCubit extends Cubit<OrderState> {
-  OrderCubit({required this.storeId, required this.itemId})
-      : super(OrderInitial());
-
-  final int itemId;
-  final int storeId;
+  OrderCubit() : super(OrderInitial());
 
   static OrderCubit get(context) => BlocProvider.of(context);
   //===============================================================
   int orderCount = 1;
   double totalPrice = 0.0;
   int? sizeId, extraId;
-  String? notes;
   ItemDetailsModel? itemDetailsModel;
   //===============================================================
 
-  Future<void> getDetails() async {
+  Future<void> getDetails({required int itemId}) async {
     emit(OrderLoading());
     final response =
         await DioHelper.getDataByToken(url: "/client/items/$itemId");
@@ -31,7 +26,10 @@ class OrderCubit extends Cubit<OrderState> {
     emit(OrderInitial());
   }
 
-  Future<void> addToCart() async {
+  Future<void> addToCart({
+    required int storeId,
+    required int itemId,
+  }) async {
     if (sizeId == null) return;
     emit(OrderButtonLoading());
     final body = {
@@ -43,7 +41,6 @@ class OrderCubit extends Cubit<OrderState> {
     };
     final response = await DioHelper.postData(
         url: "/client/orders/addToCart", data: FormData.fromMap(body));
-    // debugPrint(response.data);
     Fluttertoast.showToast(msg: response.data['message']);
     emit(OrderInitial());
   }

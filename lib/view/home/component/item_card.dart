@@ -38,15 +38,14 @@ class ItemCard extends StatelessWidget {
                   MagicRouter.pop();
                   MagicRouter.navigateTo(
                     BlocProvider.value(
-                      value: OrderCubit(
-                          storeId: item[index]!.itemCategory!.store!.id!,
-                          itemId: item[index]!.id!),
+                      value: OrderCubit(),
                       child: OrderView(
-                          image: item[index]!.image!.toString(),
-                          name: item[index]!.name!.toString(),
-                          description: item[index]!.description!.toString(),
-                          itemId: item[index]!.id!,
-                          storeId: item[index]!.itemCategory!.store!.id!),
+                        image: itemModel!.data!.image!.toString(),
+                        name: itemModel.data!.name!.toString(),
+                        description: itemModel.data!.description!.toString(),
+                        itemId: itemModel.data!.id!,
+                        storeId: itemModel.data!.itemCategory!.store!.id!,
+                      ),
                     ),
                   );
                 },

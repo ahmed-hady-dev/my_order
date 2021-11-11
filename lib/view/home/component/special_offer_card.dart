@@ -4,6 +4,7 @@ import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/view/home/controller/home_cubit.dart';
+import 'package:my_order/view/home/model/special_offers_model.dart';
 import 'package:my_order/view/order/controller/order_cubit.dart';
 import 'package:my_order/view/order/order_view.dart';
 import 'package:my_order/widgets/loading_dialog.dart';
@@ -13,12 +14,12 @@ import '../../../core/router/router.dart';
 class SpecialOfferCard extends StatelessWidget {
   const SpecialOfferCard({
     Key? key,
-    required this.cubit,
+    required this.specialOffersModel,
   }) : super(key: key);
-  final HomeCubit cubit;
+  final SpecialOffersModel specialOffersModel;
   @override
   Widget build(BuildContext context) {
-    final item = cubit.specialOffersModel!.data!;
+    final item = specialOffersModel.data!;
     return SizedBox(
       height: 194.0,
       child: ListView.builder(
@@ -32,20 +33,32 @@ class SpecialOfferCard extends StatelessWidget {
           return InkWell(
             onTap: () {
               loadingDialog(context);
-              cubit.getItemById(itemId: item[index]!.id.toString()).then(
+              HomeCubit.get(context)
+                  .getItemById(itemId: item[index]!.id.toString())
+                  .then(
                 (itemModel) {
+                  debugPrint(item[index]!.id.toString());
+                  debugPrint(item[index]!.name.toString());
+                  debugPrint(itemModel!.toJson().toString());
                   MagicRouter.pop();
                   MagicRouter.navigateTo(
                     BlocProvider.value(
-                      value: OrderCubit(
-                          storeId: item[index]!.store!.id!,
-                          itemId: item[index]!.id!),
+                      value: OrderCubit(),
                       child: OrderView(
-                          image: item[index]!.image!.toString(),
-                          name: item[index]!.nameAr!.toString(),
-                          description: item[index]!.descriptionAr!.toString(),
-                          itemId: item[index]!.id!,
-                          storeId: item[index]!.store!.id!),
+                        //TODO:   ظبط العجوه اللي هنا دي لما حسام يظبطها و انت بتتعامل مع
+                        // /client/items/ => itemModel.data!.id!
+                        // /client/offers/area
+                        image: itemModel.data!.image!.toString(),
+                        name: itemModel.data!.name!.toString(),
+                        description: itemModel.data!.description!.toString(),
+                        itemId: itemModel.data!.id!,
+                        storeId: itemModel.data!.itemCategory!.store!.id!,
+                        // image: item[index]!.image!.toString(),
+                        // name: item[index]!.name!.toString(),
+                        // description: item[index]!.description!.toString(),
+                        // itemId: item[index]!.id!,
+                        // storeId: item[index]!.store!.id!,
+                      ),
                     ),
                   );
                 },
@@ -77,7 +90,7 @@ class SpecialOfferCard extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
-                        item[index]!.nameAr!.toString(),
+                        item[index]!.name!.toString(),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
