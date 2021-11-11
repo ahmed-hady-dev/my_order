@@ -29,10 +29,10 @@ class SettingsView extends StatelessWidget {
               ),
               body: Column(
                 children: <Widget>[
-                  NotificationRow(
-                      value: cubit.notificationToggle,
-                      onChanged: (value) =>
-                          cubit.changeNotificationToggle(value: value)),
+                  // NotificationRow(
+                  //     value: cubit.notificationToggle,
+                  //     onChanged: (value) =>
+                  //         cubit.changeNotificationToggle(value: value)),
                   const Divider(),
                   SettingsRow(
                     text: "settings.lang".tr(),

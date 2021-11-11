@@ -14,14 +14,12 @@ class SettingsCubit extends Cubit<SettingsState> {
   //===============================================================
   changeNotificationToggle({required bool value}) {
     notificationToggle = value;
-    //TODO: add toggle notification function here
     emit(ChangeNotificationToggle());
   }
 
   //===============================================================
   changeLangDropDown({required String value}) {
     langDropdownValue = value;
-    //TODO: add function here
     emit(ChangeLangDropDown());
   }
 }

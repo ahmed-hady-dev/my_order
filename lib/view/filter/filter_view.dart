@@ -28,7 +28,6 @@
 //                 actions: [
 //                   TextButton(
 //                     onPressed: () {
-//                       //TODO: add the clear all filter button functionality here
 //                     },
 //                     child: Text("filter.clear_all".tr()),
 //                   )

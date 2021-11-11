@@ -29,7 +29,6 @@
 //                 leadingWidth: 48.0,
 //                 centerTitle: false,
 //                 title:
-//                     //TODO: handle the search function in here
 //                     FilterResultAppBarTitle(controller: cubit.searchController),
 //               ),
 //               body: Column(
@@ -54,7 +53,6 @@
 //                               onPressed: () {
 //                                 item.isSelected = !item.isSelected;
 //                                 cubit.changeSelectedFilterButton();
-//                                 //TODO : add filter button functionality here
 //                               },
 //                               child: Text(item.text),
 //                             ),

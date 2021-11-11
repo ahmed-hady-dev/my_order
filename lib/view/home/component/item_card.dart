@@ -106,7 +106,6 @@ class ItemCard extends StatelessWidget {
                             style: const TextStyle(
                                 fontSize: 8.0, fontWeight: FontWeight.normal),
                           ),
-                          //TODO: the rate is the store rate
                           StarsBar(
                               stars: double.parse(
                                   item[index]!.itemCategory!.store!.rate!)),

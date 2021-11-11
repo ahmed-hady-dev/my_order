@@ -29,7 +29,6 @@ class PopularFilters extends StatelessWidget {
                 onPressed: () {
                   item.isSelected = !item.isSelected;
                   cubit.changeSelectedFilterButton();
-                  //TODO : add filter button functionality here
                 },
                 child: Text(item.text),
               ),

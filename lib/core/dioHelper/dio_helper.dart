@@ -39,7 +39,8 @@ class DioHelper {
   }) async {
     dio!.options.headers = {
       "Accept": "application/json",
-      'Authorization': 'Bearer ${CacheHelper.getUserToken}',
+      if(CacheHelper.isLogged)
+        'Authorization': 'Bearer ${CacheHelper.getUserToken}',
     };
     return await dio!.get(
       url,

@@ -21,9 +21,7 @@ class CategoryFoodListView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 4.0),
           child: ElevatedButton.icon(
             style: ElevatedButton.styleFrom(elevation: 0.0),
-            onPressed: () {
-              //TODO: insert the on pressed function
-            },
+            onPressed: () {},
             label: Text(
               cubit!.storeSubCategoriesModel!.data![index].name!.toString(),
               style:

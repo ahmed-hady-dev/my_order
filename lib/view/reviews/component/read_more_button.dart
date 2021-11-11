@@ -13,9 +13,7 @@ class ReadMoreButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextButton(
-        onPressed: () {
-          //TODO: add read more function here
-        },
+        onPressed: () {},
         child: Text(
           "reviews.read_more_reviews".tr(),
           style: const TextStyle(

@@ -17,35 +17,32 @@ class DrawerFooter extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconButton(
-              icon: const FaIcon(
-                FontAwesomeIcons.facebookF,
-                color: Colors.white,
-              ),
-              //TODO: add facebook link here
-              onPressed: () => Fluttertoast.showToast(msg: 'Facebook Button'),
-            ),
-            IconButton(
-              icon: const FaIcon(
-                FontAwesomeIcons.instagram,
-                color: Colors.white,
-              ),
-              //TODO: add instagram link here
-              onPressed: () => Fluttertoast.showToast(msg: 'Instagram Button'),
-            ),
-            IconButton(
-              icon: const FaIcon(
-                FontAwesomeIcons.twitter,
-                color: Colors.white,
-              ),
-              //TODO: add twitter link here
-              onPressed: () => Fluttertoast.showToast(msg: 'Twitter Button'),
-            ),
-          ],
-        ),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: [
+        //     IconButton(
+        //       icon: const FaIcon(
+        //         FontAwesomeIcons.facebookF,
+        //         color: Colors.white,
+        //       ),
+        //       onPressed: () => Fluttertoast.showToast(msg: 'Facebook Button'),
+        //     ),
+        //     IconButton(
+        //       icon: const FaIcon(
+        //         FontAwesomeIcons.instagram,
+        //         color: Colors.white,
+        //       ),
+        //       onPressed: () => Fluttertoast.showToast(msg: 'Instagram Button'),
+        //     ),
+        //     IconButton(
+        //       icon: const FaIcon(
+        //         FontAwesomeIcons.twitter,
+        //         color: Colors.white,
+        //       ),
+        //       onPressed: () => Fluttertoast.showToast(msg: 'Twitter Button'),
+        //     ),
+        //   ],
+        // ),
         const SizedBox(height: 40),
       ],
     );

@@ -20,7 +20,6 @@
 //         child: MainButton(
 //             text: "filter.apply".tr(),
 //             onPressed: () {
-//               //TODO: add the apply filter button functionality here
 //               MagicRouter.navigateTo(const FilterResultView());
 //             }),
 //       ),

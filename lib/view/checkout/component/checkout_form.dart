@@ -39,7 +39,6 @@ class CheckoutForm extends StatelessWidget {
                   if (cubit.formKey.currentState!.validate()) {}
                 },
                 decoration: const InputDecoration(
-                  //TODO: add the user name form api in here
                   hintText: 'Ahmed Abd-ElHady',
                 ),
               ),
@@ -62,7 +61,6 @@ class CheckoutForm extends StatelessWidget {
                 },
                 // controller: cubit.phoneController,
                 decoration: const InputDecoration(
-                  //TODO: add the user phone form api here
                   hintText: '01xxxxxxxxx',
                 ),
               ),
@@ -81,11 +79,9 @@ class CheckoutForm extends StatelessWidget {
                   if (cubit.formKey.currentState!.validate()) {}
                 },
                 decoration: InputDecoration(
-                  //TODO: add the user address form api here
                   hintText: '15, nour St',
                   suffixIcon: IconButton(
                     onPressed: () {
-                      //TODO: add navigation here
                     },
                     icon: const FaIcon(
                       FontAwesomeIcons.mapMarkerAlt,

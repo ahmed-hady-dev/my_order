@@ -36,7 +36,6 @@ class FoodView extends StatelessWidget {
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
               children: [
-                // TODO:
                 // cubit.storeSubCategoriesModel == null
                 //     ? const ButtonsShimmer()
                 //     : CategoryFoodListView(cubit: cubit),
