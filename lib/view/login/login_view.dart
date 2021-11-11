@@ -81,8 +81,7 @@ class LoginView extends StatelessWidget {
                                         .trim(),
                                     password: cubit.passwordController.text
                                         .toLowerCase()
-                                        .trim(),
-                                    notifiToken: '123456');
+                                        .trim());
                               }
                             },
                           ),

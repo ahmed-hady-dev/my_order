@@ -274,7 +274,7 @@ class HomeCubit extends Cubit<HomeState> {
 //===============================================================
   Future<void> signOut() async {
     emit(LogoutLoadingState());
-    final response = await DioHelper.postData(url: logout, data: {});
+    final response = await DioHelper.postData(url: logout);
     try {
       logoutModel = LogoutModel.fromJson(response.data);
       await CacheHelper.signOut();

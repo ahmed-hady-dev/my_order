@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:my_order/constants/constants.dart';
 import 'package:my_order/core/cacheHelper/cache_helper.dart';
+import 'package:my_order/core/firebase/firebase_messaging_helper.dart';
 import 'package:my_order/core/router/router.dart';
 import 'package:my_order/view/login/model/user_model.dart';
 import 'package:my_order/view/register/model/area_of_city_model.dart';
@@ -134,10 +135,9 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String password,
     required String passwordConfirm,
     required int registerAreaId,
-    //TODO: add the notifiToken here
-    String? notifiToken,
   }) async {
     emit(RegisterLoadingState());
+    final token = await FirebaseMessagingHelper.getToken();
     final response = await DioHelper.postData(
       url: signUp,
       data: {
@@ -148,7 +148,7 @@ class RegisterCubit extends Cubit<RegisterState> {
         'password': password,
         'password_confirmation': passwordConfirm,
         'area_id': registerAreaId,
-        'notifi_token': notifiToken,
+        'notifi_token': token,
       },
     );
     try {
@@ -158,11 +158,22 @@ class RegisterCubit extends Cubit<RegisterState> {
             token: userModel!.accessToken!.toString(), userModel: userModel!);
       emit(RegisterSuccessState(userModel: userModel!));
     } on DioError catch (e) {
-      debugPrint(e.error.toString());
       emit(RegisterLErrorState(error: e.toString()));
     } catch (e) {
       debugPrint(e.toString());
       emit(RegisterLErrorState(error: e.toString()));
     }
   }
+
+  @override
+  Future<void> close() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    phoneController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    return super.close();
+  }
+
 }

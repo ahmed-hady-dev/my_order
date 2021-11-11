@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "779197317328",
+    "project_id": "talabat-d274f",
+    "storage_bucket": "talabat-d274f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779197317328:android:fb335656d5575073f59ed5",
+        "android_client_info": {
+          "package_name": "com.my.order"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779197317328-mnp28r85ec9600fale5svjfmkuqodefv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGyF0p01p-HMDpw7Ha2t0iNmVhRiJVlTo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "779197317328-mnp28r85ec9600fale5svjfmkuqodefv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_order/constants/constants.dart';
 import 'package:my_order/core/cacheHelper/cache_helper.dart';
+import 'package:my_order/core/firebase/firebase_messaging_helper.dart';
 import 'package:my_order/view/login/model/user_model.dart';
 import '../../../core/dioHelper/dio_helper.dart';
 
@@ -25,15 +26,15 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> userLogin({
     required String email,
     required String password,
-    String? notifiToken,
   }) async {
     emit(LoginLoadingState());
+    final token = await FirebaseMessagingHelper.getToken();
     final response = await DioHelper.postData(
       url: login,
       data: {
         'email': email,
         'password': password,
-        'notifi_token': notifiToken,
+        'notifi_token': token,
       },
     );
     try {

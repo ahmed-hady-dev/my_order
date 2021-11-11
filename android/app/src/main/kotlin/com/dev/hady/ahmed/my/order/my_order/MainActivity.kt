@@ -1,4 +1,4 @@
-package com.dev.hady.ahmed.my.order.my_order
+package com.my.order
 
 import io.flutter.embedding.android.FlutterActivity
 
