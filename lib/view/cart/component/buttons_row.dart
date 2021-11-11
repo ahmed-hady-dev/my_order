@@ -3,6 +3,7 @@
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:my_order/core/router/router.dart';
+import 'package:my_order/view/cart/cubit.dart';
 import 'package:my_order/view/checkout/checkout_view.dart';
 import 'package:my_order/view/home/home_view.dart';
 import 'package:my_order/widgets/main_button.dart';
@@ -23,7 +24,10 @@ class ButtonsRow extends StatelessWidget {
                 const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: MainButton(
               text: "cart.checkout_button_title".tr(),
-              onPressed: () => MagicRouter.navigateTo(const CheckoutView()),
+              onPressed: () {
+                CartCubit.of(context).completeOrder();
+                MagicRouter.navigateTo(const CheckoutView());
+              },
             ),
           ),
         ),

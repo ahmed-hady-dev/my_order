@@ -51,10 +51,10 @@ class Datum {
   });
 
   int?id;
-  int? subTotal;
-  int? taxes;
-  int? deliveryFees;
-  int? total;
+  double? subTotal;
+  double? taxes;
+  double? deliveryFees;
+  double? total;
   String? state;
   String? cancellationReason;
   String? payment;
@@ -67,10 +67,10 @@ class Datum {
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
     id: json["id"],
-    subTotal: json["subTotal"],
-    taxes: json["taxes"] == null ? null : json["taxes"],
-    deliveryFees: json["delivery_fees"] == null ? null : json["delivery_fees"],
-    total: json["total"],
+    subTotal: double.tryParse(json["subTotal"].toString()),
+    taxes: json["taxes"] == null ? null : double.tryParse(json["taxes"].toString()),
+    deliveryFees: json["delivery_fees"] == null ? null : double.tryParse(json["delivery_fees"].toString()),
+    total: double.tryParse(json["total"].toString()),
     state: json["state"],
     cancellationReason: json["cancellation Reason"] == null ? null : json["cancellation Reason"],
     payment: json["payment"],
@@ -312,8 +312,8 @@ class Store {
   int? reviewsNumber;
   String? openAt;
   String? closeAt;
-  int? deliveryFees;
-  int? taxes;
+  double? deliveryFees;
+  double? taxes;
   int? minOrder;
 
   factory Store.fromJson(Map<String, dynamic> json) => Store(
@@ -325,8 +325,8 @@ class Store {
     reviewsNumber: json["reviews_number"],
     openAt: json["open_at"],
     closeAt: json["close_at"],
-    deliveryFees: json["delivery_fees"],
-    taxes: json["taxes"],
+    deliveryFees: double.tryParse(json["delivery_fees"].toString()),
+    taxes: double.tryParse(json["taxes"].toString()),
     minOrder: json["min_order"],
   );
 

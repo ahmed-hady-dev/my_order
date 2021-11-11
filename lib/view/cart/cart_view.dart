@@ -23,19 +23,25 @@ class CartView extends StatelessWidget {
           appBar: AppBar(
             title: Text("cart.appBar_title".tr()),
             actions: [
-              IconButton(
-                  onPressed: () {}, icon: const Icon(Icons.delete_forever)),
+              Builder(
+                builder: (context) {
+                  return IconButton(
+                      onPressed: () {
+                        CartCubit.of(context).clearCart();
+                      }, icon: const Icon(Icons.delete_forever));
+                }
+              ),
             ],
           ),
           body: Center(
             child: BlocBuilder<CartCubit, CartStates>(
               builder: (context, state) {
                 if (state is CartLoading) return const LoadingWidget();
-                final data = CartCubit.of(context).cartModel!.data!;
-                debugPrint(data.toJson().toString());
-                if (data.items!.isEmpty) {
+                final cartModel = CartCubit.of(context).cartModel;
+                if (cartModel == null || cartModel.data!.items!.isEmpty) {
                   return NoData(text: "cart.no_orders".tr());
                 }
+                final data = cartModel.data!;
                 return ListView(
                   children: [
                     ListView.builder(
@@ -53,7 +59,7 @@ class CartView extends StatelessWidget {
                           image: item.image!,
                           description: item.description!,
                           onTap: () {
-                            debugPrint("remove");
+
                           },
                         );
                       },

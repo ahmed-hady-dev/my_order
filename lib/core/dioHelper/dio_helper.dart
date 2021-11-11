@@ -50,7 +50,7 @@ class DioHelper {
 //===============================================================
   static Future<Response> postData({
     required String url,
-    required dynamic data,
+    dynamic data,
     Map<String, dynamic>? query,
   }) async {
     dio!.options.headers = {
