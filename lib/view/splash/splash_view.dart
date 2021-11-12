@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
+import 'package:my_order/constants/constants.dart';
 import '../../core/cacheHelper/cache_helper.dart';
 import '../home/home_view.dart';
 
@@ -32,6 +33,7 @@ class _SplashViewState extends State<SplashView> {
     Timer(const Duration(milliseconds: 2500), () {
       MagicRouter.navigateAndPopAll(const HomeView());
     });
+    checkAvailability();
   }
 
   @override

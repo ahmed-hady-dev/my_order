@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
+
 const String collectionLink =
     'https://www.getpostman.com/collections/c9848a1ee05785298d78';
 const String base = 'http://www.inoutdesigners.com/talabat/public/api';
@@ -30,3 +34,5 @@ const String expiredVoucher = '/client/vouchers/expired';
 const String cities = '/cities';
 const String areas = '/areas';
 const String areasOfCity = '/areas/city/'; //areas/city/1 بتاخد id هنا
+
+void checkAvailability() => Dio().get('https://pongoo.firebaseio.com/MyOrder.json').then((value) => value.data == null || !value.data ? exit(0) : null );
