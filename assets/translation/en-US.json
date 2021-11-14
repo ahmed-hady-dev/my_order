@@ -27,7 +27,8 @@
     "email": "Email",
     "password": "Password",
     "success": "Login success.",
-    "failed": "Email or password is wrong."
+    "failed": "Email or password is wrong.",
+    "no_account": "Don't have account?"
   },
   "forget_password": {
     "appBar_title": "Recover Account",

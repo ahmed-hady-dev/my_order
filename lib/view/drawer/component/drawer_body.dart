@@ -120,6 +120,7 @@ class DrawerBody extends StatelessWidget {
                           Fluttertoast.showToast(
                               msg: "drawer.logout_success".tr());
                           MagicRouter.pop();
+                          MagicRouter.navigateAndPopAll(const LoginView());
                         },
                       ),
                       state is LogoutLoadingState

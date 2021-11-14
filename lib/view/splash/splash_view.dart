@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:my_order/constants/constants.dart';
+import 'package:my_order/view/login/login_view.dart';
 import '../../core/cacheHelper/cache_helper.dart';
 import '../home/home_view.dart';
 
@@ -31,7 +32,8 @@ class _SplashViewState extends State<SplashView> {
       debugPrint('lang : ' + MagicRouter.currentContext!.locale.languageCode);
     });
     Timer(const Duration(milliseconds: 2500), () {
-      MagicRouter.navigateAndPopAll(const HomeView());
+      MagicRouter.navigateAndPopAll(
+          CacheHelper.isLogged ? const HomeView() : const LoginView());
     });
     checkAvailability();
   }

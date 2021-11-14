@@ -3,8 +3,8 @@
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:my_order/core/router/router.dart';
-import 'package:my_order/view/forget_password/forget_password_view.dart';
 import 'package:my_order/view/register/register_view.dart';
+import 'package:my_order/widgets/description_text.dart';
 
 class TextButtonRow extends StatelessWidget {
   const TextButtonRow({
@@ -14,13 +14,11 @@ class TextButtonRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        TextButton(
-          onPressed: () => MagicRouter.navigateTo(const ForgetPasswordView()),
-          child: Text("login.forgot_password".tr(),
-              style: const TextStyle(
-                  color: Colors.black, decoration: TextDecoration.underline)),
+        DescriptionText(
+          description: "login.no_account".tr(),
+          horizontalPadding: 0.0,
+          verticalPadding: 0.0,
         ),
         TextButton(
           onPressed: () => MagicRouter.navigateTo(const RegisterView()),
