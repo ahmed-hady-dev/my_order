@@ -14,13 +14,13 @@ class CartCubit extends Cubit<CartStates> {
 
   Future<void> getDetails() async {
     emit(CartLoading());
-    final response =
-        await DioHelper.getDataByToken(url: "/client/orders/displayCart");
-    print(response.data);
-    if(response.data['data'] != null){
-      cartModel = CartModel.fromJson(response.data);
-    }
-
+    try{
+      final response =
+      await DioHelper.getDataByToken(url: "/client/orders/displayCart");
+      if(response.data['data'] != null){
+        cartModel = CartModel.fromJson(response.data);
+      }
+    }catch(e){}
     emit(CartInit());
   }
 

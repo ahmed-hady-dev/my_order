@@ -51,8 +51,8 @@ class Data {
   });
 
   int? id;
-  int? subTotal;
-  int? taxes;
+  double? subTotal;
+  double? taxes;
   double? deliveryFees;
   double? total;
   String? state;
@@ -67,10 +67,10 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     id: json["id"],
-    subTotal: json["subTotal"],
-    // taxes: json["taxes"],
-    deliveryFees: json["delivery_fees"],
-    total: json["total"],
+    subTotal: double.tryParse(json["subTotal"].toString()),
+    taxes: double.tryParse(json["taxes"].toString()),
+    deliveryFees: double.tryParse(json["delivery_fees"].toString()),
+    total: double.tryParse(json["total"].toString()),
     state: json["state"],
     cancellationReason: json["cancellation Reason"],
     payment: json["payment"],
@@ -144,13 +144,13 @@ class Pivot {
     this.extras,
   });
 
-  int? price;
+  double? price;
   int? quantity;
   ItemSizeId? itemSizeId;
   List<ItemSizeId>? extras;
 
   factory Pivot.fromJson(Map<String, dynamic> json) => Pivot(
-    price: json["price"],
+    price: double.tryParse(json["price"].toString()),
     quantity: json["quantity"],
     itemSizeId: ItemSizeId.fromJson(json["item_size_id"]),
     extras: List<ItemSizeId>.from(json["extras"].map((x) => ItemSizeId.fromJson(x))),
@@ -173,12 +173,12 @@ class ItemSizeId {
 
   int? id;
   String? name;
-  int? price;
+  double? price;
 
   factory ItemSizeId.fromJson(Map<String, dynamic> json) => ItemSizeId(
     id: json["id"],
     name: json["name"],
-    price: json["price"],
+    price: double.tryParse(json["price"].toString()),
   );
 
   Map<String, dynamic> toJson() => {
@@ -224,8 +224,8 @@ class Store {
     reviewsNumber: json["reviews_number"],
     openAt: json["open_at"],
     closeAt: json["close_at"],
-    deliveryFees: json["delivery_fees"],
-    taxes: json["taxes"],
+    deliveryFees: double.tryParse(json["delivery_fees"].toString()),
+    taxes: double.tryParse(json["taxes"].toString()),
     minOrder: json["min_order"],
   );
 
