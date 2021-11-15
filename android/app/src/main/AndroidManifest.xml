@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <application
         android:label="My Order"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
        <meta-data android:name="com.google.android.geo.API_KEY"
                   android:value="AIzaSyBXawwBoGywfE32FGAFtcn-Ahm_XF2OEWQ"/>
