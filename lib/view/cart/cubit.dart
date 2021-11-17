@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../../core/dioHelper/dio_helper.dart';
 import 'model/cart.dart';
 import 'states.dart';
@@ -73,9 +74,9 @@ class CartCubit extends Cubit<CartStates> {
   }
 
   Future<void> completeOrder()async{
-    final r = await DioHelper.postData(
+    await DioHelper.postData(
         url: "/client/orders/checkout");
-    print(r.data);
+    Fluttertoast.showToast(msg: 'Order Sent Successfully!');
     cartModel!.data!.items!.clear();
     emit(CartInit());
   }

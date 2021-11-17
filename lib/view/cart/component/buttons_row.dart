@@ -26,7 +26,7 @@ class ButtonsRow extends StatelessWidget {
               text: "cart.checkout_button_title".tr(),
               onPressed: () {
                 CartCubit.of(context).completeOrder();
-                MagicRouter.navigateTo(const CheckoutView());
+                MagicRouter.navigateAndPopAll(const HomeView());
               },
             ),
           ),
